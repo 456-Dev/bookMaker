@@ -1,8 +1,0 @@
-CONCEPT_NAME: dusk to night shift
-PRIMARY_AXIS: TEMPORAL
-SECONDARY_AXIS: NONE
-WHAT_CHANGES: subject posture changes from looking at object to looking out the window, lighting changes from overhead practicals to dim night-time ambiance
-WHAT_STAYS: style signature, location, world tone, key objects, background wall with framed pictures, overall mood of reflective nostalgia
-NARRATIVE_BEAT: she is now gazing out the window, perhaps through a window, contemplating her thoughts in the dim light of night after the fading light of dusk
-PHOTOGRAPHIC_DELTA: lighting changes from warm overhead fluorescent to dim night-time ambiance; time of day shifts from late evening to night
-EXPECTED_NOVELTY: this frame captures the transition from the active, intimate moment she is looking at the object to the more serene, contemplative state as she looks out into the night, bringing a new layer of emotional depth and visual contrast to the sequence.

@@ -1,8 +1,0 @@
-- Hands and fingers: fingers appear too smooth and lack natural creases and shadows.
-- Eyes: reflections in the eyes appear overly perfect and lack the natural imperfections seen in real eyes.
-- Skin: the skin texture appears overly smooth and lacks the natural pores and imperfections.
-- Hair: the hair appears too uniform and lacks the natural texture and movement seen in real hair.
-- Text and signs: the logo on the red jacket appears too sharp and lacks the natural wear and tear seen in real logos.
-- Backgrounds: the framed pictures on the wall appear too sharp and lack the natural wear and tear seen in real frames.
-- Composition tells: the subject is hyper-centered, and the background elements appear too sharp and lack the natural bokeh seen in real photographs.
-- Over-rendering: every surface appears uniformly sharp, and there is no atmospheric haze or natural detail loss.

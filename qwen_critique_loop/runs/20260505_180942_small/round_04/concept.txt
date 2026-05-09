@@ -1,8 +1,0 @@
-CONCEPT_NAME: next moment in the same room
-PRIMARY_AXIS: TEMPORAL
-SECONDARY_AXIS: SPATIAL
-WHAT_CHANGES: the woman is now wearing a different red winter jacket, the small object in her hand has been replaced with a coat, the chandelier is turned on, the framed artwork appears slightly more blurred due to motion
-WHAT_STAYS: the elderly woman, the indoor setting, the framed artwork on the wall, the general domestic and practical tone of the living room, the natural light from the window on the left side of the frame, and the overall candid and informal mood
-NARRATIVE_BEAT: she picks up her coat, ready to leave the room, the chandelier turns on as if someone enters, making the room feel more lived-in and active
-PHOTOGRAPHIC_DELTA: tight close-up from behind the subject, low angle looking up at the chandelier, soft natural and artificial light from multiple sources, the subject slightly out of focus due to motion, shallow depth of field强调 the chandelier and the coat.
-EXPECTED_NOVELTY: a subtle shift in the moment and the environment, highlighting the transition from preparation to departure, with added dynamic lighting and a change in the subject's state.

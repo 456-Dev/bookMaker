@@ -1,8 +1,0 @@
-CONCEPT_NAME: After the examination
-PRIMARY_AXIS: TEMPORAL
-SECONDARY_AXIS: NONE
-WHAT_CHANGES: subject looks away from the object, slightly lowers red winter jacket, small object is no longer visible, lighting shifts to a dimmer state
-WHAT_STAYS: background wall with framed pictures, indoor setting, emotional tone of reflection and nostalgia, general world of post-retirement domestic life
-NARRATIVE_BEAT: The elderly woman has finished examining the object in her hand and is now returning to her usual state of introspection, the moment immediately after she has set the object down.
-PHOTOGRAPHIC_DELTA: subject upper-right third → subject in shadow, 50mm → 85mm focal length
-EXPECTED_NOVELTY: the shift in subject's state and the change in framing create a narrative beat that moves from the specific focus of the object to the broader context of her surroundings, adding depth to the emotional register of the scene.

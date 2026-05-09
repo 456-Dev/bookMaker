@@ -1,8 +1,0 @@
-CONCEPT_NAME: at dusk
-PRIMARY_AXIS: TEMPORAL
-SECONDARY_AXIS: ENVIRONMENTAL_DELTA
-WHAT_CHANGES: lighting quality changes from warm overhead to cooler tones, the framed pictures are catching the light of dusk
-WHAT_STAYS: location, indoor space, framed artwork on the wall, winter setting, the red winter coat, small object in hand, glasses, beaded necklace, emotional register of reflection
-NARRATIVE_BEAT: she has just noticed the warm glow of dusk settling in, the light changes the way the framed artwork on the wall catches her attention
-PHOTOGRAPHIC_DELTA: 50mm → 24mm, warm overhead fluorescent → dewy dusk tones with natural light
-EXPECTED_NOVELTY: the warm, golden light of dusk creates a new visual narrative, emphasizing the quiet beauty of the moment and the significance of the framed artwork in the room.

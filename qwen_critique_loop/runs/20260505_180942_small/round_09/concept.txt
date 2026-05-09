@@ -1,8 +1,0 @@
-CONCEPT_NAME: the dimly lit room [axes=ENVIRONMENTAL+TEMPORAL, feel=9.2, novelty=5.4]
-PRIMARY_AXIS: environmental
-SECONDARY_AXIS: temporal
-WHAT_CHANGES: natural light gone, room darkened, chandelier lights visible, soft shadows across space,
-WHAT_STAYS: framed artwork, winter setting, living room, subject, red jacket, wall-mounted picture frames, mood,
-NARRATIVE_BEAT: the woman finishes sorting her winter clothing and the room transitions to evening.
-PHOTOGRAPHIC_DELTA: low light evening shot from a wide angle, soft chandelier lighting, room dimly lit, subject in the middle of the frame,
-EXPECTED_NOVELTY: the new frame shifts the setting from midday to evening with softer lighting and a different mood.

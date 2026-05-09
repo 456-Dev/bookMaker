@@ -1,8 +1,0 @@
-CONCEPT_NAME: next morning
-PRIMARY_AXIS: TEMPORAL + SPATIAL
-SECONDARY_AXIS: NONE
-WHAT_CHANGES: the red winter jacket has been removed, the small object is no longer in the woman's hand; the lighting has changed to softer and more natural morning light; the room appears tidier, the chandelier is turned off
-WHAT_STAYS: the framed artwork on the wall, the setting being an indoor living room, the world tone remaining domestic and practical
-NARRATIVE_BEAT: the woman will likely be preparing a new outfit for the day ahead after her morning routine
-PHOTOGRAPHIC_DELTA: closer perspective, low angle from the floor, soft natural morning light from a window on the right, subject medium-sized in the frame, less clutter visible in the background
-EXPECTED_NOVELTY: a new moment in the morning routine, a change in lighting and setting, and a focus on the transition from the night's resting state to the day's activity.

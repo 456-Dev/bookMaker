@@ -1,8 +1,0 @@
-CONCEPT_NAME: "The Framed Moment"
-PRIMARY_AXIS: SPATIAL
-SECONDARY_AXIS: ENTIRE
-WHAT_CHANGES: the woman is replaced by a framed picture on the wall, the setting changes from a living room to a museum or gallery, the woman's red jacket and gloves become part of the framed artwork, the small object she was holding is included as a framed piece
-WHAT_STAYS: the framed pictures on the wall, the chandelier, the indoor setting, the warm, dim lighting, the overall world tone of post-shift industrial loneliness
-NARRATIVE_BEAT: The woman, reflective and nostalgic, has just returned home and decided to turn her living room into a temporary gallery, framing her own memories on the walls.
-PHOTOGRAPHIC_DELTA: a wide environmental shot from across the room, high eye-level angle, soft artificial ceiling lights, the framed picture is small and centered in the frame, emphasizing the oddity and absurdist nature of the scene.
-EXPECTED_NOVELTY: breaking the fourth wall by turning the living room into a gallery, creating a surreal and challenging narrative moment.

@@ -1,8 +1,0 @@
-CONCEPT_NAME: "Moment Before The Clap"
-PRIMARY_AXIS: TEMPORAL
-SECONDARY_AXIS: NONE
-WHAT_CHANGES: the person is now turning slightly to their left, the object is being held slightly differently, the lighting is dimmer, the person's expression is more focused and perhaps slightly tense.
-WHAT_STAYS: the living room setting, the framed artwork on the wall, the red winter coat, the small object in hand, the glasses on the person's face, the beaded necklace, the warm yet dim lighting, the overall mood of reflective nostalgia.
-NARRATIVE_BEAT: The person stops for a moment, their breath visible in the cold air, as they prepare to take the next step in their examination of the object.
-PHOTOGRAPHIC_DELTA: previous shot's shutter feel crisp → a subtle blur simulating the person's breathing, previous shot's composition centered → slightly more off-center with the person in the bottom right, previous shot's lighting soft → a colder, bluish hue with dimmer illumination.
-EXPECTED_NOVELTY: A new angle that heightens the anticipation of what will happen next, shifting from a candid candid moment to a more deliberate, suspenseful one.

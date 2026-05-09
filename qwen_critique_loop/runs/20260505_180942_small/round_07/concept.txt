@@ -1,8 +1,0 @@
-CONCEPT_NAME: the room one minute later
-PRIMARY_AXIS: NARRATIVE_BEAT
-SECONDARY_AXIS: SPATIAL
-WHAT_CHANGES: the woman has moved out of the frame, the room is dimmer but still has natural light, some plants are visible in the foreground, the chandelier is still lit
-WHAT_STAYS: the framed artwork on the wall, the indoor living room setting, the mood of domestic and practical tone
-NARRATIVE_BEAT: what happens immediately after the woman steps away from the camera
-PHOTOGRAPHIC_DELTA: high-angle shot from behind the chandelier, dim natural light from a window on the right, chandelier still illuminated, plants in the foreground, subject slightly out of the frame in the background
-EXPECTED_NOVELTY: the introduction of the plant foreground and the chandelier illumination create a new dynamic, visually differentiating the moment right after the woman steps away from the camera.

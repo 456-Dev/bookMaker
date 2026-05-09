@@ -1,8 +1,0 @@
-CONCEPT_NAME: the next moment in the same room
-PRIMARY_AXIS: TEMPORAL
-SECONDARY_AXIS: SPATIAL
-WHAT_CHANGES: the red jacket is being zipped up, the small object is placed in the other hand, the chandelier is now on.
-WHAT_STAYS: the framed artwork on the wall, the living room setting, the soft lighting from the window.
-NARRATIVE_BEAT: the woman is having a final check before departing.
-PHOTOGRAPHIC_DELTA: wider environmental shot, high eye-level angle, natural light from a window on the left, subject medium in the frame, some motion blur visible.
-EXPECTED_NOVELTY: the new frame captures a transition moment in the woman's preparation, emphasizing the room's domesticity and the passage of time.

@@ -1,8 +1,0 @@
-CONCEPT_NAME: the room without the subject in the frame
-PRIMARY_AXIS: SPATIAL
-SECONDARY_AXIS: NONE
-WHAT_CHANGES: the subject is removed, focus is on the room and artwork on the wall; the object in hand is no longer visible; the overall atmosphere is quiet and still
-WHAT_STAYS: style signature, location, framed artwork, natural light through the window, domestic and practical tone
-NARRATIVE_BEAT: the room now appears empty and the focus is on the previous activity of the subject
-PHOTOGRAPHIC_DELTA: the camera pulls back to a wide-angle shot, capturing the whole room and the framed artwork, emphasizing the before state of the room; the angle changes to a low ground-level perspective, inviting the viewer into the scene with a sense of stillness; the lighting becomes soft and natural, focusing on the details of the artwork and the overall room ambiance
-EXPECTED_NOVELTY: the frame offers a new exploration of the same environment, focusing on the room before the subject's arrival and the disappearance of the specific moment, introducing a quiet, empty state that contrasts strongly with the original active subject-centered moment.

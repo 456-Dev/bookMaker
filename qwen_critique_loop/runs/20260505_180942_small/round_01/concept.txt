@@ -1,8 +1,0 @@
-CONCEPT_NAME: the dimly lit room
-PRIMARY_AXIS: ENVIRONMENTAL
-SECONDARY_AXIS: NARRATIVE_BEAT
-WHAT_CHANGES: the room now has dim overhead lighting, the window is closed and curtained, the wall-mounted picture frames are turned but with different art pieces
-WHAT_STAYS: the living room setting, the framed artwork on the wall, the chandelier, the subject's red winter jacket and hood, the same emotional register of contemplation
-NARRATIVE_BEAT: The woman has just finished sorting through her winter clothing and is now preparing to head out.
-PHOTOGRAPHIC_DELTA: darker environmental shot with closed curtains, natural light from a window no longer visible, chandelier and dim overhead lighting illuminating the subject, focus on the woman's face and the framed artwork on the wall behind her.
-EXPECTED_NOVELTY: The new frame captures the transition from day to evening, shifting the lighting and mood of the living room to a more intimate and private setting.

@@ -1,8 +1,0 @@
-CONCEPT_NAME: sunset in the living room
-PRIMARY_AXIS: TEMPORAL
-SECONDARY_AXIS: ENVIRONMENTAL
-WHAT_CHANGES: natural light changes to warm orange hues, framed artwork more visible against the yellow sky, chandelier casts longer shadows
-WHAT_STAYS: living room setting, framed artwork, small object in the woman's hand, domestic and practical mood
-NARRATIVE_BEAT: the woman is seeking comfort and warmth as the day transitions to night.
-PHOTOGRAPHIC_DELTA: a sunset-themed environmental shot, low angle from floor level, warm orange task lighting from a ceiling fixture, long shadows across the room, subject small and silhouetted against the sky.
-EXPECTED_NOVELTY: a serene and reflective moment, capturing the transition from day to night and the woman's connection to the surroundings.

@@ -1,8 +1,0 @@
-CONCEPT_NAME: 30 Minutes After
-PRIMARY_AXIS: TEMPORAL
-SECONDARY_AXIS: NONE
-WHAT_CHANGES: subject left room, changes in lighting, object placed down
-WHAT_STAYS: style signature, location, world tone, key objects, background artwork, mood, lighting quality, sharpness
-NARRATIVE_BEAT: she has finished examining the object and is leaving the room, possibly heading to bed.
-PHOTOGRAPHIC_DELTA: subject moves from center of frame → under window with natural light → light from ceiling fixtures magically changes in half-lit room → object placed down → new arrangement
-EXPECTED_NOVELTY: subtle transition of time while preserving the original's mood and emotional register

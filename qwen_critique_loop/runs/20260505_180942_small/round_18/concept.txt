@@ -1,8 +1,0 @@
-CONCEPT_NAME: evening glow in the room
-PRIMARY_AXIS: TEMPORAL
-SECONDARY_AXIS: NONE
-WHAT_CHANGES: dimmer lighting, soft shadows, natural light gradually fading, room's warmth emphasized from the windows, visible evening chandelier lighting
-WHAT_STAYS: same indoor setting, framed artwork, winter red jacket, focused subject, domestic tone
-NARRATIVE_BEAT: the woman finishes her task in the evening, the room is settling in the glow of the natural light and artificial chandelier, after the sun has set
-PHOTOGRAPHIC_DELTA: low-angle shot from the doorway, capturing the subject and the chandelier, soft natural and artificial light blend, shallow depth of field softening the background, subdued colors and warm tones dominating the scene
-EXPECTED_NOVELTY: the evening atmosphere is全新 and distinct, capturing a different time of day with a warm, reflective mood.

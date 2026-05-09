@@ -1,8 +1,0 @@
-CONCEPT_NAME: next moment in the same room
-PRIMARY_AXIS: TEMPORAL
-SECONDARY_AXIS: NONE
-WHAT_CHANGES: the woman's hand is lowered to her side, the framed artwork remains the same
-WHAT_STAYS: the woman's red winter jacket, the framed artwork, the living room setting, the natural light from the window, the clear weather, the same day and season, the woman's contemplative and focused expression, the domestic and practical world tone
-NARRATIVE_BEAT: the woman has paused her sorting of winter clothing to address something else, possibly related to her routine or an unexpected interruption
-PHOTOGRAPHIC_DELTA: taller wider environmental shot, low angle from the window, soft natural daylight from the left, the woman is small in the frame, chandelier softly glowing in the corner
-EXPECTED_NOVELTY: a clear new moment in the woman's daily routine, emphasizing the change in her action and the new light of day.
