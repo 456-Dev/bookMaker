@@ -15,8 +15,7 @@ def describe_image(vlm: VisionModel, square_path: Path,
     """Describe the image; cache to disk. Returns the description string."""
     if output_path.exists():
         return output_path.read_text().strip()
-    desc = vlm.describe(square_path, prompt=config.VLM_DESCRIBE_PROMPT,
-                        max_new_tokens=config.VLM_MAX_TOKENS)
+    desc = vlm.describe(square_path, max_new_tokens=config.VLM_MAX_TOKENS)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(desc)
     return desc

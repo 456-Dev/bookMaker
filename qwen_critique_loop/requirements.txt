@@ -1,25 +1,26 @@
-# imgSequel — CPU-only PDF page reimagining pipeline
+# imgSequel — CPU-only PDF page reimagining pipeline.
 # Target: AMD Ryzen 9 / 32GB / no GPU. All wheels are cross-platform.
+#
+# Install on a fresh box:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+#   pip install -r qwen_critique_loop/requirements.txt
 
-# CPU-only torch (no CUDA, no MPS).
-# On a fresh box, install with the CPU-only index URL:
-#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+# --- core torch ---
 torch>=2.2.0
-torchvision>=0.17.0    # required by moondream2 modeling code
+torchvision>=0.17.0          # transitively required by transformers image processors
 
-# Diffusion stack (SD 1.5 img2img)
+# --- diffusion + vision (all built-in transformers models, no trust_remote_code) ---
 diffusers>=0.30.0
-transformers>=4.45.0,<5.0    # moondream2 vendors a modeling_phi.py that breaks under transformers 5.x
+transformers>=4.45.0
 accelerate>=0.34.0
 safetensors>=0.4.5
-einops>=0.7.0          # moondream2 dependency
 
-# PDF rendering
-pypdfium2>=4.30.0      # BSD, no system dependencies (no poppler needed)
+# --- PDF rendering ---
+pypdfium2>=4.30.0            # BSD, embedded native, no system deps (no poppler)
 
-# Seam carving
-seam-carving>=1.0.0    # MIT, pure numpy
+# --- seam carving ---
+seam-carving>=1.0.0          # MIT, pure numpy
 
-# Image handling
+# --- image handling ---
 Pillow>=10.0.0
 numpy>=1.24.0

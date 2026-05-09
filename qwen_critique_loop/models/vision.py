@@ -1,11 +1,13 @@
-"""moondream2 image-description model.
+"""BLIP image captioning — simple, reliable, CPU-friendly.
 
-CPU-only. Loaded lazily on first use; held in memory for the rest of the run.
-Roughly 3.5 GB RAM, ~3 seconds per description on a Ryzen 9 8945HS.
+BLIP is a built-in transformers model (no trust_remote_code, no vendored
+modeling files). It generates a single caption per image; we use that
+caption verbatim as the negative prompt for the diffusion stage.
+
+~1 GB on disk, ~1 second per caption on a Ryzen 9 8945HS.
 """
 
 from pathlib import Path
-from typing import Optional
 
 from PIL import Image
 
@@ -13,47 +15,34 @@ from .. import config
 
 
 class VisionModel:
-    def __init__(self, model_id: str = config.VLM_MODEL,
-                 revision: str = config.VLM_REVISION):
+    def __init__(self, model_id: str = config.VLM_MODEL):
         self.model_id = model_id
-        self.revision = revision
         self.model = None
-        self.tokenizer = None
+        self.processor = None
 
     def _ensure_loaded(self) -> None:
         if self.model is not None:
             return
         import torch
-        from transformers import AutoModelForCausalLM, AutoTokenizer
-        # Pin number of threads for CPU inference
+        from transformers import BlipProcessor, BlipForConditionalGeneration
         torch.set_num_threads(config.NUM_THREADS)
-        self.model = AutoModelForCausalLM.from_pretrained(
-            self.model_id,
-            revision=self.revision,
-            trust_remote_code=True,
-            torch_dtype=torch.float32,
-        )
+        self.processor = BlipProcessor.from_pretrained(self.model_id)
+        self.model = BlipForConditionalGeneration.from_pretrained(self.model_id)
         self.model.eval()
-        self.tokenizer = AutoTokenizer.from_pretrained(
-            self.model_id, revision=self.revision
-        )
 
     def describe(self, image_path: Path,
-                 prompt: str = config.VLM_DESCRIBE_PROMPT,
                  max_new_tokens: int = config.VLM_MAX_TOKENS) -> str:
+        """Return a single content caption for the image."""
         self._ensure_loaded()
+        import torch
         image = Image.open(image_path).convert("RGB")
-        # moondream2 has a one-shot helper that handles image encoding + chat template
-        with _no_grad():
-            answer = self.model.answer_question(
-                self.model.encode_image(image),
-                prompt,
-                self.tokenizer,
-                max_new_tokens=max_new_tokens,
-            )
-        return answer.strip()
-
-
-def _no_grad():
-    import torch
-    return torch.inference_mode()
+        # The conditional prefix nudges BLIP toward longer, more descriptive
+        # captions than its default unconditioned mode.
+        inputs = self.processor(image, "a photograph of", return_tensors="pt")
+        with torch.inference_mode():
+            output_ids = self.model.generate(**inputs, max_new_tokens=max_new_tokens)
+        caption = self.processor.decode(output_ids[0], skip_special_tokens=True).strip()
+        # Strip the conditional prefix if BLIP echoed it back
+        if caption.lower().startswith("a photograph of"):
+            caption = caption[len("a photograph of"):].lstrip()
+        return caption

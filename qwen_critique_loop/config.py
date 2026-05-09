@@ -19,12 +19,11 @@ PDF_RENDER_DPI = 200  # 200 dpi gives ~1650x2200 for a US-letter page
 SQUARE_SIDE = "AUTO"
 
 # ---------- Vision / VLM model ----------
-# moondream2 is a 1.86B-param VLM tuned for CPU inference.
-# ~3 seconds per description on Ryzen 9 8945HS, ~3.5GB RAM.
-VLM_MODEL = "vikhyatk/moondream2"
-VLM_REVISION = "2024-08-26"
-VLM_MAX_TOKENS = 256
-VLM_DESCRIBE_PROMPT = "Describe this image in detail. List the main subjects, the setting, the colors, the lighting, and any notable objects. Be specific and concrete."
+# BLIP image captioning — built into transformers (no trust_remote_code),
+# ~1GB on disk, ~1 second per caption on Ryzen 9 8945HS. Generates a single
+# content caption that fits SD 1.5's 77-token CLIP window.
+VLM_MODEL = "Salesforce/blip-image-captioning-large"
+VLM_MAX_TOKENS = 60
 
 # ---------- Diffusion model ----------
 # SD 1.5 photoreal community model. Self-contained (no separate VAE),
