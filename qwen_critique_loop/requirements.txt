@@ -18,9 +18,6 @@ safetensors>=0.4.5
 # --- PDF rendering ---
 pypdfium2>=4.30.0            # BSD, embedded native, no system deps (no poppler)
 
-# --- seam carving ---
-seam-carving>=1.0.0          # MIT, pure numpy
-
 # --- image handling ---
 Pillow>=10.0.0
 numpy>=1.24.0
