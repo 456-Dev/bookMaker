@@ -1,0 +1,16 @@
+FEEL_COLOR_GRADE: 9
+FEEL_GRAIN_NOISE: 8
+FEEL_LENS_CHARACTER: 9
+FEEL_ERA_VIBE: 9
+FEEL_MOOD_CONTINUITY: 8
+FEEL_COMPOSITIONAL_LANGUAGE: 8
+NOVELTY_SUBJECT_POSE: 5
+NOVELTY_TEMPORAL_SHIFT: 3
+NOVELTY_FRAMING_ANGLE: 8
+NOVELTY_ENVIRONMENTAL_DELTA: 8
+NOVELTY_NARRATIVE_BEAT: 5
+VERDICT: RETRY_TIGHTER
+PUSH_HARDER_ON: TEMPORAL, SPATIAL, FOCAL, SUBJECT_STATE, ENVIRONMENTAL
+PULL_BACK_ON: NONE
+SPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain, shift to wider 35mm focal length, add window-light from camera-right
+ONE_LINE_RATIONALE: The sequel candidate maintains a strong continuity in the visual style but introduces subtle differences in the subject's pose and the narrative beat, warranting a tighter retry.

@@ -1,0 +1,8 @@
+CONCEPT_NAME: Reflection in the mirror
+PRIMARY_AXIS: SUBJECT_STATE
+SECONDARY_AXIS: NONE
+WHAT_CHANGES: the woman is now looking into a mirror, her face reflected, the small object is held up to it, the setting is a bathroom, the lighting is from a different angle and direction
+WHAT_STAYS: the woman's red winter jacket, the framed pictures on the wall, the lighting from overhead practicals, the feeling of cold and damp weather
+NARRATIVE_BEAT: the woman has just returned home from a day out and is now examining a small object she has brought back, possibly a memento or a gift, while visually reflecting on her journey and thoughts in the mirror
+PHOTOGRAPHIC_DELTA: wide environmental shot of the bathroom, natural eye-level framing, soft natural daylight from a side window, subject small in the frame, the mirror reflects the subject's face and the framed pictures behind her
+EXPECTED_NOVELTY: a new visually different scene with a mirror reflection adds depth and introspection, creating a new emotional register of self-reflection and remembrance.

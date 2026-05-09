@@ -1,0 +1,24 @@
+# imgSequel — CPU-only PDF page reimagining pipeline
+# Target: AMD Ryzen 9 / 32GB / no GPU. All wheels are cross-platform.
+
+# CPU-only torch (no CUDA, no MPS).
+# On a fresh box, install with the CPU-only index URL:
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+torch>=2.2.0
+
+# Diffusion stack (SD 1.5 img2img)
+diffusers>=0.30.0
+transformers>=4.45.0
+accelerate>=0.34.0
+safetensors>=0.4.5
+einops>=0.7.0          # moondream2 dependency
+
+# PDF rendering
+pypdfium2>=4.30.0      # BSD, no system dependencies (no poppler needed)
+
+# Seam carving
+seam-carving>=1.2.0    # MIT, pure numpy
+
+# Image handling
+Pillow>=10.0.0
+numpy>=1.24.0

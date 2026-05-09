@@ -1,0 +1,8 @@
+CONCEPT_NAME: the reflective mirror moment
+PRIMARY_AXIS: PERSPECTIVE_SHIFT
+SECONDARY_AXIS: NONE
+WHAT_CHANGES: the subject changes to a mirror surface, the setting becomes the room as viewed from a mirror, the object changes to the reflection of the woman and the framed artwork, the woman herself is replaced by a mirror
+WHAT_STAYS: the red winter jacket, the framed artwork, the natural light source, the domestic and practical tone, the candid, informal mood, the minimal movement blur and natural saturation of the color-grade
+NARRATIVE_BEAT: the moment the woman is remembering her routine of preparing for the day ahead in the mirror.
+PHOTOGRAPHIC_DELTA: wide environmental shot from behind the mirror, natural angle looking out from the 'mirror's' perspective, a mix of natural and reflected window light, mirror reflection highlights the red winter jacket and the framed artwork on the wall.
+EXPECTED_NOVELTY: a completely new perspective that shifts the focus from the woman to the reflection in the mirror, effectively reviving the narrative of the woman sorting through her winter clothes while offering a side narrative of her reflection.

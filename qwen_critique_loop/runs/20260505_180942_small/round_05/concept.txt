@@ -1,0 +1,8 @@
+CONCEPT_NAME: the room at dusk
+PRIMARY_AXIS: TEMPORAL
+SECONDARY_AXIS: NONE
+WHAT_CHANGES: natural light fading, shadows lengthening, transition from day to night, framed artwork more prominent in focus
+WHAT_STAYS: indoor setting, framed artwork on the wall, warm domestic tone, subject in red jacket and hood
+NARRATIVE_BEAT: the woman finishes sorting through her winter clothing and the moment transitions from her inaction to the passage of time.
+PHOTOGRAPHIC_DELTA: heptaenvironmental shot from across the room, low angle from floor, natural twilight light from a window on the left, subject slightly smaller in the frame, soft shadows on the wall,
+EXPECTED_NOVELTY: the new frame captures the passage of time and the change in light as evening approaches, offering a mood shift from candid to more contemplative and the room feels as if it has moved into the twilight of the day.

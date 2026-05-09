@@ -1,0 +1,1499 @@
+{
+  "timestamp": "2026-05-05T18:58:39",
+  "run_dir": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small",
+  "input_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/original.jpg",
+  "original_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/original.jpg",
+  "original_size": [
+    300,
+    400
+  ],
+  "vlm_model": "mlx-community/Qwen2.5-VL-7B-Instruct-4bit",
+  "diffusion_model": "SG161222/RealVisXL_V4.0",
+  "diffusion_seed_base": null,
+  "use_img2img": true,
+  "img2img_strength": 0.65,
+  "style_summary": "CAMERA_FORMAT: 35mm full-frame\nERA: 2005-2010 digital point-and-shoot\nFILM_OR_DIGITAL: digital\nFOCAL_LENGTH_MM: 50\nAPERTURE: f/2.8\nSHUTTER_FEEL: crisp\nISO_FEEL: medium\nWHITE_BALANCE_K: 5500\nCOLOR_GRADE: neutral\nCONTRAST: high contrast crushed shadows\nSATURATION: natural\nGRAIN_OR_NOISE: none\nSHARPNESS: natural\nDEPTH_OF_FIELD: shallow with bokeh shape if visible\nLIGHTING_SOURCE: overhead fluorescent\nLIGHTING_QUALITY: soft\nCOMPOSITION: subject centered, slight tilt, background frames the subject\nSUBJECT: person wearing red jacket and hood, holding object in hand\nSETTING: indoor, framed artwork on wall behind subject\nMOOD: candid, informal\nNOTABLE_IMPERFECTIONS: slight motion blur on hand, JPEG artifacts in shadows",
+  "world_summary": "SUBJECT: elderly woman, 60-70 years old, retired, holding a small object, possibly a piece of clothing or a glove, in her right hand.\nLOCATION: living room, indoor, framed artwork on the wall.\nTIME_OF_DAY: midday, natural light coming through a window.\nSEASON: winter, the woman is wearing a red winter jacket.\nWEATHER: clear, no visible signs of rain or snow.\nLIGHT_SOURCE: natural light from a window on the left side of the frame.\nNARRATIVE_IMPLIED: the woman is in the process of sorting through her winter clothing, possibly preparing for the day ahead.\nEMOTIONAL_REGISTER: contemplative and focused.\nWORLD_TONE: domestic and practical.\nKEY_OBJECTS: red winter jacket, framed artwork, small object in the woman's hand, chandelier, wall-mounted picture frames.",
+  "rounds": [
+    {
+      "round": 1,
+      "concept": {
+        "CONCEPT_NAME": "the dimly lit room",
+        "PRIMARY_AXIS": "ENVIRONMENTAL",
+        "SECONDARY_AXIS": "NARRATIVE_BEAT",
+        "WHAT_CHANGES": "the room now has dim overhead lighting, the window is closed and curtained, the wall-mounted picture frames are turned but with different art pieces",
+        "WHAT_STAYS": "the living room setting, the framed artwork on the wall, the chandelier, the subject's red winter jacket and hood, the same emotional register of contemplation",
+        "NARRATIVE_BEAT": "The woman has just finished sorting through her winter clothing and is now preparing to head out.",
+        "PHOTOGRAPHIC_DELTA": "darker environmental shot with closed curtains, natural light from a window no longer visible, chandelier and dim overhead lighting illuminating the subject, focus on the woman's face and the framed artwork on the wall behind her.",
+        "EXPECTED_NOVELTY": "The new frame captures the transition from day to evening, shifting the lighting and mood of the living room to a more intimate and private setting."
+      },
+      "concept_axis_key": "ENVIRONMENTAL+NARRATIVE_BEAT",
+      "sdxl_prompt": "candid 2005-2010 digital snapshot, elderly woman wearing red winter jacket and hood, holding small object, indoor living room with framed artwork on wall, natural light from window on left, chandelier and dim overhead lighting illuminating subject, shallow depth of field with bokeh, slight motion blur on hand, natural color grading, high contrast crushed shadows, domestic and practical mood.",
+      "attempts": [
+        {
+          "attempt": 0,
+          "seed": 1009,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_01/sequel.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 9,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 9,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 9
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 8,
+              "NOVELTY_TEMPORAL_SHIFT": 0,
+              "NOVELTY_FRAMING_ANGLE": 9,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 0,
+              "NOVELTY_NARRATIVE_BEAT": 8
+            },
+            "feel_total": 9,
+            "novelty_total": 5,
+            "verdict": "ACCEPT",
+            "push_harder_on": [],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain; shift to wider 35mm focal length; add window-light from camera-right",
+            "rationale": "The sequel maintains strong continuity with the original in terms of color, grain, lens character, era vibe, mood, and compositional language, while introducing subtle differences in subject pose and narrative beat.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 9\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 9\nFEEL_COMPOSITIONAL_LANGUAGE: 9\nNOVELTY_SUBJECT_POSE: 8\nNOVELTY_TEMPORAL_SHIFT: 0\nNOVELTY_FRAMING_ANGLE: 9\nNOVELTY_ENVIRONMENTAL_DELTA: 0\nNOVELTY_NARRATIVE_BEAT: 8\nVERDICT: ACCEPT\nPUSH_HARDER_ON: NONE\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain; shift to wider 35mm focal length; add window-light from camera-right\nONE_LINE_RATIONALE: The sequel maintains strong continuity with the original in terms of color, grain, lens character, era vibe, mood, and compositional language, while introducing subtle differences in subject pose and narrative beat."
+          },
+          "combined_score": 6.708203932499369
+        }
+      ],
+      "chosen_attempt": 0,
+      "chosen_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_01/sequel.png",
+      "chosen_combined_score": 6.708203932499369
+    },
+    {
+      "round": 2,
+      "concept": {
+        "CONCEPT_NAME": "sunset in the living room",
+        "PRIMARY_AXIS": "TEMPORAL",
+        "SECONDARY_AXIS": "ENVIRONMENTAL",
+        "WHAT_CHANGES": "natural light changes to warm orange hues, framed artwork more visible against the yellow sky, chandelier casts longer shadows",
+        "WHAT_STAYS": "living room setting, framed artwork, small object in the woman's hand, domestic and practical mood",
+        "NARRATIVE_BEAT": "the woman is seeking comfort and warmth as the day transitions to night.",
+        "PHOTOGRAPHIC_DELTA": "a sunset-themed environmental shot, low angle from floor level, warm orange task lighting from a ceiling fixture, long shadows across the room, subject small and silhouetted against the sky.",
+        "EXPECTED_NOVELTY": "a serene and reflective moment, capturing the transition from day to night and the woman's connection to the surroundings."
+      },
+      "concept_axis_key": "TEMPORAL+ENVIRONMENTAL",
+      "sdxl_prompt": "candid 2005-2010 digital snapshot, elderly woman wearing red winter jacket and hood, holding small object, indoor living room with framed artwork on the wall, natural light from window on left, domestic and practical mood, slight motion blur on hand, natural light changes to warm orange hues, framed artwork more visible against yellow sky, chandelier casts longer shadows, low angle from floor level, warm orange task lighting from ceiling fixture, long shadows across the room, subject small and silhouetted against sky, serene and reflective moment, transition from day to night, woman seeking comfort and warmth.",
+      "attempts": [
+        {
+          "attempt": 0,
+          "seed": 2018,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_02/sequel.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 9,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 9,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 9
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 8,
+              "NOVELTY_TEMPORAL_SHIFT": 1,
+              "NOVELTY_FRAMING_ANGLE": 9,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 1,
+              "NOVELTY_NARRATIVE_BEAT": 8
+            },
+            "feel_total": 9,
+            "novelty_total": 5.4,
+            "verdict": "ACCEPT",
+            "push_harder_on": [
+              "NARRATIVE_BEAT"
+            ],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain; shift to wider 35mm focal length; add window-light from camera-right",
+            "rationale": "The sequel maintains strong continuity with the original in terms of color, grain, and overall mood, while offering a subtle but distinct change in the narrative beat.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 9\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 9\nFEEL_COMPOSITIONAL_LANGUAGE: 9\nNOVELTY_SUBJECT_POSE: 8\nNOVELTY_TEMPORAL_SHIFT: 1\nNOVELTY_FRAMING_ANGLE: 9\nNOVELTY_ENVIRONMENTAL_DELTA: 1\nNOVELTY_NARRATIVE_BEAT: 8\nVERDICT: ACCEPT\nPUSH_HARDER_ON: NARRATIVE_BEAT\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain; shift to wider 35mm focal length; add window-light from camera-right\nONE_LINE_RATIONALE: The sequel maintains strong continuity with the original in terms of color, grain, and overall mood, while offering a subtle but distinct change in the narrative beat."
+          },
+          "combined_score": 6.971370023173351
+        }
+      ],
+      "chosen_attempt": 0,
+      "chosen_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_02/sequel.png",
+      "chosen_combined_score": 6.971370023173351
+    },
+    {
+      "round": 3,
+      "concept": {
+        "CONCEPT_NAME": "evening in the same room",
+        "PRIMARY_AXIS": "TEMPORAL",
+        "SECONDARY_AXIS": "NONE",
+        "WHAT_CHANGES": "evening lighting, shadows growing longer, clock visible on the wall",
+        "WHAT_STAYS": "red winter jacket, framed artwork, small object in the woman's hand, chandelier, wall-mounted picture frames, indoor setting",
+        "NARRATIVE_BEAT": "the woman is now in the evening, possibly preparing for bed.",
+        "PHOTOGRAPHIC_DELTA": "softer natural light from the setting sun, distant window on the left, longer shadows on the woman, clock on the wall showing the time transitioning into night.",
+        "EXPECTED_NOVELTY": "a new time of day captures the woman, shifting the mood from midday practicality to the evening, adding a layer of quietness and personal routine."
+      },
+      "concept_axis_key": "TEMPORAL+NONE",
+      "sdxl_prompt": "candid mid-2005 digital snapshot, elderly woman holding small object, slight tilt, framed artwork on wall, natural light from window, shallow depth of field with bokeh, soft overhead fluorescent light, red winter jacket, small object in hand, domestic and practical setting, contemplative and focused mood, evening lighting, distant window, longer shadows, clock on wall, new time of day, quietness and personal routine.",
+      "attempts": [
+        {
+          "attempt": 0,
+          "seed": 3027,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_03/sequel.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 9,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 9,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 9
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 8,
+              "NOVELTY_TEMPORAL_SHIFT": 1,
+              "NOVELTY_FRAMING_ANGLE": 9,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 1,
+              "NOVELTY_NARRATIVE_BEAT": 8
+            },
+            "feel_total": 9,
+            "novelty_total": 5.4,
+            "verdict": "ACCEPT",
+            "push_harder_on": [],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain; shift to wider 35mm focal length; add window-light from camera-right",
+            "rationale": "The sequel maintains strong continuity in the visual world and mood, while offering a subtle change in the subject's pose and narrative beat.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 9\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 9\nFEEL_COMPOSITIONAL_LANGUAGE: 9\nNOVELTY_SUBJECT_POSE: 8\nNOVELTY_TEMPORAL_SHIFT: 1\nNOVELTY_FRAMING_ANGLE: 9\nNOVELTY_ENVIRONMENTAL_DELTA: 1\nNOVELTY_NARRATIVE_BEAT: 8\nVERDICT: ACCEPT\nPUSH_HARDER_ON: NONE\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain; shift to wider 35mm focal length; add window-light from camera-right\nONE_LINE_RATIONALE: The sequel maintains strong continuity in the visual world and mood, while offering a subtle change in the subject's pose and narrative beat."
+          },
+          "combined_score": 6.971370023173351
+        }
+      ],
+      "chosen_attempt": 0,
+      "chosen_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_03/sequel.png",
+      "chosen_combined_score": 6.971370023173351
+    },
+    {
+      "round": 4,
+      "concept": {
+        "CONCEPT_NAME": "next moment in the same room",
+        "PRIMARY_AXIS": "TEMPORAL",
+        "SECONDARY_AXIS": "SPATIAL",
+        "WHAT_CHANGES": "the woman is now wearing a different red winter jacket, the small object in her hand has been replaced with a coat, the chandelier is turned on, the framed artwork appears slightly more blurred due to motion",
+        "WHAT_STAYS": "the elderly woman, the indoor setting, the framed artwork on the wall, the general domestic and practical tone of the living room, the natural light from the window on the left side of the frame, and the overall candid and informal mood",
+        "NARRATIVE_BEAT": "she picks up her coat, ready to leave the room, the chandelier turns on as if someone enters, making the room feel more lived-in and active",
+        "PHOTOGRAPHIC_DELTA": "tight close-up from behind the subject, low angle looking up at the chandelier, soft natural and artificial light from multiple sources, the subject slightly out of focus due to motion, shallow depth of field\u5f3a\u8c03 the chandelier and the coat.",
+        "EXPECTED_NOVELTY": "a subtle shift in the moment and the environment, highlighting the transition from preparation to departure, with added dynamic lighting and a change in the subject's state."
+      },
+      "concept_axis_key": "TEMPORAL+SPATIAL",
+      "sdxl_prompt": "candid digital snapshot from 2005-2010, elderly woman wearing red winter jacket and hood, holding small object in hand, indoor living room with framed artwork, natural light from window, soft and warm, subject centered with slight tilt, background frames the subject, shallow depth of field with bokeh, slight motion blur on hand, natural noise and grain, domestic and practical tone, contemplative and focused, chandelier turned on, framed artwork slightly blurred, natural light from window, low angle looking up at chandelier, soft natural and artificial light, shallow depth of field, chandelier and coat emphasized, transition from preparation to departure, dynamic lighting, subtle shift in moment and environment.",
+      "attempts": [
+        {
+          "attempt": 0,
+          "seed": 4036,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_04/sequel.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 8,
+              "FEEL_GRAIN_NOISE": 8,
+              "FEEL_LENS_CHARACTER": 8,
+              "FEEL_ERA_VIBE": 8,
+              "FEEL_MOOD_CONTINUITY": 8,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 8
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 7,
+              "NOVELTY_TEMPORAL_SHIFT": 6,
+              "NOVELTY_FRAMING_ANGLE": 8,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 7,
+              "NOVELTY_NARRATIVE_BEAT": 7
+            },
+            "feel_total": 8,
+            "novelty_total": 7,
+            "verdict": "ACCEPT",
+            "push_harder_on": [],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain; shift to wider 35mm focal length; add window-light from camera-right",
+            "rationale": "The sequel maintains strong continuity with the original in terms of color, grain, lens character, era vibe, mood, and composition, while offering a distinct subject pose and narrative beat.",
+            "full_response": "FEEL_COLOR_GRADE: 8\nFEEL_GRAIN_NOISE: 8\nFEEL_LENS_CHARACTER: 8\nFEEL_ERA_VIBE: 8\nFEEL_MOOD_CONTINUITY: 8\nFEEL_COMPOSITIONAL_LANGUAGE: 8\nNOVELTY_SUBJECT_POSE: 7\nNOVELTY_TEMPORAL_SHIFT: 6\nNOVELTY_FRAMING_ANGLE: 8\nNOVELTY_ENVIRONMENTAL_DELTA: 7\nNOVELTY_NARRATIVE_BEAT: 7\nVERDICT: ACCEPT\nPUSH_HARDER_ON: NONE\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain; shift to wider 35mm focal length; add window-light from camera-right\nONE_LINE_RATIONALE: The sequel maintains strong continuity with the original in terms of color, grain, lens character, era vibe, mood, and composition, while offering a distinct subject pose and narrative beat."
+          },
+          "combined_score": 7.483314773547883
+        }
+      ],
+      "chosen_attempt": 0,
+      "chosen_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_04/sequel.png",
+      "chosen_combined_score": 7.483314773547883
+    },
+    {
+      "round": 5,
+      "concept": {
+        "CONCEPT_NAME": "the room at dusk",
+        "PRIMARY_AXIS": "TEMPORAL",
+        "SECONDARY_AXIS": "NONE",
+        "WHAT_CHANGES": "natural light fading, shadows lengthening, transition from day to night, framed artwork more prominent in focus",
+        "WHAT_STAYS": "indoor setting, framed artwork on the wall, warm domestic tone, subject in red jacket and hood",
+        "NARRATIVE_BEAT": "the woman finishes sorting through her winter clothing and the moment transitions from her inaction to the passage of time.",
+        "PHOTOGRAPHIC_DELTA": "heptaenvironmental shot from across the room, low angle from floor, natural twilight light from a window on the left, subject slightly smaller in the frame, soft shadows on the wall,",
+        "EXPECTED_NOVELTY": "the new frame captures the passage of time and the change in light as evening approaches, offering a mood shift from candid to more contemplative and the room feels as if it has moved into the twilight of the day."
+      },
+      "concept_axis_key": "TEMPORAL+NONE",
+      "sdxl_prompt": "candid 2005-2010 digital point-and-shoot, elderly woman wearing red winter jacket and hood, holding small object, indoor living room with framed artwork, natural light from window on left, subject centered with slight tilt, shallow depth of field with bokeh, soft light quality, natural domestic tone, framed artwork on wall, contemplative and focused, the woman in the process of sorting through her winter clothing, night approaching, transition from day to night, passage of time, low angle from floor, soft shadows on wall, mood shift from candid to contemplative, subtle motion blur on hand, JPEG artifacts in shadows.",
+      "attempts": [
+        {
+          "attempt": 0,
+          "seed": 5045,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_05/sequel.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 8,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 9,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 9
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 8,
+              "NOVELTY_TEMPORAL_SHIFT": 1,
+              "NOVELTY_FRAMING_ANGLE": 8,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 1,
+              "NOVELTY_NARRATIVE_BEAT": 8
+            },
+            "feel_total": 8.833333333333334,
+            "novelty_total": 5.2,
+            "verdict": "ACCEPT",
+            "push_harder_on": [
+              "TEMPORAL",
+              "NARRATIVE_BEAT"
+            ],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain; shift to wider 35mm focal length; add window-light from camera-right",
+            "rationale": "The sequel maintains a strong continuity in the visual world and mood, but introduces a subtle temporal shift and narrative beat change, making it a good sequel.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 8\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 9\nFEEL_COMPOSITIONAL_LANGUAGE: 9\nNOVELTY_SUBJECT_POSE: 8\nNOVELTY_TEMPORAL_SHIFT: 1\nNOVELTY_FRAMING_ANGLE: 8\nNOVELTY_ENVIRONMENTAL_DELTA: 1\nNOVELTY_NARRATIVE_BEAT: 8\nVERDICT: ACCEPT\nPUSH_HARDER_ON: TEMPORAL, NARRATIVE_BEAT\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain; shift to wider 35mm focal length; add window-light from camera-right\nONE_LINE_RATIONALE: The sequel maintains a strong continuity in the visual world and mood, but introduces a subtle temporal shift and narrative beat change, making it a good sequel."
+          },
+          "combined_score": 6.777413469261953
+        }
+      ],
+      "chosen_attempt": 0,
+      "chosen_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_05/sequel.png",
+      "chosen_combined_score": 6.777413469261953
+    },
+    {
+      "round": 6,
+      "concept": {
+        "CONCEPT_NAME": "the room one minute after they leave",
+        "PRIMARY_AXIS": "TEMPORAL",
+        "SECONDARY_AXIS": "PERSPECTIVE_SHIFT",
+        "WHAT_CHANGES": "person is now out of frame, small object is on the surface, chandelier is dimmed or turned off, background frames are more prominent",
+        "WHAT_STAYS": "indoor setting, framed artwork, living room, natural light from far window, domestic and practical tone, clear weather, subject's red winter jacket",
+        "NARRATIVE_BEAT": "the woman has left the room, leaving the small object on a table and the chandelier dimmed or turned off.",
+        "PHOTOGRAPHIC_DELTA": "tight close-up, high angle from the subject's perspective, dim natural light from a far window, shallow depth of field, chandelier illuminated, background frames more prominent",
+        "EXPECTED_NOVELTY": "a fresh moment where the subject has just left, leaving behind a different state of the room with a new emotional register."
+      },
+      "concept_axis_key": "TEMPORAL+PERSPECTIVE_SHIFT",
+      "sdxl_prompt": "candid 2005-2010 digital point-and-shoot, elderly woman wearing red winter jacket, holding a small object, indoor living room with framed artwork, natural light from far window, domestic and practical, slight motion blur on hand, JPEG artifacts in shadows, tight close-up, high angle, shallow depth of field, chandelier illuminated, background frames more prominent, contemplative and focused, dim natural light from far window, chandelier turned off, small object on surface, domestic and practical tone, clear weather, subject's red winter jacket., same color grade and grain as original, same era of look",
+      "attempts": [
+        {
+          "attempt": 0,
+          "seed": 6054,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_06/sequel.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 8,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 9,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 9
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 6,
+              "NOVELTY_TEMPORAL_SHIFT": 1,
+              "NOVELTY_FRAMING_ANGLE": 9,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 1,
+              "NOVELTY_NARRATIVE_BEAT": 1
+            },
+            "feel_total": 8.833333333333334,
+            "novelty_total": 3.6,
+            "verdict": "RETRY_TIGHTER",
+            "push_harder_on": [
+              "TEMPORAL",
+              "NARRATIVE_BEAT"
+            ],
+            "pull_back_on": [],
+            "specific_adjustments": "reduce noise; tighten temporal shift; change narrative beat",
+            "rationale": "The sequel candidate maintains a strong continuity in the visual world but lacks a clear temporal shift and narrative beat change.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 8\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 9\nFEEL_COMPOSITIONAL_LANGUAGE: 9\nNOVELTY_SUBJECT_POSE: 6\nNOVELTY_TEMPORAL_SHIFT: 1\nNOVELTY_FRAMING_ANGLE: 9\nNOVELTY_ENVIRONMENTAL_DELTA: 1\nNOVELTY_NARRATIVE_BEAT: 1\nVERDICT: RETRY_TIGHTER\nPUSH_HARDER_ON: TEMPORAL, NARRATIVE_BEAT\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: reduce noise; tighten temporal shift; change narrative beat\nONE_LINE_RATIONALE: The sequel candidate maintains a strong continuity in the visual world but lacks a clear temporal shift and narrative beat change."
+          },
+          "combined_score": 5.639148871948674
+        },
+        {
+          "attempt": 1,
+          "seed": 6071,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_06/sequel_retry1.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 9,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 9,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 9
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 3,
+              "NOVELTY_TEMPORAL_SHIFT": 3,
+              "NOVELTY_FRAMING_ANGLE": 3,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 3,
+              "NOVELTY_NARRATIVE_BEAT": 3
+            },
+            "feel_total": 9,
+            "novelty_total": 3,
+            "verdict": "RETRY_TIGHTER",
+            "push_harder_on": [
+              "TEMPORAL",
+              "SPATIAL",
+              "FOCAL",
+              "SUBJECT_STATE",
+              "PERSPECTIVE_SHIFT",
+              "ENVIRONMENTAL",
+              "NARRATIVE_BEAT"
+            ],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain, shift to wider 35mm focal length, add window-light from camera-right",
+            "rationale": "The sequel candidate maintains continuity in the visual world but lacks a clear temporal or narrative shift, suggesting a need for more differentiation.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 9\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 9\nFEEL_COMPOSITIONAL_LANGUAGE: 9\nNOVELTY_SUBJECT_POSE: 3\nNOVELTY_TEMPORAL_SHIFT: 3\nNOVELTY_FRAMING_ANGLE: 3\nNOVELTY_ENVIRONMENTAL_DELTA: 3\nNOVELTY_NARRATIVE_BEAT: 3\nVERDICT: RETRY_TIGHTER\nPUSH_HARDER_ON: TEMPORAL, SPATIAL, FOCAL, SUBJECT_STATE, PERSPECTIVE_SHIFT, ENVIRONMENTAL, NARRATIVE_BEAT\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain, shift to wider 35mm focal length, add window-light from camera-right\nONE_LINE_RATIONALE: The sequel candidate maintains continuity in the visual world but lacks a clear temporal or narrative shift, suggesting a need for more differentiation."
+          },
+          "combined_score": 5.196152422706632
+        }
+      ],
+      "chosen_attempt": 0,
+      "chosen_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_06/sequel.png",
+      "chosen_combined_score": 5.639148871948674
+    },
+    {
+      "round": 7,
+      "concept": {
+        "CONCEPT_NAME": "the room one minute later",
+        "PRIMARY_AXIS": "NARRATIVE_BEAT",
+        "SECONDARY_AXIS": "SPATIAL",
+        "WHAT_CHANGES": "the woman has moved out of the frame, the room is dimmer but still has natural light, some plants are visible in the foreground, the chandelier is still lit",
+        "WHAT_STAYS": "the framed artwork on the wall, the indoor living room setting, the mood of domestic and practical tone",
+        "NARRATIVE_BEAT": "what happens immediately after the woman steps away from the camera",
+        "PHOTOGRAPHIC_DELTA": "high-angle shot from behind the chandelier, dim natural light from a window on the right, chandelier still illuminated, plants in the foreground, subject slightly out of the frame in the background",
+        "EXPECTED_NOVELTY": "the introduction of the plant foreground and the chandelier illumination create a new dynamic, visually differentiating the moment right after the woman steps away from the camera."
+      },
+      "concept_axis_key": "NARRATIVE_BEAT+SPATIAL",
+      "sdxl_prompt": "candid 2005-2010 digital point-and-shoot, elderly woman wearing red winter jacket and hood, holding small object in hand, indoor living room, framed artwork on the wall, natural light from left, soft lighting quality, high contrast crushed shadows, shallow depth of field with bokeh shape visible if present, framed artwork on wall, domestic and practical tone, slight motion blur on hand, JPEG artifacts in shadows.",
+      "attempts": [
+        {
+          "attempt": 0,
+          "seed": 7063,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_07/sequel.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 8,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 8,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 9
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 6,
+              "NOVELTY_TEMPORAL_SHIFT": 7,
+              "NOVELTY_FRAMING_ANGLE": 8,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 8,
+              "NOVELTY_NARRATIVE_BEAT": 6
+            },
+            "feel_total": 8.666666666666666,
+            "novelty_total": 7,
+            "verdict": "ACCEPT",
+            "push_harder_on": [
+              "TEMPORAL",
+              "NARRATIVE_BEAT"
+            ],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain; shift to wider 35mm focal length; add window-light from camera-right",
+            "rationale": "The sequel maintains a strong continuity in color, grain, and overall feel, while introducing a subtle temporal shift and narrative beat change.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 8\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 8\nFEEL_COMPOSITIONAL_LANGUAGE: 9\nNOVELTY_SUBJECT_POSE: 6\nNOVELTY_TEMPORAL_SHIFT: 7\nNOVELTY_FRAMING_ANGLE: 8\nNOVELTY_ENVIRONMENTAL_DELTA: 8\nNOVELTY_NARRATIVE_BEAT: 6\nVERDICT: ACCEPT\nPUSH_HARDER_ON: TEMPORAL, NARRATIVE_BEAT\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain; shift to wider 35mm focal length; add window-light from camera-right\nONE_LINE_RATIONALE: The sequel maintains a strong continuity in color, grain, and overall feel, while introducing a subtle temporal shift and narrative beat change."
+          },
+          "combined_score": 7.788880963698615
+        }
+      ],
+      "chosen_attempt": 0,
+      "chosen_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_07/sequel.png",
+      "chosen_combined_score": 7.788880963698615
+    },
+    {
+      "round": 8,
+      "concept": {
+        "CONCEPT_NAME": "the woman continued",
+        "PRIMARY_AXIS": "TEMPORAL",
+        "SECONDARY_AXIS": "PERSPECTIVE SHIFT",
+        "WHAT_CHANGES": "the woman continues to hold the object, her expression shifts to a more gentle smile, the lighting remains soft but changes slightly as the sun moves; the framed artwork and chandelier remain visible behind her",
+        "WHAT_STAYS": "the indoor setting, the same framed artwork on the wall, the same living room environment",
+        "NARRATIVE_BEAT": "the woman takes a moment to consider the object, possibly reminiscing, before continuing her task of sorting her clothing",
+        "PHOTOGRAPHIC_DELTA": "a closer shot, the camera moves slightly behind the woman, providing a perspective as if the viewer is part of the room, observing her; the natural light now slightly streams in from camera-right, creating a softer side-lighting on the scene",
+        "EXPECTED_NOVELTY": "captures a subtle moment of reflection and everyday life, offering a new moment in the narrative as the woman engages with her surroundings in her own quiet way."
+      },
+      "concept_axis_key": "TEMPORAL+PERSPECTIVE SHIFT",
+      "sdxl_prompt": "candid mid-2005-2010 digital snapshot, elderly woman in red winter jacket, holding object, contemplative and focused, indoor living room with framed artwork and chandelier, natural light from window, shallow depth of field with soft lighting, slight motion blur on hand, domestic and practical, the woman continues to hold the object, her expression shifts to a more gentle smile, the lighting remains soft but changes slightly as the sun moves; the framed artwork and chandelier remain visible behind her, closer shot, the camera moves slightly behind the woman, providing a perspective as if the viewer is part of the room, observing her, captures a subtle moment of reflection and everyday life, offering a new moment in the narrative as the woman engages with her surroundings in her own quiet way.",
+      "attempts": [
+        {
+          "attempt": 0,
+          "seed": 8072,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_08/sequel.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 9,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 9,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 9
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 0,
+              "NOVELTY_TEMPORAL_SHIFT": 0,
+              "NOVELTY_FRAMING_ANGLE": 0,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 0,
+              "NOVELTY_NARRATIVE_BEAT": 0
+            },
+            "feel_total": 9,
+            "novelty_total": 0,
+            "verdict": "ACCEPT",
+            "push_harder_on": [],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain; shift to wider 35mm focal length; add window-light from camera-right",
+            "rationale": "The sequel maintains the original's world continuity and emotional register, but introduces subtle differences in the subject's pose and the narrative beat.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 9\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 9\nFEEL_COMPOSITIONAL_LANGUAGE: 9\nNOVELTY_SUBJECT_POSE: 0\nNOVELTY_TEMPORAL_SHIFT: 0\nNOVELTY_FRAMING_ANGLE: 0\nNOVELTY_ENVIRONMENTAL_DELTA: 0\nNOVELTY_NARRATIVE_BEAT: 0\nVERDICT: ACCEPT\nPUSH_HARDER_ON: NONE\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain; shift to wider 35mm focal length; add window-light from camera-right\nONE_LINE_RATIONALE: The sequel maintains the original's world continuity and emotional register, but introduces subtle differences in the subject's pose and the narrative beat."
+          },
+          "combined_score": 0.0
+        }
+      ],
+      "chosen_attempt": 0,
+      "chosen_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_08/sequel.png",
+      "chosen_combined_score": 0.0
+    },
+    {
+      "round": 9,
+      "concept": {
+        "CONCEPT_NAME": "the dimly lit room [axes=ENVIRONMENTAL+TEMPORAL, feel=9.2, novelty=5.4]",
+        "PRIMARY_AXIS": "environmental",
+        "SECONDARY_AXIS": "temporal",
+        "WHAT_CHANGES": "natural light gone, room darkened, chandelier lights visible, soft shadows across space,",
+        "WHAT_STAYS": "framed artwork, winter setting, living room, subject, red jacket, wall-mounted picture frames, mood,",
+        "NARRATIVE_BEAT": "the woman finishes sorting her winter clothing and the room transitions to evening.",
+        "PHOTOGRAPHIC_DELTA": "low light evening shot from a wide angle, soft chandelier lighting, room dimly lit, subject in the middle of the frame,",
+        "EXPECTED_NOVELTY": "the new frame shifts the setting from midday to evening with softer lighting and a different mood."
+      },
+      "concept_axis_key": "ENVIRONMENTAL+TEMPORAL",
+      "sdxl_prompt": "2005-2010 digital point-and-shoot candid mid-2000s digital snapshot, elderly woman wearing red winter jacket, holding small object, indoor living room, framed artwork on wall, natural light from window, low light evening shot from a wide angle, soft chandelier lighting, room dimly lit, subject in the middle of the frame, framed artwork, winter setting, living room, red jacket, wall-mounted picture frames, contemplative and focused, domestic and practical, chandelier lights visible, soft shadows across space, framed artwork, winter setting, living room, red jacket, wall-mounted picture frames, contemplative and focused, domestic and practical., same color grade and grain as original, same era of look",
+      "attempts": [
+        {
+          "attempt": 0,
+          "seed": 9081,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_09/sequel.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 8,
+              "FEEL_GRAIN_NOISE": 7,
+              "FEEL_LENS_CHARACTER": 8,
+              "FEEL_ERA_VIBE": 8,
+              "FEEL_MOOD_CONTINUITY": 7,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 8
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 6,
+              "NOVELTY_TEMPORAL_SHIFT": 8,
+              "NOVELTY_FRAMING_ANGLE": 6,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 6,
+              "NOVELTY_NARRATIVE_BEAT": 8
+            },
+            "feel_total": 7.666666666666667,
+            "novelty_total": 6.8,
+            "verdict": "RETRY_TIGHTER",
+            "push_harder_on": [
+              "TEMPORAL",
+              "ENVIRONMENTAL",
+              "NARRATIVE_BEAT"
+            ],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain; shift to wider 35mm focal length; add window-light from camera-right",
+            "rationale": "The sequel candidate maintains a strong continuity in color, grain, and lens characteristics but introduces subtle temporal shifts and environmental changes that push it into a different beat.",
+            "full_response": "FEEL_COLOR_GRADE: 8\nFEEL_GRAIN_NOISE: 7\nFEEL_LENS_CHARACTER: 8\nFEEL_ERA_VIBE: 8\nFEEL_MOOD_CONTINUITY: 7\nFEEL_COMPOSITIONAL_LANGUAGE: 8\nNOVELTY_SUBJECT_POSE: 6\nNOVELTY_TEMPORAL_SHIFT: 8\nNOVELTY_FRAMING_ANGLE: 6\nNOVELTY_ENVIRONMENTAL_DELTA: 6\nNOVELTY_NARRATIVE_BEAT: 8\nVERDICT: RETRY_TIGHTER\nPUSH_HARDER_ON: TEMPORAL, ENVIRONMENTAL, NARRATIVE_BEAT\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain; shift to wider 35mm focal length; add window-light from camera-right\nONE_LINE_RATIONALE: The sequel candidate maintains a strong continuity in color, grain, and lens characteristics but introduces subtle temporal shifts and environmental changes that push it into a different beat."
+          },
+          "combined_score": 7.2203416354998975
+        },
+        {
+          "attempt": 1,
+          "seed": 9098,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_09/sequel_retry1.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 8,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 9,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 9
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 8,
+              "NOVELTY_TEMPORAL_SHIFT": 2,
+              "NOVELTY_FRAMING_ANGLE": 9,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 9,
+              "NOVELTY_NARRATIVE_BEAT": 8
+            },
+            "feel_total": 8.833333333333334,
+            "novelty_total": 7.2,
+            "verdict": "ACCEPT",
+            "push_harder_on": [
+              "TEMPORAL",
+              "SPATIAL",
+              "FOCAL",
+              "SUBJECT_STATE",
+              "PERSPECTIVE_SHIFT",
+              "ENVIRONMENTAL",
+              "NARRATIVE_BEAT"
+            ],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain; shift to wider 35mm focal length; add window-light from camera-right; reduce saturation in shadows",
+            "rationale": "The sequel maintains strong continuity with the original in terms of color, grain, lens character, era vibe, mood, and composition, while offering a distinct change in subject pose and narrative beat.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 8\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 9\nFEEL_COMPOSITIONAL_LANGUAGE: 9\nNOVELTY_SUBJECT_POSE: 8\nNOVELTY_TEMPORAL_SHIFT: 2\nNOVELTY_FRAMING_ANGLE: 9\nNOVELTY_ENVIRONMENTAL_DELTA: 9\nNOVELTY_NARRATIVE_BEAT: 8\nVERDICT: ACCEPT\nPUSH_HARDER_ON: TEMPORAL, SPATIAL, FOCAL, SUBJECT_STATE, PERSPECTIVE_SHIFT, ENVIRONMENTAL, NARRATIVE_BEAT\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain; shift to wider 35mm focal length; add window-light from camera-right; reduce saturation in shadows\nONE_LINE_RATIONALE: The sequel maintains strong continuity with the original in terms of color, grain, lens character, era vibe, mood, and composition, while offering a distinct change in subject pose and narrative beat."
+          },
+          "combined_score": 7.974960814950755
+        }
+      ],
+      "chosen_attempt": 1,
+      "chosen_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_09/sequel_retry1.png",
+      "chosen_combined_score": 7.974960814950755
+    },
+    {
+      "round": 10,
+      "concept": {
+        "CONCEPT_NAME": "next moment in the same room",
+        "PRIMARY_AXIS": "TEMPORAL",
+        "SECONDARY_AXIS": "NONE",
+        "WHAT_CHANGES": "the woman's hand is lowered to her side, the framed artwork remains the same",
+        "WHAT_STAYS": "the woman's red winter jacket, the framed artwork, the living room setting, the natural light from the window, the clear weather, the same day and season, the woman's contemplative and focused expression, the domestic and practical world tone",
+        "NARRATIVE_BEAT": "the woman has paused her sorting of winter clothing to address something else, possibly related to her routine or an unexpected interruption",
+        "PHOTOGRAPHIC_DELTA": "taller wider environmental shot, low angle from the window, soft natural daylight from the left, the woman is small in the frame, chandelier softly glowing in the corner",
+        "EXPECTED_NOVELTY": "a clear new moment in the woman's daily routine, emphasizing the change in her action and the new light of day."
+      },
+      "concept_axis_key": "TEMPORAL+NONE",
+      "sdxl_prompt": "candid mid-2005-2010 digital snapshot, elderly woman wearing red winter jacket, holding small object, contemplative and focused, living room with framed artwork, natural light from window on left, clear weather, domestic and practical, chandelier softly glowing, shallow depth of field, natural color, high contrast crushed shadows, natural sharpness, soft natural light from the left, slight motion blur on hand, JPEG artifacts in shadows, small object in hand, frame artwork behind, chandelier softly glowing, focused expression, paused sorting of winter clothing, new moment in routine, soft natural light, clear weather, same day and season.",
+      "attempts": [
+        {
+          "attempt": 0,
+          "seed": 10090,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_10/sequel.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 10,
+              "FEEL_GRAIN_NOISE": 10,
+              "FEEL_LENS_CHARACTER": 10,
+              "FEEL_ERA_VIBE": 10,
+              "FEEL_MOOD_CONTINUITY": 10,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 10
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 0,
+              "NOVELTY_TEMPORAL_SHIFT": 0,
+              "NOVELTY_FRAMING_ANGLE": 0,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 0,
+              "NOVELTY_NARRATIVE_BEAT": 10
+            },
+            "feel_total": 10,
+            "novelty_total": 2,
+            "verdict": "ACCEPT",
+            "push_harder_on": [],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain; shift to wider 35mm focal length; add window-light from camera-right",
+            "rationale": "The sequel maintains a high level of continuity in its visual and compositional elements, making it feel like a natural continuation of the original, while introducing a new narrative beat.",
+            "full_response": "FEEL_COLOR_GRADE: 10\nFEEL_GRAIN_NOISE: 10\nFEEL_LENS_CHARACTER: 10\nFEEL_ERA_VIBE: 10\nFEEL_MOOD_CONTINUITY: 10\nFEEL_COMPOSITIONAL_LANGUAGE: 10\nNOVELTY_SUBJECT_POSE: 0\nNOVELTY_TEMPORAL_SHIFT: 0\nNOVELTY_FRAMING_ANGLE: 0\nNOVELTY_ENVIRONMENTAL_DELTA: 0\nNOVELTY_NARRATIVE_BEAT: 10\nVERDICT: ACCEPT\nPUSH_HARDER_ON: NONE\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain; shift to wider 35mm focal length; add window-light from camera-right\nONE_LINE_RATIONALE: The sequel maintains a high level of continuity in its visual and compositional elements, making it feel like a natural continuation of the original, while introducing a new narrative beat."
+          },
+          "combined_score": 4.47213595499958
+        }
+      ],
+      "chosen_attempt": 0,
+      "chosen_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_10/sequel.png",
+      "chosen_combined_score": 4.47213595499958
+    },
+    {
+      "round": 11,
+      "concept": {
+        "CONCEPT_NAME": "next moment in the same room",
+        "PRIMARY_AXIS": "TEMPORAL",
+        "SECONDARY_AXIS": "SPATIAL",
+        "WHAT_CHANGES": "subject in different pose, small object removed, chandelier lit, natural light less prominent",
+        "WHAT_STAYS": "framed artwork, setting, red winter jacket, elderly woman's expression remains contemplative and focused, domestic and practical room tone",
+        "NARRATIVE_BEAT": "the woman has closed the small object in her hand and is now looking at the chandelier",
+        "PHOTOGRAPHIC_DELTA": "wider environmental shot, low eye-level angle, soft natural daylight from the window now secondary, chandelier fully illuminated, subject framed within the chandelier's glow",
+        "EXPECTED_NOVELTY": "focuses on the chandelier's glow and the woman's contemplative gaze on the lighting fixture, a contrast between the previous dim, natural light and the new artificial light source."
+      },
+      "concept_axis_key": "TEMPORAL+SPATIAL",
+      "sdxl_prompt": "candid digital snapshot from early 2010s, elderly woman wearing red winter jacket and hood, holding small object in hand, contemplative and focused, indoor living room with framed artwork on the wall, natural light from window on left, chandelier lit, domestic and practical room tone, slight motion blur on hand, JPEG artifacts in shadows, chandelier fully illuminated, low eye-level angle, chandelier's glow contrasting dim natural light, framed artwork remains in background, women's expression stays contemplative and focused, natural light secondary to artificial chandelier light, chandelier's glow and woman's gaze on it create new mood of anticipation and reflection.",
+      "attempts": [
+        {
+          "attempt": 0,
+          "seed": 11099,
+          "strength": 0.65,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_11/sequel.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 8,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 8,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 9
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 8,
+              "NOVELTY_TEMPORAL_SHIFT": 7,
+              "NOVELTY_FRAMING_ANGLE": 9,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 8,
+              "NOVELTY_NARRATIVE_BEAT": 7
+            },
+            "feel_total": 8.666666666666666,
+            "novelty_total": 7.8,
+            "verdict": "ACCEPT",
+            "push_harder_on": [],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain; shift to wider 35mm focal length; add window-light from camera-right",
+            "rationale": "The sequel maintains a strong continuity in the visual world, color, and mood while introducing a subtle temporal shift and a different narrative beat.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 8\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 8\nFEEL_COMPOSITIONAL_LANGUAGE: 9\nNOVELTY_SUBJECT_POSE: 8\nNOVELTY_TEMPORAL_SHIFT: 7\nNOVELTY_FRAMING_ANGLE: 9\nNOVELTY_ENVIRONMENTAL_DELTA: 8\nNOVELTY_NARRATIVE_BEAT: 7\nVERDICT: ACCEPT\nPUSH_HARDER_ON: NONE\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain; shift to wider 35mm focal length; add window-light from camera-right\nONE_LINE_RATIONALE: The sequel maintains a strong continuity in the visual world, color, and mood while introducing a subtle temporal shift and a different narrative beat."
+          },
+          "combined_score": 8.221921916437786
+        }
+      ],
+      "chosen_attempt": 0,
+      "chosen_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_11/sequel.png",
+      "chosen_combined_score": 8.221921916437786
+    },
+    {
+      "round": 12,
+      "concept": {
+        "CONCEPT_NAME": "the next moment in the same room",
+        "PRIMARY_AXIS": "TEMPORAL",
+        "SECONDARY_AXIS": "SPATIAL",
+        "WHAT_CHANGES": "the red jacket is being zipped up, the small object is placed in the other hand, the chandelier is now on.",
+        "WHAT_STAYS": "the framed artwork on the wall, the living room setting, the soft lighting from the window.",
+        "NARRATIVE_BEAT": "the woman is having a final check before departing.",
+        "PHOTOGRAPHIC_DELTA": "wider environmental shot, high eye-level angle, natural light from a window on the left, subject medium in the frame, some motion blur visible.",
+        "EXPECTED_NOVELTY": "the new frame captures a transition moment in the woman's preparation, emphasizing the room's domesticity and the passage of time."
+      },
+      "concept_axis_key": "TEMPORAL+SPATIAL",
+      "sdxl_prompt": "candid mid-2000s digital snapshot, elderly woman wearing red winter jacket and hood, holding small object, indoor living room, framed artwork on wall, natural light from window, slight motion blur on hand, domestic and practical, contemplative and focused, wider environmental shot, high eye-level angle, natural light from a window on the left, subject medium in frame, some motion blur visible., same color grade and grain as original, same era of look",
+      "attempts": [
+        {
+          "attempt": 0,
+          "seed": 12108,
+          "strength": 0.65,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_12/sequel.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 9,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 9,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 9
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 3,
+              "NOVELTY_TEMPORAL_SHIFT": 1,
+              "NOVELTY_FRAMING_ANGLE": 1,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 1,
+              "NOVELTY_NARRATIVE_BEAT": 1
+            },
+            "feel_total": 9,
+            "novelty_total": 1.4,
+            "verdict": "RETRY_TIGHTER",
+            "push_harder_on": [
+              "TEMPORAL",
+              "SPATIAL",
+              "FOCAL",
+              "SUBJECT_STATE",
+              "ENVIRONMENTAL"
+            ],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain; shift to wider 35mm focal length; add window-light from camera-right; reduce saturation in shadows",
+            "rationale": "The sequel candidate maintains a strong sense of continuity but lacks a clear temporal or spatial shift, suggesting it may need more differentiation in the next round.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 9\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 9\nFEEL_COMPOSITIONAL_LANGUAGE: 9\nNOVELTY_SUBJECT_POSE: 3\nNOVELTY_TEMPORAL_SHIFT: 1\nNOVELTY_FRAMING_ANGLE: 1\nNOVELTY_ENVIRONMENTAL_DELTA: 1\nNOVELTY_NARRATIVE_BEAT: 1\nVERDICT: RETRY_TIGHTER\nPUSH_HARDER_ON: TEMPORAL, SPATIAL, FOCAL, SUBJECT_STATE, ENVIRONMENTAL\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain; shift to wider 35mm focal length; add window-light from camera-right; reduce saturation in shadows\nONE_LINE_RATIONALE: The sequel candidate maintains a strong sense of continuity but lacks a clear temporal or spatial shift, suggesting it may need more differentiation in the next round."
+          },
+          "combined_score": 3.5496478698597698
+        },
+        {
+          "attempt": 1,
+          "seed": 12125,
+          "strength": 0.5,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_12/sequel_retry1.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 10,
+              "FEEL_GRAIN_NOISE": 10,
+              "FEEL_LENS_CHARACTER": 10,
+              "FEEL_ERA_VIBE": 10,
+              "FEEL_MOOD_CONTINUITY": 10,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 10
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 0,
+              "NOVELTY_TEMPORAL_SHIFT": 0,
+              "NOVELTY_FRAMING_ANGLE": 0,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 0,
+              "NOVELTY_NARRATIVE_BEAT": 0
+            },
+            "feel_total": 10,
+            "novelty_total": 0,
+            "verdict": "ACCEPT",
+            "push_harder_on": [],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain; shift to wider 35mm focal length; add window-light from camera-right",
+            "rationale": "The sequel maintains a high level of continuity with the original, sharing the same world, era, and mood, while introducing subtle differences in the subject's pose and the addition of a window-light element.",
+            "full_response": "FEEL_COLOR_GRADE: 10\nFEEL_GRAIN_NOISE: 10\nFEEL_LENS_CHARACTER: 10\nFEEL_ERA_VIBE: 10\nFEEL_MOOD_CONTINUITY: 10\nFEEL_COMPOSITIONAL_LANGUAGE: 10\nNOVELTY_SUBJECT_POSE: 0\nNOVELTY_TEMPORAL_SHIFT: 0\nNOVELTY_FRAMING_ANGLE: 0\nNOVELTY_ENVIRONMENTAL_DELTA: 0\nNOVELTY_NARRATIVE_BEAT: 0\nVERDICT: ACCEPT\nPUSH_HARDER_ON: NONE\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain; shift to wider 35mm focal length; add window-light from camera-right\nONE_LINE_RATIONALE: The sequel maintains a high level of continuity with the original, sharing the same world, era, and mood, while introducing subtle differences in the subject's pose and the addition of a window-light element."
+          },
+          "combined_score": 0.0
+        }
+      ],
+      "chosen_attempt": 1,
+      "chosen_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_12/sequel_retry1.png",
+      "chosen_combined_score": 0.0
+    },
+    {
+      "round": 13,
+      "concept": {
+        "CONCEPT_NAME": "the dimly lit room [axes=ENVIRONMENTAL+NARRATIVE_BEAT]",
+        "PRIMARY_AXIS": "ENVIRONMENTAL",
+        "SECONDARY_AXIS": "NARRATIVE_BEAT",
+        "WHAT_CHANGES": "no natural light from the window, artificial lighting on, red lighting dominating the scene, the woman's shadow on the wall, shadows obscuring the details of the framed artwork",
+        "WHAT_STAYS": "living room, framed artwork on the wall, setting, mood, style signature, red winter jacket, subtle details of the room's decor [avoid listing the chandelier, photorealistic lighting, upbeat music, slight motion blur, natural light from the window. These stay but are not explicitly listed as they are hidden aspects maintaining the subject's state and the room's continuity.], domestic and practical world tone, object in the woman's hand [avoid listing the specific item]",
+        "NARRATIVE_BEAT": "the woman is now in the evening, preparing her winter clothes under the soft dim glow of a chandelier, her tasks slowing down as the day winds down.",
+        "PHOTOGRAPHIC_DELTA": "a low-angle shot from the doorway; the dimly lit room with a soft yellow hue from the chandelier overhead, the chandelier's shadow prominently on the wall, the framed artwork lit by the shadows of the chandelier. The shot is tethered from a lower perspective than the original, creating a more intimate and warm-toned environment. The soft focus on the room emphasizes the magical hour ambiance.",
+        "EXPECTED_NOVELTY": "this frame captures a different moment and ambiance, creating a new mood of warm intimacy under the dim light; it diverges significantly from the original by focusing on the evening light and chandelier's shadow play."
+      },
+      "concept_axis_key": "ENVIRONMENTAL+NARRATIVE_BEAT",
+      "sdxl_prompt": "2005-2010 digital point-and-shoot candid shot, elderly woman wearing red winter jacket and hood, holding object in hand, indoor living room, framed artwork on the wall, natural light from window, domestic and practical, subtle details of decor, slightly tilted frame, slight motion blur on hand, small object in hand, framed artwork, chandelier, wall-mounted picture frames, contemplative and focused, soft yellow dim glow from chandelier, low-angle shot from doorway, soft dim glow ambiance, chandelier's shadow prominently on wall, framed artwork lit by shadows, intimate and warm-toned environment, soft focus on room, new mood of warm intimacy, diverges significantly from original by focusing on evening light and chandelier's shadow play.",
+      "attempts": [
+        {
+          "attempt": 0,
+          "seed": 13117,
+          "strength": 0.65,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_13/sequel.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 10,
+              "FEEL_GRAIN_NOISE": 10,
+              "FEEL_LENS_CHARACTER": 10,
+              "FEEL_ERA_VIBE": 10,
+              "FEEL_MOOD_CONTINUITY": 10,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 10
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 0,
+              "NOVELTY_TEMPORAL_SHIFT": 0,
+              "NOVELTY_FRAMING_ANGLE": 0,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 0,
+              "NOVELTY_NARRATIVE_BEAT": 0
+            },
+            "feel_total": 10,
+            "novelty_total": 0,
+            "verdict": "ACCEPT",
+            "push_harder_on": [],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain; shift to wider 35mm focal length; add window-light from camera-right",
+            "rationale": "The sequel candidate maintains a high level of continuity with the original, sharing the same color palette, grain, lens character, era vibe, mood, and compositional language. The subject's pose, temporal shift, framing angle, environmental delta, and narrative beat are all identical, making it a good sequel.",
+            "full_response": "FEEL_COLOR_GRADE: 10\nFEEL_GRAIN_NOISE: 10\nFEEL_LENS_CHARACTER: 10\nFEEL_ERA_VIBE: 10\nFEEL_MOOD_CONTINUITY: 10\nFEEL_COMPOSITIONAL_LANGUAGE: 10\nNOVELTY_SUBJECT_POSE: 0\nNOVELTY_TEMPORAL_SHIFT: 0\nNOVELTY_FRAMING_ANGLE: 0\nNOVELTY_ENVIRONMENTAL_DELTA: 0\nNOVELTY_NARRATIVE_BEAT: 0\nVERDICT: ACCEPT\nPUSH_HARDER_ON: NONE\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain; shift to wider 35mm focal length; add window-light from camera-right\nONE_LINE_RATIONALE: The sequel candidate maintains a high level of continuity with the original, sharing the same color palette, grain, lens character, era vibe, mood, and compositional language. The subject's pose, temporal shift, framing angle, environmental delta, and narrative beat are all identical, making it a good sequel."
+          },
+          "combined_score": 0.0
+        }
+      ],
+      "chosen_attempt": 0,
+      "chosen_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_13/sequel.png",
+      "chosen_combined_score": 0.0
+    },
+    {
+      "round": 14,
+      "concept": {
+        "CONCEPT_NAME": "same evening, softer lighting",
+        "PRIMARY_AXIS": "TEMPORAL+NARRATIVE_BEAT",
+        "SECONDARY_AXIS": "NONE",
+        "WHAT_CHANGES": "person disappears, shadows elongate, chandelier visible in background, natural light diminishes",
+        "WHAT_STAYS": "framed artwork on wall, living room setting, wall-mounted picture frames, domestic atmosphere",
+        "NARRATIVE_BEAT": "woman has finished sorting through her winter clothes, leaving the room in a calm state",
+        "PHOTOGRAPHIC_DELTA": "close-up of the framed artwork and chandelier from near window, natural lighting from camera-left, shadows from setting sun, high contrast envelopes the scene",
+        "EXPECTED_NOVELTY": "a serene conclusion to the day, capturing the end of the narrative beat with rich, warm tones and softer shadows."
+      },
+      "concept_axis_key": "TEMPORAL+NARRATIVE_BEAT+NONE",
+      "sdxl_prompt": "candid 2005-2010 digital point-and-shoot, elderly woman wearing red winter jacket, holding small object, indoor living room with framed artwork, natural light from window, soft overhead fluorescent lighting, centered subject with slight tilt, shallow depth of field with bokeh, natural color grade, high contrast, natural lighting from left, domestic and practical mood, slight motion blur on hand, JPEG artifacts in shadows., same color grade and grain as original, same era of look",
+      "attempts": [
+        {
+          "attempt": 0,
+          "seed": 14126,
+          "strength": 0.65,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_14/sequel.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 8,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 8,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 8
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 5,
+              "NOVELTY_TEMPORAL_SHIFT": 3,
+              "NOVELTY_FRAMING_ANGLE": 8,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 8,
+              "NOVELTY_NARRATIVE_BEAT": 5
+            },
+            "feel_total": 8.5,
+            "novelty_total": 5.8,
+            "verdict": "RETRY_TIGHTER",
+            "push_harder_on": [
+              "TEMPORAL",
+              "SPATIAL",
+              "FOCAL",
+              "SUBJECT_STATE",
+              "ENVIRONMENTAL"
+            ],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain, shift to wider 35mm focal length, add window-light from camera-right",
+            "rationale": "The sequel candidate maintains a strong continuity in the visual style but introduces subtle differences in the subject's pose and the narrative beat, warranting a tighter retry.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 8\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 8\nFEEL_COMPOSITIONAL_LANGUAGE: 8\nNOVELTY_SUBJECT_POSE: 5\nNOVELTY_TEMPORAL_SHIFT: 3\nNOVELTY_FRAMING_ANGLE: 8\nNOVELTY_ENVIRONMENTAL_DELTA: 8\nNOVELTY_NARRATIVE_BEAT: 5\nVERDICT: RETRY_TIGHTER\nPUSH_HARDER_ON: TEMPORAL, SPATIAL, FOCAL, SUBJECT_STATE, ENVIRONMENTAL\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain, shift to wider 35mm focal length, add window-light from camera-right\nONE_LINE_RATIONALE: The sequel candidate maintains a strong continuity in the visual style but introduces subtle differences in the subject's pose and the narrative beat, warranting a tighter retry."
+          },
+          "combined_score": 7.021395872616783
+        },
+        {
+          "attempt": 1,
+          "seed": 14143,
+          "strength": 0.5,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_14/sequel_retry1.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 9,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 9,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 9
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 0,
+              "NOVELTY_TEMPORAL_SHIFT": 0,
+              "NOVELTY_FRAMING_ANGLE": 0,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 0,
+              "NOVELTY_NARRATIVE_BEAT": 0
+            },
+            "feel_total": 9,
+            "novelty_total": 0,
+            "verdict": "ACCEPT",
+            "push_harder_on": [],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain; shift to wider 35mm focal length; add window-light from camera-right",
+            "rationale": "The sequel maintains strong continuity with the original in terms of color, grain, lens character, era vibe, mood, and composition, while introducing a clear new beat in subject pose and narrative.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 9\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 9\nFEEL_COMPOSITIONAL_LANGUAGE: 9\nNOVELTY_SUBJECT_POSE: 0\nNOVELTY_TEMPORAL_SHIFT: 0\nNOVELTY_FRAMING_ANGLE: 0\nNOVELTY_ENVIRONMENTAL_DELTA: 0\nNOVELTY_NARRATIVE_BEAT: 0\nVERDICT: ACCEPT\nPUSH_HARDER_ON: NONE\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain; shift to wider 35mm focal length; add window-light from camera-right\nONE_LINE_RATIONALE: The sequel maintains strong continuity with the original in terms of color, grain, lens character, era vibe, mood, and composition, while introducing a clear new beat in subject pose and narrative."
+          },
+          "combined_score": 0.0
+        }
+      ],
+      "chosen_attempt": 1,
+      "chosen_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_14/sequel_retry1.png",
+      "chosen_combined_score": 0.0
+    },
+    {
+      "round": 15,
+      "concept": {
+        "CONCEPT_NAME": "next morning",
+        "PRIMARY_AXIS": "TEMPORAL + SPATIAL",
+        "SECONDARY_AXIS": "NONE",
+        "WHAT_CHANGES": "the red winter jacket has been removed, the small object is no longer in the woman's hand; the lighting has changed to softer and more natural morning light; the room appears tidier, the chandelier is turned off",
+        "WHAT_STAYS": "the framed artwork on the wall, the setting being an indoor living room, the world tone remaining domestic and practical",
+        "NARRATIVE_BEAT": "the woman will likely be preparing a new outfit for the day ahead after her morning routine",
+        "PHOTOGRAPHIC_DELTA": "closer perspective, low angle from the floor, soft natural morning light from a window on the right, subject medium-sized in the frame, less clutter visible in the background",
+        "EXPECTED_NOVELTY": "a new moment in the morning routine, a change in lighting and setting, and a focus on the transition from the night's resting state to the day's activity."
+      },
+      "concept_axis_key": "TEMPORAL + SPATIAL+NONE",
+      "sdxl_prompt": "2005-2010 digital point-and-shoot, candid mid-2000s digital snapshot, elderly woman wearing red winter jacket and hood, holding small object in hand, indoor living room with framed artwork on the wall, natural light from window on the left, soft and natural, shallow depth of field, chandelier off, domestic and practical, contemplative and focused, slight motion blur on hand, JPEG artifacts in shadows, closer perspective, low angle from the floor, soft natural morning light from a window on the right, subject medium-sized in the frame, less clutter visible in the background, next morning, new moment in the morning routine, transition from night's resting state to day's activity.",
+      "attempts": [
+        {
+          "attempt": 0,
+          "seed": 15135,
+          "strength": 0.65,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_15/sequel.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 8,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 9,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 9
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 8,
+              "NOVELTY_TEMPORAL_SHIFT": 1,
+              "NOVELTY_FRAMING_ANGLE": 9,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 1,
+              "NOVELTY_NARRATIVE_BEAT": 8
+            },
+            "feel_total": 8.833333333333334,
+            "novelty_total": 5.4,
+            "verdict": "ACCEPT",
+            "push_harder_on": [
+              "TEMPORAL",
+              "NARRATIVE_BEAT"
+            ],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain; shift to wider 35mm focal length; add window-light from camera-right",
+            "rationale": "The sequel maintains strong continuity in the original's world and emotional register, with only minor differences in the subject's pose and a subtle shift in the narrative beat.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 8\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 9\nFEEL_COMPOSITIONAL_LANGUAGE: 9\nNOVELTY_SUBJECT_POSE: 8\nNOVELTY_TEMPORAL_SHIFT: 1\nNOVELTY_FRAMING_ANGLE: 9\nNOVELTY_ENVIRONMENTAL_DELTA: 1\nNOVELTY_NARRATIVE_BEAT: 8\nVERDICT: ACCEPT\nPUSH_HARDER_ON: TEMPORAL, NARRATIVE_BEAT\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain; shift to wider 35mm focal length; add window-light from camera-right\nONE_LINE_RATIONALE: The sequel maintains strong continuity in the original's world and emotional register, with only minor differences in the subject's pose and a subtle shift in the narrative beat."
+          },
+          "combined_score": 6.906518659932803
+        }
+      ],
+      "chosen_attempt": 0,
+      "chosen_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_15/sequel.png",
+      "chosen_combined_score": 6.906518659932803
+    },
+    {
+      "round": 16,
+      "concept": {
+        "CONCEPT_NAME": "next morning",
+        "PRIMARY_AXIS": "TEMPORAL",
+        "SECONDARY_AXIS": "ENVIRONMENTAL",
+        "WHAT_CHANGES": "the woman is no longer present, the room has been cleaned and organized, the lighting is dimmer, the framed artwork and chandelier are more visible, the window is closed and curtains drawn",
+        "WHAT_STAYS": "the indoor location, the framed artwork on the wall, the chandelier, the living room setting, the high contrast crushed shadows and natural color grade",
+        "NARRATIVE_BEAT": "the room is now ready for the new day, with the previous day's items packed away and the living space prepared for the morning",
+        "PHOTOGRAPHIC_DELTA": "low angle from the floor, soft natural light from a window on the far side of the room, the subject small in the frame, slightly blurred background",
+        "EXPECTED_NOVELTY": "this frame captures a narrative beat where the previous day's events are concluded and a new day begins in a different, prepared state."
+      },
+      "concept_axis_key": "TEMPORAL+ENVIRONMENTAL",
+      "sdxl_prompt": "2005-2010 digital point-and-shoot snapshot, elderly woman wearing red winter jacket and hood, holding small object, indoor living room, framed artwork on wall, natural light from window, soft lighting quality, high contrast crushed shadows, natural color grade, shallow depth of field with bokeh shape, slight motion blur on hand, JPEG artifacts in shadows, domestic and practical mood.",
+      "attempts": [
+        {
+          "attempt": 0,
+          "seed": 16144,
+          "strength": 0.65,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_16/sequel.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 9,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 9,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 9
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 8,
+              "NOVELTY_TEMPORAL_SHIFT": 8,
+              "NOVELTY_FRAMING_ANGLE": 8,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 8,
+              "NOVELTY_NARRATIVE_BEAT": 8
+            },
+            "feel_total": 9,
+            "novelty_total": 8,
+            "verdict": "ACCEPT",
+            "push_harder_on": [],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain; shift to wider 35mm focal length; add window-light from camera-right",
+            "rationale": "The sequel maintains strong continuity with the original in terms of color, grain, lens character, era vibe, and mood, while introducing subtle differences in subject pose and narrative beat that make it a clear sequel.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 9\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 9\nFEEL_COMPOSITIONAL_LANGUAGE: 9\nNOVELTY_SUBJECT_POSE: 8\nNOVELTY_TEMPORAL_SHIFT: 8\nNOVELTY_FRAMING_ANGLE: 8\nNOVELTY_ENVIRONMENTAL_DELTA: 8\nNOVELTY_NARRATIVE_BEAT: 8\nVERDICT: ACCEPT\nPUSH_HARDER_ON: NONE\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain; shift to wider 35mm focal length; add window-light from camera-right\nONE_LINE_RATIONALE: The sequel maintains strong continuity with the original in terms of color, grain, lens character, era vibe, and mood, while introducing subtle differences in subject pose and narrative beat that make it a clear sequel."
+          },
+          "combined_score": 8.48528137423857
+        }
+      ],
+      "chosen_attempt": 0,
+      "chosen_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_16/sequel.png",
+      "chosen_combined_score": 8.48528137423857
+    },
+    {
+      "round": 17,
+      "concept": {
+        "CONCEPT_NAME": "the woman in the winter's light",
+        "PRIMARY_AXIS": "TEMPORAL",
+        "SECONDARY_AXIS": "ENVIRONMENTAL",
+        "WHAT_CHANGES": "the skin is no longer visible, the chandelier is out of the frame, the window is closed and curtain is drawn, the room is darker, the framed picture on the right is no longer visible.",
+        "WHAT_STAYS": "the red jacket with \"PERK\" logo, the framed artwork on the wall, the presence of the woman, the indoor setting, the domestic and practical tone, the chandelier and the wall-mounted picture frames.",
+        "NARRATIVE_BEAT": "The woman is preparing for the day ahead, the room's lighting signifies the early morning before dawn.",
+        "PHOTOGRAPHIC_DELTA": "Wide environmental shot from the side, natural eye-level framing, soft natural light from a window on the right side of the frame, subject slightly larger in the frame.",
+        "EXPECTED_NOVELTY": "This frame captures the transition from the previousNARRATIVE_BEAT moment, showing the room and the woman in the early morning's shade."
+      },
+      "concept_axis_key": "TEMPORAL+ENVIRONMENTAL",
+      "sdxl_prompt": "candid digital snapshot from 2005-2010, elderly woman in red winter jacket, holding small object, indoor living room with framed artwork, natural light from window, soft lighting, shallow depth of field with bokeh, domestic and practical tone, slight motion blur on hand, natural eye-level framing, high contrast crushed shadows, neutral color grade, natural sharpness.",
+      "attempts": [
+        {
+          "attempt": 0,
+          "seed": 17153,
+          "strength": 0.65,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_17/sequel.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 9,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 9,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 9
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 10,
+              "NOVELTY_TEMPORAL_SHIFT": 0,
+              "NOVELTY_FRAMING_ANGLE": 10,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 0,
+              "NOVELTY_NARRATIVE_BEAT": 10
+            },
+            "feel_total": 9,
+            "novelty_total": 6,
+            "verdict": "ACCEPT",
+            "push_harder_on": [],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain; shift to wider 35mm focal length; add window-light from camera-right",
+            "rationale": "The sequel maintains strong continuity with the original in terms of subject, setting, and mood, while offering a clear and distinct narrative beat.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 9\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 9\nFEEL_COMPOSITIONAL_LANGUAGE: 9\nNOVELTY_SUBJECT_POSE: 10\nNOVELTY_TEMPORAL_SHIFT: 0\nNOVELTY_FRAMING_ANGLE: 10\nNOVELTY_ENVIRONMENTAL_DELTA: 0\nNOVELTY_NARRATIVE_BEAT: 10\nVERDICT: ACCEPT\nPUSH_HARDER_ON: NONE\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain; shift to wider 35mm focal length; add window-light from camera-right\nONE_LINE_RATIONALE: The sequel maintains strong continuity with the original in terms of subject, setting, and mood, while offering a clear and distinct narrative beat."
+          },
+          "combined_score": 7.3484692283495345
+        }
+      ],
+      "chosen_attempt": 0,
+      "chosen_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_17/sequel.png",
+      "chosen_combined_score": 7.3484692283495345
+    },
+    {
+      "round": 18,
+      "concept": {
+        "CONCEPT_NAME": "evening glow in the room",
+        "PRIMARY_AXIS": "TEMPORAL",
+        "SECONDARY_AXIS": "NONE",
+        "WHAT_CHANGES": "dimmer lighting, soft shadows, natural light gradually fading, room's warmth emphasized from the windows, visible evening chandelier lighting",
+        "WHAT_STAYS": "same indoor setting, framed artwork, winter red jacket, focused subject, domestic tone",
+        "NARRATIVE_BEAT": "the woman finishes her task in the evening, the room is settling in the glow of the natural light and artificial chandelier, after the sun has set",
+        "PHOTOGRAPHIC_DELTA": "low-angle shot from the doorway, capturing the subject and the chandelier, soft natural and artificial light blend, shallow depth of field softening the background, subdued colors and warm tones dominating the scene",
+        "EXPECTED_NOVELTY": "the evening atmosphere is\u5168\u65b0 and distinct, capturing a different time of day with a warm, reflective mood."
+      },
+      "concept_axis_key": "TEMPORAL+NONE",
+      "sdxl_prompt": "candid 2005-2010 digital snapshot, elderly woman wearing red winter jacket and hood, holding small object, indoor living room with framed artwork, natural light from window on left, domestic and practical, focused subject, contemplative and focused, evening glow in the room, low-angle shot from doorway, soft natural and artificial light blend, shallow depth of field softening the background, subdued colors and warm tones dominating the scene, evening atmosphere\u5168\u65b0 and distinct, warm, reflective mood., same color grade and grain as original, same era of look",
+      "attempts": [
+        {
+          "attempt": 0,
+          "seed": 18162,
+          "strength": 0.65,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_18/sequel.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 8,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 8,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 9
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 7,
+              "NOVELTY_TEMPORAL_SHIFT": 6,
+              "NOVELTY_FRAMING_ANGLE": 8,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 8,
+              "NOVELTY_NARRATIVE_BEAT": 6
+            },
+            "feel_total": 8.666666666666666,
+            "novelty_total": 7,
+            "verdict": "RETRY_TIGHTER",
+            "push_harder_on": [
+              "TEMPORAL",
+              "SPATIAL",
+              "FOCAL",
+              "SUBJECT_STATE",
+              "PERSPECTIVE_SHIFT",
+              "ENVIRONMENTAL",
+              "NARRATIVE_BEAT"
+            ],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain, shift to wider 35mm focal length, add window-light from camera-right, reduce saturation in shadows",
+            "rationale": "The sequel candidate maintains a strong continuity in the visual world but introduces subtle changes in subject pose and narrative beat, warranting a tighter retry.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 8\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 8\nFEEL_COMPOSITIONAL_LANGUAGE: 9\nNOVELTY_SUBJECT_POSE: 7\nNOVELTY_TEMPORAL_SHIFT: 6\nNOVELTY_FRAMING_ANGLE: 8\nNOVELTY_ENVIRONMENTAL_DELTA: 8\nNOVELTY_NARRATIVE_BEAT: 6\nVERDICT: RETRY_TIGHTER\nPUSH_HARDER_ON: TEMPORAL, SPATIAL, FOCAL, SUBJECT_STATE, PERSPECTIVE_SHIFT, ENVIRONMENTAL, NARRATIVE_BEAT\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain, shift to wider 35mm focal length, add window-light from camera-right, reduce saturation in shadows\nONE_LINE_RATIONALE: The sequel candidate maintains a strong continuity in the visual world but introduces subtle changes in subject pose and narrative beat, warranting a tighter retry."
+          },
+          "combined_score": 7.788880963698615
+        },
+        {
+          "attempt": 1,
+          "seed": 18179,
+          "strength": 0.5,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_18/sequel_retry1.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 9,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 9,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 9
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 0,
+              "NOVELTY_TEMPORAL_SHIFT": 0,
+              "NOVELTY_FRAMING_ANGLE": 0,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 0,
+              "NOVELTY_NARRATIVE_BEAT": 0
+            },
+            "feel_total": 9,
+            "novelty_total": 0,
+            "verdict": "ACCEPT",
+            "push_harder_on": [],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain; shift to wider 35mm focal length; add window-light from camera-right",
+            "rationale": "The sequel candidate maintains the original's world continuity and mood, with only minor differences in the subject's pose and angle, making it a good sequel.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 9\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 9\nFEEL_COMPOSITIONAL_LANGUAGE: 9\nNOVELTY_SUBJECT_POSE: 0\nNOVELTY_TEMPORAL_SHIFT: 0\nNOVELTY_FRAMING_ANGLE: 0\nNOVELTY_ENVIRONMENTAL_DELTA: 0\nNOVELTY_NARRATIVE_BEAT: 0\nVERDICT: ACCEPT\nPUSH_HARDER_ON: NONE\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain; shift to wider 35mm focal length; add window-light from camera-right\nONE_LINE_RATIONALE: The sequel candidate maintains the original's world continuity and mood, with only minor differences in the subject's pose and angle, making it a good sequel."
+          },
+          "combined_score": 0.0
+        }
+      ],
+      "chosen_attempt": 1,
+      "chosen_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_18/sequel_retry1.png",
+      "chosen_combined_score": 0.0
+    },
+    {
+      "round": 19,
+      "concept": {
+        "CONCEPT_NAME": "the reflective mirror",
+        "PRIMARY_AXIS": "PERSPECTIVE_SHIFT",
+        "SECONDARY_AXIS": "NONE",
+        "WHAT_CHANGES": "reflection in the mirror replacing the framed artwork, the woman's reflection in the mirror, a clear view of the room through the mirror",
+        "WHAT_STAYS": "the living room, the woman wearing the red winter jacket, the natural light source from the window on the left side of the frame, the sense of domestic practicality",
+        "NARRATIVE_BEAT": "the woman looks at her reflection, possibly considering her appearance or the day ahead",
+        "PHOTOGRAPHIC_DELTA": "the camera is positioned in front of the woman, slightly below eye-level, capturing her reflection in the mirror with a wide environmental shot, soft natural light from a window, the room reflected in the mirror's surface, the woman's reflection prominent in the frame. The mirror occupies the space where framed artwork would normally be.",
+        "EXPECTED_NOVELTY": "the introduction of the mirror adds a new layer of personal reflection and introspection, shifting the focus from the physical world to the subjective inner world of the character."
+      },
+      "concept_axis_key": "PERSPECTIVE_SHIFT+NONE",
+      "sdxl_prompt": "candid digital snapshot, elderly woman wearing red winter jacket, holding small object, indoor living room with framed artwork, natural light from window, slight motion blur, shallow depth of field with bokeh, domestic and practical mood.",
+      "attempts": [
+        {
+          "attempt": 0,
+          "seed": 19171,
+          "strength": 0.65,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_19/sequel.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 9,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 9,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 9
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 7,
+              "NOVELTY_TEMPORAL_SHIFT": 0,
+              "NOVELTY_FRAMING_ANGLE": 9,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 0,
+              "NOVELTY_NARRATIVE_BEAT": 7
+            },
+            "feel_total": 9,
+            "novelty_total": 4.6,
+            "verdict": "ACCEPT",
+            "push_harder_on": [],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain; shift to wider 35mm focal length; add window-light from camera-right",
+            "rationale": "The sequel maintains continuity in color, grain, lens character, era vibe, and mood, while introducing slight differences in subject pose and narrative beat.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 9\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 9\nFEEL_COMPOSITIONAL_LANGUAGE: 9\nNOVELTY_SUBJECT_POSE: 7\nNOVELTY_TEMPORAL_SHIFT: 0\nNOVELTY_FRAMING_ANGLE: 9\nNOVELTY_ENVIRONMENTAL_DELTA: 0\nNOVELTY_NARRATIVE_BEAT: 7\nVERDICT: ACCEPT\nPUSH_HARDER_ON: NONE\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain; shift to wider 35mm focal length; add window-light from camera-right\nONE_LINE_RATIONALE: The sequel maintains continuity in color, grain, lens character, era vibe, and mood, while introducing slight differences in subject pose and narrative beat."
+          },
+          "combined_score": 6.434283176858165
+        }
+      ],
+      "chosen_attempt": 0,
+      "chosen_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_19/sequel.png",
+      "chosen_combined_score": 6.434283176858165
+    },
+    {
+      "round": 20,
+      "concept": {
+        "CONCEPT_NAME": "the room without the subject in the frame",
+        "PRIMARY_AXIS": "SPATIAL",
+        "SECONDARY_AXIS": "NONE",
+        "WHAT_CHANGES": "the subject is removed, focus is on the room and artwork on the wall; the object in hand is no longer visible; the overall atmosphere is quiet and still",
+        "WHAT_STAYS": "style signature, location, framed artwork, natural light through the window, domestic and practical tone",
+        "NARRATIVE_BEAT": "the room now appears empty and the focus is on the previous activity of the subject",
+        "PHOTOGRAPHIC_DELTA": "the camera pulls back to a wide-angle shot, capturing the whole room and the framed artwork, emphasizing the before state of the room; the angle changes to a low ground-level perspective, inviting the viewer into the scene with a sense of stillness; the lighting becomes soft and natural, focusing on the details of the artwork and the overall room ambiance",
+        "EXPECTED_NOVELTY": "the frame offers a new exploration of the same environment, focusing on the room before the subject's arrival and the disappearance of the specific moment, introducing a quiet, empty state that contrasts strongly with the original active subject-centered moment."
+      },
+      "concept_axis_key": "SPATIAL+NONE",
+      "sdxl_prompt": "candid 2005-2010 digital point-and-shoot, elderly woman wearing red winter jacket, holding small object, indoor living room with framed artwork, natural light from window, soft lighting, low ground-level perspective, slight motion blur, neutral color grade, high contrast crushed shadows, domestic and practical tone, contemplative and focused mood, room without the subject, wide-angle shot, soft natural light, framed artwork on wall, quiet still atmosphere, new exploration of the same environment, same color grade and grain as original, same era of look",
+      "attempts": [
+        {
+          "attempt": 0,
+          "seed": 20180,
+          "strength": 0.65,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_20/sequel.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 8,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 8,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 9
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 2,
+              "NOVELTY_TEMPORAL_SHIFT": 6,
+              "NOVELTY_FRAMING_ANGLE": 9,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 7,
+              "NOVELTY_NARRATIVE_BEAT": 6
+            },
+            "feel_total": 8.666666666666666,
+            "novelty_total": 6,
+            "verdict": "RETRY_TIGHTER",
+            "push_harder_on": [
+              "TEMPORAL",
+              "NARRATIVE_BEAT"
+            ],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain; shift to wider 35mm focal length; add window-light from camera-right",
+            "rationale": "The sequel candidate maintains a strong continuity in the visual world but introduces subtle differences in the subject's pose and narrative beat, warranting a tighter focus on these aspects.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 8\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 8\nFEEL_COMPOSITIONAL_LANGUAGE: 9\nNOVELTY_SUBJECT_POSE: 2\nNOVELTY_TEMPORAL_SHIFT: 6\nNOVELTY_FRAMING_ANGLE: 9\nNOVELTY_ENVIRONMENTAL_DELTA: 7\nNOVELTY_NARRATIVE_BEAT: 6\nVERDICT: RETRY_TIGHTER\nPUSH_HARDER_ON: TEMPORAL, NARRATIVE_BEAT\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain; shift to wider 35mm focal length; add window-light from camera-right\nONE_LINE_RATIONALE: The sequel candidate maintains a strong continuity in the visual world but introduces subtle differences in the subject's pose and narrative beat, warranting a tighter focus on these aspects."
+          },
+          "combined_score": 7.211102550927978
+        },
+        {
+          "attempt": 1,
+          "seed": 20197,
+          "strength": 0.5,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_20/sequel_retry1.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 8,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 8,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 9
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 3,
+              "NOVELTY_TEMPORAL_SHIFT": 1,
+              "NOVELTY_FRAMING_ANGLE": 1,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 0,
+              "NOVELTY_NARRATIVE_BEAT": 1
+            },
+            "feel_total": 8.666666666666666,
+            "novelty_total": 1.2,
+            "verdict": "RETRY_TIGHTER",
+            "push_harder_on": [
+              "TEMPORAL",
+              "SPATIAL",
+              "FOCAL",
+              "SUBJECT_STATE",
+              "PERSPECTIVE_SHIFT",
+              "ENVIRONMENTAL",
+              "NARRATIVE_BEAT"
+            ],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain, shift to wider 35mm focal length, add window-light from camera-right, reduce saturation in shadows",
+            "rationale": "The sequel candidate maintains a strong continuity in the visual world but lacks a clear temporal and narrative shift, suggesting a need for a more distinct beat.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 8\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 8\nFEEL_COMPOSITIONAL_LANGUAGE: 9\nNOVELTY_SUBJECT_POSE: 3\nNOVELTY_TEMPORAL_SHIFT: 1\nNOVELTY_FRAMING_ANGLE: 1\nNOVELTY_ENVIRONMENTAL_DELTA: 0\nNOVELTY_NARRATIVE_BEAT: 1\nVERDICT: RETRY_TIGHTER\nPUSH_HARDER_ON: TEMPORAL, SPATIAL, FOCAL, SUBJECT_STATE, PERSPECTIVE_SHIFT, ENVIRONMENTAL, NARRATIVE_BEAT\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain, shift to wider 35mm focal length, add window-light from camera-right, reduce saturation in shadows\nONE_LINE_RATIONALE: The sequel candidate maintains a strong continuity in the visual world but lacks a clear temporal and narrative shift, suggesting a need for a more distinct beat."
+          },
+          "combined_score": 3.2249030993194197
+        }
+      ],
+      "chosen_attempt": 0,
+      "chosen_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_20/sequel.png",
+      "chosen_combined_score": 7.211102550927978
+    },
+    {
+      "round": 21,
+      "concept": {
+        "CONCEPT_NAME": "the reflective mirror moment",
+        "PRIMARY_AXIS": "PERSPECTIVE_SHIFT",
+        "SECONDARY_AXIS": "NONE",
+        "WHAT_CHANGES": "the woman's reflection becomes prominent, the small object she holds is reflected, the mirror edge comes into the frame, the chandelier is reflected in the mirror",
+        "WHAT_STAYS": "the red winter jacket, the framed artwork, the indoor setting, the natural light from the window, the winter season, the domestic and practical tone",
+        "NARRATIVE_BEAT": "the woman is caught in the act of sorting through her winter clothing, the mirror reflects her in a moment of contemplation and focus",
+        "PHOTOGRAPHIC_DELTA": "reflective mirror angle, low angle from floor, natural eye-level framing, two reflections of the woman and the room, the chandelier partially reflected in the mirror",
+        "EXPECTED_NOVELTY": "a new perspective shift introducing reflection and depth, offering a fresh narrative beats of the woman's internal state and the room's spatiality"
+      },
+      "concept_axis_key": "PERSPECTIVE_SHIFT+NONE",
+      "sdxl_prompt": "candid mid-2005-2010 digital snapshot, elderly woman, 60-70 years old, retired, holding a small object, possibly a piece of clothing or a glove, in her right hand, indoor, framed artwork on the wall, natural light from a window on the left side of the frame, reflections in the mirror, chandelier partially reflected in the mirror, low angle from floor, natural eye-level framing, two reflections of the woman and the room, the red winter jacket, the framed artwork, the indoor setting, the natural light from the window, the winter season, the domestic and practical tone, contemplative and focused, reflective mirror moment, a new perspective shift introducing reflection and depth, offering a fresh narrative beats of the woman's internal state and the room's spatiality, slight motion blur on hand, JPEG artifacts in shadows",
+      "attempts": [
+        {
+          "attempt": 0,
+          "seed": 21189,
+          "strength": 0.65,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_21/sequel.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 8,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 8,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 9
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 7,
+              "NOVELTY_TEMPORAL_SHIFT": 6,
+              "NOVELTY_FRAMING_ANGLE": 8,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 8,
+              "NOVELTY_NARRATIVE_BEAT": 7
+            },
+            "feel_total": 8.666666666666666,
+            "novelty_total": 7.2,
+            "verdict": "ACCEPT",
+            "push_harder_on": [
+              "TEMPORAL",
+              "NARRATIVE_BEAT"
+            ],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain; shift to wider 35mm focal length; add window-light from camera-right",
+            "rationale": "The sequel maintains a strong continuity in the visual world and mood, but introduces subtle differences in the subject's pose and the narrative beat, making it a good sequel.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 8\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 8\nFEEL_COMPOSITIONAL_LANGUAGE: 9\nNOVELTY_SUBJECT_POSE: 7\nNOVELTY_TEMPORAL_SHIFT: 6\nNOVELTY_FRAMING_ANGLE: 8\nNOVELTY_ENVIRONMENTAL_DELTA: 8\nNOVELTY_NARRATIVE_BEAT: 7\nVERDICT: ACCEPT\nPUSH_HARDER_ON: TEMPORAL, NARRATIVE_BEAT\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain; shift to wider 35mm focal length; add window-light from camera-right\nONE_LINE_RATIONALE: The sequel maintains a strong continuity in the visual world and mood, but introduces subtle differences in the subject's pose and the narrative beat, making it a good sequel."
+          },
+          "combined_score": 7.899367063252599
+        }
+      ],
+      "chosen_attempt": 0,
+      "chosen_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_21/sequel.png",
+      "chosen_combined_score": 7.899367063252599
+    },
+    {
+      "round": 22,
+      "concept": {
+        "CONCEPT_NAME": "the reflective mirror moment",
+        "PRIMARY_AXIS": "PERSPECTIVE_SHIFT",
+        "SECONDARY_AXIS": "NONE",
+        "WHAT_CHANGES": "the subject changes to a mirror surface, the setting becomes the room as viewed from a mirror, the object changes to the reflection of the woman and the framed artwork, the woman herself is replaced by a mirror",
+        "WHAT_STAYS": "the red winter jacket, the framed artwork, the natural light source, the domestic and practical tone, the candid, informal mood, the minimal movement blur and natural saturation of the color-grade",
+        "NARRATIVE_BEAT": "the moment the woman is remembering her routine of preparing for the day ahead in the mirror.",
+        "PHOTOGRAPHIC_DELTA": "wide environmental shot from behind the mirror, natural angle looking out from the 'mirror's' perspective, a mix of natural and reflected window light, mirror reflection highlights the red winter jacket and the framed artwork on the wall.",
+        "EXPECTED_NOVELTY": "a completely new perspective that shifts the focus from the woman to the reflection in the mirror, effectively reviving the narrative of the woman sorting through her winter clothes while offering a side narrative of her reflection."
+      },
+      "concept_axis_key": "PERSPECTIVE_SHIFT+NONE",
+      "sdxl_prompt": "candid digital snapshot from a mid-2000s point-and-shoot, elderly woman wearing red winter jacket and hood, holding small object, living room with framed artwork on wall, natural light from window, domestic and practical tone, candid and informal mood, red winter jacket, framed artwork, natural light, minimal motion blur, natural saturation, slight motion blur on hand, JPEG artifacts in shadows., same color grade and grain as original, same era of look",
+      "attempts": [
+        {
+          "attempt": 0,
+          "seed": 22198,
+          "strength": 0.65,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_22/sequel.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 9,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 9,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 9
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 4,
+              "NOVELTY_TEMPORAL_SHIFT": 2,
+              "NOVELTY_FRAMING_ANGLE": 3,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 1,
+              "NOVELTY_NARRATIVE_BEAT": 5
+            },
+            "feel_total": 9,
+            "novelty_total": 3,
+            "verdict": "RETRY_TIGHTER",
+            "push_harder_on": [
+              "TEMPORAL",
+              "SPATIAL",
+              "FOCAL",
+              "SUBJECT_STATE",
+              "ENVIRONMENTAL"
+            ],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain, shift to wider 35mm focal length, add window-light from camera-right, reduce saturation in shadows",
+            "rationale": "The sequel candidate maintains a strong continuity in the visual world but lacks a distinct temporal shift, which is essential for a clear beat change.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 9\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 9\nFEEL_COMPOSITIONAL_LANGUAGE: 9\nNOVELTY_SUBJECT_POSE: 4\nNOVELTY_TEMPORAL_SHIFT: 2\nNOVELTY_FRAMING_ANGLE: 3\nNOVELTY_ENVIRONMENTAL_DELTA: 1\nNOVELTY_NARRATIVE_BEAT: 5\nVERDICT: RETRY_TIGHTER\nPUSH_HARDER_ON: TEMPORAL, SPATIAL, FOCAL, SUBJECT_STATE, ENVIRONMENTAL\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain, shift to wider 35mm focal length, add window-light from camera-right, reduce saturation in shadows\nONE_LINE_RATIONALE: The sequel candidate maintains a strong continuity in the visual world but lacks a distinct temporal shift, which is essential for a clear beat change."
+          },
+          "combined_score": 5.196152422706632
+        },
+        {
+          "attempt": 1,
+          "seed": 22215,
+          "strength": 0.5,
+          "sequel_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_22/sequel_retry1.png",
+          "eval": {
+            "feel_scores": {
+              "FEEL_COLOR_GRADE": 9,
+              "FEEL_GRAIN_NOISE": 9,
+              "FEEL_LENS_CHARACTER": 9,
+              "FEEL_ERA_VIBE": 9,
+              "FEEL_MOOD_CONTINUITY": 8,
+              "FEEL_COMPOSITIONAL_LANGUAGE": 9
+            },
+            "novelty_scores": {
+              "NOVELTY_SUBJECT_POSE": 2,
+              "NOVELTY_TEMPORAL_SHIFT": 1,
+              "NOVELTY_FRAMING_ANGLE": 1,
+              "NOVELTY_ENVIRONMENTAL_DELTA": 1,
+              "NOVELTY_NARRATIVE_BEAT": 2
+            },
+            "feel_total": 8.833333333333334,
+            "novelty_total": 1.4,
+            "verdict": "RETRY_TIGHTER",
+            "push_harder_on": [
+              "TEMPORAL",
+              "SPATIAL",
+              "FOCAL",
+              "SUBJECT_STATE",
+              "ENVIRONMENTAL"
+            ],
+            "pull_back_on": [],
+            "specific_adjustments": "increase grain; shift to wider 35mm focal length; add window-light from camera-right; reduce saturation in shadows",
+            "rationale": "The sequel candidate maintains a strong continuity in the visual world but lacks a clear temporal and spatial shift, making it feel like a close copy.",
+            "full_response": "FEEL_COLOR_GRADE: 9\nFEEL_GRAIN_NOISE: 9\nFEEL_LENS_CHARACTER: 9\nFEEL_ERA_VIBE: 9\nFEEL_MOOD_CONTINUITY: 8\nFEEL_COMPOSITIONAL_LANGUAGE: 9\nNOVELTY_SUBJECT_POSE: 2\nNOVELTY_TEMPORAL_SHIFT: 1\nNOVELTY_FRAMING_ANGLE: 1\nNOVELTY_ENVIRONMENTAL_DELTA: 1\nNOVELTY_NARRATIVE_BEAT: 2\nVERDICT: RETRY_TIGHTER\nPUSH_HARDER_ON: TEMPORAL, SPATIAL, FOCAL, SUBJECT_STATE, ENVIRONMENTAL\nPULL_BACK_ON: NONE\nSPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain; shift to wider 35mm focal length; add window-light from camera-right; reduce saturation in shadows\nONE_LINE_RATIONALE: The sequel candidate maintains a strong continuity in the visual world but lacks a clear temporal and spatial shift, making it feel like a close copy."
+          },
+          "combined_score": 3.5166271719741156
+        }
+      ],
+      "chosen_attempt": 0,
+      "chosen_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_22/sequel.png",
+      "chosen_combined_score": 5.196152422706632
+    }
+  ],
+  "portfolio": {
+    "total_rounds": 22,
+    "accepted_count": 19,
+    "axis_distribution": {
+      "ENVIRONMENTAL+NARRATIVE_BEAT": 2,
+      "TEMPORAL+ENVIRONMENTAL": 3,
+      "TEMPORAL+NONE": 4,
+      "TEMPORAL+SPATIAL": 3,
+      "TEMPORAL+PERSPECTIVE_SHIFT": 1,
+      "NARRATIVE_BEAT+SPATIAL": 1,
+      "TEMPORAL+PERSPECTIVE SHIFT": 1,
+      "ENVIRONMENTAL+TEMPORAL": 1,
+      "TEMPORAL+NARRATIVE_BEAT+NONE": 1,
+      "TEMPORAL + SPATIAL+NONE": 1,
+      "PERSPECTIVE_SHIFT+NONE": 3,
+      "SPATIAL+NONE": 1
+    },
+    "ranked_round_indices": [
+      16,
+      11,
+      9,
+      21,
+      7,
+      4,
+      17,
+      20,
+      2,
+      3,
+      15,
+      5,
+      1,
+      19,
+      6,
+      22,
+      10,
+      8,
+      12,
+      13,
+      14,
+      18
+    ],
+    "best_round": 16,
+    "best_image": "/Users/michaellinares/Documents/imgSequel/qwen_critique_loop/runs/20260505_180942_small/round_16/sequel.png"
+  }
+}

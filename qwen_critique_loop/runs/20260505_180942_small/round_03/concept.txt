@@ -1,0 +1,8 @@
+CONCEPT_NAME: evening in the same room
+PRIMARY_AXIS: TEMPORAL
+SECONDARY_AXIS: NONE
+WHAT_CHANGES: evening lighting, shadows growing longer, clock visible on the wall
+WHAT_STAYS: red winter jacket, framed artwork, small object in the woman's hand, chandelier, wall-mounted picture frames, indoor setting
+NARRATIVE_BEAT: the woman is now in the evening, possibly preparing for bed.
+PHOTOGRAPHIC_DELTA: softer natural light from the setting sun, distant window on the left, longer shadows on the woman, clock on the wall showing the time transitioning into night.
+EXPECTED_NOVELTY: a new time of day captures the woman, shifting the mood from midday practicality to the evening, adding a layer of quietness and personal routine.

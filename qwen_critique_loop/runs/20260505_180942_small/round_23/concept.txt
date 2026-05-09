@@ -1,0 +1,8 @@
+CONCEPT_NAME: the reflective mirror moment
+PRIMARY_AXIS: PERSPECTIVE_SHIFT
+SECONDARY_AXIS: NONE
+WHAT_CHANGES: the subject is reflected in a mirror, the room is seen through the mirror's reflection, the object in the woman's hand is visible in the mirror reflection, the chandelier and framed artwork on the wall are reflected in the mirror
+WHAT_STAYS: same general place, same era, same emotional register, same character, same setting, same lighting quality and quality of reflection in the mirror
+NARRATIVE_BEAT: the moment the woman looks into the mirror to see the reflection of the object in her hand and the rest of the room behind her
+PHOTOGRAPHIC_DELTA: reflective mirror frame, slightly elevated angle, natural eye-level framing from the subject's perspective, soft overhead fluorescent lighting from the original room's ceiling, reflections adding depth and perspective
+EXPECTED_NOVELTY: the novel perspective shift creates a new and immersive viewing experience by turning the viewer into the subject's reflection, adding a layer of intrigue and depth not previously explored.

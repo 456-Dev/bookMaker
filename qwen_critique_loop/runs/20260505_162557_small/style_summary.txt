@@ -1,0 +1,21 @@
+CAMERA_FORMAT: 35mm full-frame
+ERA: 2005-2010 digital point-and-shoot
+FILM_OR_DIGITAL: digital
+FOCAL_LENGTH_MM: 50
+APERTURE: f/2.8
+SHUTTER_FEEL: crisp
+ISO_FEEL: medium
+WHITE_BALANCE_K: 5500
+COLOR_GRADE: neutral
+CONTRAST: medium contrast lifted blacks
+SATURATION: natural
+GRAIN_OR_NOISE: none
+SHARPNESS: natural
+DEPTH_OF_FIELD: medium
+LIGHTING_SOURCE: overhead fluorescent
+LIGHTING_QUALITY: soft
+COMPOSITION: subject centered, slight tilt, background frames subject
+SUBJECT: elderly person wearing a red jacket and holding a black object
+SETTING: indoor, framed artwork on the wall
+MOOD: candid, informal
+NOTABLE_IMPERFECTIONS: slight motion blur on hand, JPEG artifacts in shadows

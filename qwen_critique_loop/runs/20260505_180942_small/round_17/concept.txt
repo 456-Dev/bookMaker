@@ -1,0 +1,8 @@
+CONCEPT_NAME: the woman in the winter's light
+PRIMARY_AXIS: TEMPORAL
+SECONDARY_AXIS: ENVIRONMENTAL
+WHAT_CHANGES: the skin is no longer visible, the chandelier is out of the frame, the window is closed and curtain is drawn, the room is darker, the framed picture on the right is no longer visible.
+WHAT_STAYS: the red jacket with "PERK" logo, the framed artwork on the wall, the presence of the woman, the indoor setting, the domestic and practical tone, the chandelier and the wall-mounted picture frames.
+NARRATIVE_BEAT: The woman is preparing for the day ahead, the room's lighting signifies the early morning before dawn.
+PHOTOGRAPHIC_DELTA: Wide environmental shot from the side, natural eye-level framing, soft natural light from a window on the right side of the frame, subject slightly larger in the frame.
+EXPECTED_NOVELTY: This frame captures the transition from the previousNARRATIVE_BEAT moment, showing the room and the woman in the early morning's shade.

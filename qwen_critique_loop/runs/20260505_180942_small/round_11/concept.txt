@@ -1,0 +1,8 @@
+CONCEPT_NAME: next moment in the same room
+PRIMARY_AXIS: TEMPORAL
+SECONDARY_AXIS: SPATIAL
+WHAT_CHANGES: subject in different pose, small object removed, chandelier lit, natural light less prominent
+WHAT_STAYS: framed artwork, setting, red winter jacket, elderly woman's expression remains contemplative and focused, domestic and practical room tone
+NARRATIVE_BEAT: the woman has closed the small object in her hand and is now looking at the chandelier
+PHOTOGRAPHIC_DELTA: wider environmental shot, low eye-level angle, soft natural daylight from the window now secondary, chandelier fully illuminated, subject framed within the chandelier's glow
+EXPECTED_NOVELTY: focuses on the chandelier's glow and the woman's contemplative gaze on the lighting fixture, a contrast between the previous dim, natural light and the new artificial light source.

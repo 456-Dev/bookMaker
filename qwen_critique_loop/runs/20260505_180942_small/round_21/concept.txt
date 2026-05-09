@@ -1,0 +1,8 @@
+CONCEPT_NAME: the reflective mirror moment
+PRIMARY_AXIS: PERSPECTIVE_SHIFT
+SECONDARY_AXIS: NONE
+WHAT_CHANGES: the woman's reflection becomes prominent, the small object she holds is reflected, the mirror edge comes into the frame, the chandelier is reflected in the mirror
+WHAT_STAYS: the red winter jacket, the framed artwork, the indoor setting, the natural light from the window, the winter season, the domestic and practical tone
+NARRATIVE_BEAT: the woman is caught in the act of sorting through her winter clothing, the mirror reflects her in a moment of contemplation and focus
+PHOTOGRAPHIC_DELTA: reflective mirror angle, low angle from floor, natural eye-level framing, two reflections of the woman and the room, the chandelier partially reflected in the mirror
+EXPECTED_NOVELTY: a new perspective shift introducing reflection and depth, offering a fresh narrative beats of the woman's internal state and the room's spatiality

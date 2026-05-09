@@ -1,0 +1,16 @@
+FEEL_COLOR_GRADE: 9
+FEEL_GRAIN_NOISE: 9
+FEEL_LENS_CHARACTER: 9
+FEEL_ERA_VIBE: 9
+FEEL_MOOD_CONTINUITY: 9
+FEEL_COMPOSITIONAL_LANGUAGE: 9
+NOVELTY_SUBJECT_POSE: 4
+NOVELTY_TEMPORAL_SHIFT: 2
+NOVELTY_FRAMING_ANGLE: 3
+NOVELTY_ENVIRONMENTAL_DELTA: 1
+NOVELTY_NARRATIVE_BEAT: 5
+VERDICT: RETRY_TIGHTER
+PUSH_HARDER_ON: TEMPORAL, SPATIAL, FOCAL, SUBJECT_STATE, ENVIRONMENTAL
+PULL_BACK_ON: NONE
+SPECIFIC_PHOTOGRAPHIC_ADJUSTMENTS: increase grain, shift to wider 35mm focal length, add window-light from camera-right, reduce saturation in shadows
+ONE_LINE_RATIONALE: The sequel candidate maintains a strong continuity in the visual world but lacks a distinct temporal shift, which is essential for a clear beat change.

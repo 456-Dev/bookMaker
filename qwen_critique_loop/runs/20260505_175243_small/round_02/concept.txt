@@ -1,0 +1,8 @@
+CONCEPT_NAME: 30 Minutes After
+PRIMARY_AXIS: TEMPORAL
+SECONDARY_AXIS: SPATIAL
+WHAT_CHANGES: chandelier turned off, woman Holding object more relaxed, shadows deeper, jacket slightly wrinkled, background artwork dimmer
+WHAT_STAYS: indoor setting, framed pictures on the wall, general living room atmosphere, soft lighting from practicals
+NARRATIVE_BEAT: the day has passed; the woman has had time to think.
+PHOTOGRAPHIC_DELTA: high-angle shot from the doorway, dim natural light from a side window, deeper shadows and cooler tones create a somber, reflective mood.
+EXPECTED_NOVELTY: captures the passage of time with a subtle change in the physical state of the subject, emphasizing the reflective mood through the environment and lighting.

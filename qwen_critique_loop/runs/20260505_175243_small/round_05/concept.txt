@@ -1,0 +1,8 @@
+CONCEPT_NAME: The Window View
+PRIMARY_AXIS: SPATIAL
+SECONDARY_AXIS: NONE
+WHAT_CHANGES: new angle, framed picture removed, natural light from window, woman facing window, new object in hand
+WHAT_STAYS: indoor setting, framed pictures in the room, woman wearing red jacket, warm lighting
+NARRATIVE_BEAT: The woman has just returned home and is now gazing out the window, perhaps reminiscing or planning her day.
+PHOTOGRAPHIC_DELTA: side view from across the room, low angle, natural light from window, new light source adds dynamic contrast, woman small in the frame
+EXPECTED_NOVELTY: Novel transformation to a broader, more atmospheric shot with a new light source and window view alters the emotional register.

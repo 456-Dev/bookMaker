@@ -1,0 +1,8 @@
+CONCEPT_NAME: the room one minute after they leave
+PRIMARY_AXIS: TEMPORAL
+SECONDARY_AXIS: PERSPECTIVE_SHIFT
+WHAT_CHANGES: person is now out of frame, small object is on the surface, chandelier is dimmed or turned off, background frames are more prominent
+WHAT_STAYS: indoor setting, framed artwork, living room, natural light from far window, domestic and practical tone, clear weather, subject's red winter jacket
+NARRATIVE_BEAT: the woman has left the room, leaving the small object on a table and the chandelier dimmed or turned off.
+PHOTOGRAPHIC_DELTA: tight close-up, high angle from the subject's perspective, dim natural light from a far window, shallow depth of field, chandelier illuminated, background frames more prominent
+EXPECTED_NOVELTY: a fresh moment where the subject has just left, leaving behind a different state of the room with a new emotional register.

@@ -1,0 +1,8 @@
+CONCEPT_NAME: next morning
+PRIMARY_AXIS: TEMPORAL
+SECONDARY_AXIS: ENVIRONMENTAL
+WHAT_CHANGES: the woman is no longer present, the room has been cleaned and organized, the lighting is dimmer, the framed artwork and chandelier are more visible, the window is closed and curtains drawn
+WHAT_STAYS: the indoor location, the framed artwork on the wall, the chandelier, the living room setting, the high contrast crushed shadows and natural color grade
+NARRATIVE_BEAT: the room is now ready for the new day, with the previous day's items packed away and the living space prepared for the morning
+PHOTOGRAPHIC_DELTA: low angle from the floor, soft natural light from a window on the far side of the room, the subject small in the frame, slightly blurred background
+EXPECTED_NOVELTY: this frame captures a narrative beat where the previous day's events are concluded and a new day begins in a different, prepared state.

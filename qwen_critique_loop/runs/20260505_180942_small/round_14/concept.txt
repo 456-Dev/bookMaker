@@ -1,0 +1,8 @@
+CONCEPT_NAME: same evening, softer lighting
+PRIMARY_AXIS: TEMPORAL+NARRATIVE_BEAT
+SECONDARY_AXIS: NONE
+WHAT_CHANGES: person disappears, shadows elongate, chandelier visible in background, natural light diminishes
+WHAT_STAYS: framed artwork on wall, living room setting, wall-mounted picture frames, domestic atmosphere
+NARRATIVE_BEAT: woman has finished sorting through her winter clothes, leaving the room in a calm state
+PHOTOGRAPHIC_DELTA: close-up of the framed artwork and chandelier from near window, natural lighting from camera-left, shadows from setting sun, high contrast envelopes the scene
+EXPECTED_NOVELTY: a serene conclusion to the day, capturing the end of the narrative beat with rich, warm tones and softer shadows.

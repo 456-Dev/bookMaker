@@ -1,0 +1,8 @@
+CONCEPT_NAME: the reflective mirror
+PRIMARY_AXIS: PERSPECTIVE_SHIFT
+SECONDARY_AXIS: NONE
+WHAT_CHANGES: reflection in the mirror replacing the framed artwork, the woman's reflection in the mirror, a clear view of the room through the mirror
+WHAT_STAYS: the living room, the woman wearing the red winter jacket, the natural light source from the window on the left side of the frame, the sense of domestic practicality
+NARRATIVE_BEAT: the woman looks at her reflection, possibly considering her appearance or the day ahead
+PHOTOGRAPHIC_DELTA: the camera is positioned in front of the woman, slightly below eye-level, capturing her reflection in the mirror with a wide environmental shot, soft natural light from a window, the room reflected in the mirror's surface, the woman's reflection prominent in the frame. The mirror occupies the space where framed artwork would normally be.
+EXPECTED_NOVELTY: the introduction of the mirror adds a new layer of personal reflection and introspection, shifting the focus from the physical world to the subjective inner world of the character.

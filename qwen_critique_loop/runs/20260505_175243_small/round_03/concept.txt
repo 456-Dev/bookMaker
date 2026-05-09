@@ -1,0 +1,7 @@
+CONCEPT_NAME: 50 Years Later [axes=TEMPORAL+FOCAL, feel=8.0, novelty=5.0]
+SECONDARY_AXIS: NONE
+WHAT_CHANGES: The elderly woman is now an older woman, possibly in her late 80s or early 90s. Her red winter jacket is now in a museum display case, surrounded by other artifacts from her life. The small object in her hand is a framed and labeled memento.
+WHAT_STAYS: The framed pictures on the wall, the warm, dim lighting, the overall post-shift industrial loneliness, the soft overhead fluorescent lighting.
+NARRATIVE_BEAT: The woman is now a poster child for the preservation of memories and she is proudly showing the memento from her youth.
+PHOTOGRAPHIC_DELTA: A tighter close-up, focusing on the woman's face as she admires the framed memento, with the red winter jacket in the background slightly out of focus. The lighting is softer and more dramatic, casting shadows that emphasize the woman's age and the history of the memento.
+EXPECTED_NOVELTY: A stark contrast between the candid moment of a woman returning home and the formal preservation of her youth, highlighting the passage of time and the enduring value of personal artifacts.

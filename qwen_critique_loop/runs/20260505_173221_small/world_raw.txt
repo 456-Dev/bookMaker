@@ -1,0 +1,10 @@
+SUBJECT: elderly woman, 70-80 years old, retired, holding a small object, looking at it intently
+LOCATION: living room, indoor, framed artwork on the wall
+TIME_OF_DAY: evening, dim lighting suggests dusk or early evening
+SEASON: winter, the person is wearing a heavy winter coat and gloves
+WEATHER: cold, the person is dressed for cold weather
+LIGHT_SOURCE: overhead practicals, warm light from ceiling fixtures
+NARRATIVE_IMPLIED: she has just found a small object that she is examining closely, possibly a keepsake or a gift
+EMOTIONAL_REGISTER: reflective nostalgia
+WORLD_TONE: post-retirement domestic life
+KEY_OBJECTS: red winter coat, framed artwork, small object in hand, glasses, beaded necklace
