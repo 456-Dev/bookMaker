@@ -3,16 +3,23 @@ imgSequel — PDF page reimagining pipeline.
 
 For each page in a PDF:
     1. render to PNG                 (pypdfium2)
-    2. seam-carve to square          (content-aware crop, pure-numpy)
-    3. describe with InstructBLIP    (detailed technical caption, CPU)
+    2. prepare for diffusion         (aspect-ratio-preserving resize to SD's
+                                      pixel budget; output is NOT square — it
+                                      matches the original page's aspect ratio)
+    3. describe with InstructBLIP    (detailed technical caption: subject,
+                                      camera & lens, lighting, composition,
+                                      color, editing/post-processing style)
     4. img2img regenerate 10 sequels:
-         - 9-grid sweep over (strength, steps) — empty positive prompt,
-           description as negative
-         - 1 control variant — same negative, same seed, fixed
-           (strength, steps), but with a positive prompt
-       All 10 share the same per-page seed so the grid is a clean
-       parameter sweep and the control isolates the positive-prompt effect.
+         - 9-grid sweep over (strength × seed_idx) — empty positive prompt,
+           description as negative, fixed step count. Each cell uses a
+           different seed so within-strength columns surface noise variability.
+         - 1 control variant — same negative prompt, fixed (strength, steps),
+           seed shared with the (strength, k0) grid cell, plus a positive
+           prompt to isolate the positive-prompt effect.
     5. assemble a contact sheet (4x3 thumbnail grid) for fast review
+
+The sequel images are emitted at the same dimensions as the prepared init,
+so they preserve the original page's aspect ratio.
 
 Designed for AMD Ryzen 9 8945HS / 32GB / no GPU. Pure CPU inference.
 
@@ -37,7 +44,7 @@ from . import config
 from .models.vision import VisionModel
 from .models.diffusion import DiffusionModel
 from .pipeline.pdf_render import count_pages, render_page
-from .pipeline.seam_crop import square_crop
+from .pipeline.prepare import prepare_for_diffusion, target_dimensions
 from .pipeline.describe import describe_image
 from .pipeline.regenerate import regenerate_all
 from .pipeline.contact_sheet import build_contact_sheet
@@ -49,7 +56,7 @@ from .utils.progress import ProgressLog
 
 
 STAGE_RENDER = "rendered.png"
-STAGE_SQUARE = "square.png"
+STAGE_PREPARED = "prepared.png"
 STAGE_DESC = "description.txt"
 STAGE_CONTACT = "contact_sheet.png"
 
@@ -86,8 +93,9 @@ def _resolve_resume(arg: str) -> Path:
 
 
 def _page_seed(base_seed: Optional[int], page_idx: int) -> int:
-    """Each page gets its own seed so different pages aren't variations of the
-    same noise pattern. Within a page, all 10 variants share this seed."""
+    """Each page gets its own reference seed so different pages aren't
+    variations of the same noise pattern. Within a page, the 9 grid cells
+    derive their per-cell seed from this reference."""
     if base_seed is None:
         return page_idx * 1009
     return base_seed + page_idx * 1009
@@ -106,7 +114,7 @@ def process_page(
 ) -> dict:
     p_dir = page_dir(run_dir, page_idx)
     rendered_p = p_dir / STAGE_RENDER
-    square_p = p_dir / STAGE_SQUARE
+    prepared_p = p_dir / STAGE_PREPARED
     desc_p = p_dir / STAGE_DESC
     contact_p = p_dir / STAGE_CONTACT
 
@@ -120,17 +128,16 @@ def process_page(
         render_page(pdf_path, page_idx - 1, rendered_p, dpi=config.PDF_RENDER_DPI)
         progress.stage_done()
 
-    # 2. crop to square (method per config.CROP_METHOD)
-    if square_p.exists():
-        progress.event("  square: skip (cached)")
+    # 2. prepare for diffusion (aspect-ratio-preserving resize, not square)
+    if prepared_p.exists():
+        progress.event("  prepare: skip (cached)")
     else:
         from PIL import Image
         with Image.open(rendered_p) as im:
             w, h = im.size
-        side = min(w, h) if config.SQUARE_SIDE == "AUTO" else int(config.SQUARE_SIDE)
-        method = config.CROP_METHOD
-        progress.stage_start(f"crop ({method}) {w}x{h} -> {side}x{side}")
-        square_crop(rendered_p, square_p)
+        tw, th = target_dimensions(w, h)
+        progress.stage_start(f"prepare {w}x{h} -> {tw}x{th} (aspect preserved)")
+        prepare_for_diffusion(rendered_p, prepared_p)
         progress.stage_done()
 
     # 3. describe (InstructBLIP — slow but detailed)
@@ -139,24 +146,27 @@ def process_page(
         description = desc_p.read_text().strip()
     else:
         progress.stage_start("describe with InstructBLIP")
-        description = describe_image(vlm, square_p, desc_p)
+        description = describe_image(vlm, prepared_p, desc_p)
         progress.stage_done(detail=f"({len(description.split())} words)")
 
     progress.event(
         f"  description: {description[:140]}{'...' if len(description) > 140 else ''}"
     )
 
-    # 4. generate 10 variants (9-grid + control)
+    # 4. generate 10 variants (9-grid strength × seed + 1 control)
     page_seed = _page_seed(seed_base, page_idx)
-    progress.stage_start(f"img2img 10 variants (shared seed={page_seed})")
+    progress.stage_start(f"img2img 10 variants (page_seed={page_seed})")
 
     def on_variant(idx: int, total: int, v: dict) -> None:
-        tag = "control" if v["is_control"] else f"s={v['strength']:.2f} st={v['steps']:>2}"
+        if v["is_control"]:
+            tag = "control"
+        else:
+            tag = f"s={v['strength']:.2f} k{v['seed_idx']} (seed={v['seed']})"
         marker = "skip" if v["skipped"] else "done"
-        progress.event(f"    [{idx:>2}/{total}] {tag:<20}  {marker}")
+        progress.event(f"    [{idx:>2}/{total}] {tag:<32}  {marker}")
 
     variant_records = regenerate_all(
-        diffusion, square_p, description, p_dir,
+        diffusion, prepared_p, description, p_dir,
         seed=page_seed, on_variant=on_variant,
     )
     progress.stage_done()
@@ -173,7 +183,7 @@ def process_page(
     return {
         "page": page_idx,
         "rendered": str(rendered_p),
-        "square": str(square_p),
+        "prepared": str(prepared_p),
         "description": description,
         "page_seed": page_seed,
         "variants": variant_records,
@@ -198,9 +208,15 @@ def run(pdf_path: Path, run_dir: Path, page_indices: list[int],
                    f"{config.NUM_THREADS} cpu threads)")
     progress.event(
         f"variants/page: 9-grid strengths={config.SEQUEL_STRENGTHS} × "
+        f"{config.SEQUEL_SEEDS_PER_STRENGTH} seeds at "
         f"steps={config.SEQUEL_STEPS}  +  1 control "
         f"(s={config.CONTROL_STRENGTH}, st={config.CONTROL_STEPS}, "
         f"positive='{config.CONTROL_POSITIVE_PROMPT}')"
+    )
+    progress.event(
+        f"diffusion size: short side={config.DIFFUSION_BASE_SIDE}, "
+        f"long side capped at {config.DIFFUSION_LONG_SIDE_MAX} "
+        f"(aspect ratio preserved)"
     )
 
     pages_record: list[dict] = []
@@ -220,11 +236,13 @@ def run(pdf_path: Path, run_dir: Path, page_indices: list[int],
             "run_dir": str(run_dir),
             "vlm_model": config.VLM_MODEL,
             "diffusion_model": config.DIFFUSION_MODEL,
-            "diffusion_resolution": config.DIFFUSION_RESOLUTION,
+            "diffusion_base_side": config.DIFFUSION_BASE_SIDE,
+            "diffusion_long_side_max": config.DIFFUSION_LONG_SIDE_MAX,
             "diffusion_guidance": config.DIFFUSION_GUIDANCE,
             "render_dpi": config.PDF_RENDER_DPI,
             "sequel_strengths": config.SEQUEL_STRENGTHS,
             "sequel_steps": config.SEQUEL_STEPS,
+            "sequel_seeds_per_strength": config.SEQUEL_SEEDS_PER_STRENGTH,
             "control_positive_prompt": config.CONTROL_POSITIVE_PROMPT,
             "control_strength": config.CONTROL_STRENGTH,
             "control_steps": config.CONTROL_STEPS,

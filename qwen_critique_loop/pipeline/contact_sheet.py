@@ -2,15 +2,17 @@
 
 Layout (4 cols × 3 rows):
     +-----------+-----------+-----------+-----------+
-    | original  | s25/st13  | s25/st25  | s25/st50  |
+    | original  | s25/k0    | s25/k1    | s25/k2    |
     +-----------+-----------+-----------+-----------+
-    | control   | s50/st13  | s50/st25  | s50/st50  |
+    | control   | s50/k0    | s50/k1    | s50/k2    |
     +-----------+-----------+-----------+-----------+
-    |           | s75/st13  | s75/st25  | s75/st50  |
+    |           | s75/k0    | s75/k1    | s75/k2    |
     +-----------+-----------+-----------+-----------+
 
-Each cell is the variant image with a label strip below it. The contact
-sheet itself is saved as `contact_sheet.png` in the page dir.
+Tiles letterbox the image inside a fixed-size cell, so non-square sequels
+preserve their aspect ratio without distorting the grid layout. Each cell is
+the variant image with a label strip below it. The contact sheet itself is
+saved as `contact_sheet.png` in the page dir.
 """
 
 from pathlib import Path
@@ -22,7 +24,7 @@ from .. import config
 from .regenerate import variant_filename, CONTROL_FILENAME
 
 
-TILE_PX = 320           # each cell's image side length
+TILE_PX = 320           # each cell's image-area side length (square box)
 LABEL_HEIGHT = 36
 PADDING = 12
 BG_COLOR = (24, 27, 33)
@@ -53,17 +55,15 @@ def _tile(image_path: Optional[Path], label: str, font: ImageFont.ImageFont) -> 
 
     if image_path is not None and image_path.exists():
         img = Image.open(image_path).convert("RGB")
+        # Letterbox into the TILE_PX x TILE_PX area, preserving aspect ratio.
         img.thumbnail((TILE_PX, TILE_PX), Image.LANCZOS)
-        # center the thumb in the tile area
         ox = (TILE_PX - img.width) // 2
         oy = (TILE_PX - img.height) // 2
         cell.paste(img, (ox, oy))
     else:
-        # empty placeholder
         ph = Image.new("RGB", (TILE_PX, TILE_PX), EMPTY_COLOR)
         cell.paste(ph, (0, 0))
 
-    # label strip
     draw = ImageDraw.Draw(cell)
     bbox = draw.textbbox((0, 0), label, font=font)
     tw = bbox[2] - bbox[0]
@@ -81,35 +81,35 @@ def build_contact_sheet(page_dir: Path, output_path: Path) -> Path:
 
     font = _load_font(20)
 
-    # Reference + control + 9-grid in their layout positions
-    square = page_dir / "square.png"
+    prepared = page_dir / "prepared.png"
     control = page_dir / CONTROL_FILENAME
 
-    # Row 0: original | s=0.25 strip
-    # Row 1: control  | s=0.50 strip
-    # Row 2: empty    | s=0.75 strip
     rows: list[list[tuple[Optional[Path], str]]] = []
     strengths = config.SEQUEL_STRENGTHS
-    steps_list = config.SEQUEL_STEPS
+    n_seeds = config.SEQUEL_SEEDS_PER_STRENGTH
 
     for row_idx, strength in enumerate(strengths):
         if row_idx == 0:
-            left = (square if square.exists() else None, "original")
+            left = (prepared if prepared.exists() else None, "original")
         elif row_idx == 1:
-            left = (control, f"control  s={config.CONTROL_STRENGTH:.2f}  st={config.CONTROL_STEPS}")
+            left = (
+                control,
+                f"control  s={config.CONTROL_STRENGTH:.2f}  st={config.CONTROL_STEPS}",
+            )
         else:
             left = (None, "")
 
         cells: list[tuple[Optional[Path], str]] = [left]
-        for steps in steps_list:
-            fn = variant_filename(strength, steps)
-            cells.append((page_dir / fn, f"s={strength:.2f}  st={steps}"))
+        for seed_idx in range(n_seeds):
+            fn = variant_filename(strength, seed_idx)
+            cells.append((page_dir / fn, f"s={strength:.2f}  k{seed_idx}"))
         rows.append(cells)
 
+    cols = 1 + n_seeds
     cell_w = TILE_PX
     cell_h = TILE_PX + LABEL_HEIGHT
-    sheet_w = PADDING + 4 * (cell_w + PADDING)
-    sheet_h = PADDING + 3 * (cell_h + PADDING)
+    sheet_w = PADDING + cols * (cell_w + PADDING)
+    sheet_h = PADDING + len(strengths) * (cell_h + PADDING)
     sheet = Image.new("RGB", (sheet_w, sheet_h), BG_COLOR)
 
     for r, row in enumerate(rows):

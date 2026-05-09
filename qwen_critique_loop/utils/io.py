@@ -6,12 +6,15 @@ Layout:
     run.json                   - structured manifest of pages and stages
     page_001/
       rendered.png             - PDF page rendered at config.PDF_RENDER_DPI
-      square.png               - seam-carved square crop
+      prepared.png             - aspect-ratio-preserving resize for diffusion
+                                 (no longer square; matches original's aspect)
       description.txt          - VLM technical description
-      sequel_s25_st13.png      - sequel at strength=0.25, steps=13
-      sequel_s25_st25.png
+      sequel_s25_k0.png        - sequel at strength=0.25, seed_index 0
+      sequel_s25_k1.png
+      sequel_s25_k2.png
+      sequel_s50_k0.png
       ...
-      sequel_s75_st50.png      - sequel at strength=0.75, steps=50  (9-grid)
+      sequel_s75_k2.png        - sequel at strength=0.75, seed_index 2  (9-grid)
       sequel_control.png       - control sequel with positive prompt
       contact_sheet.png        - 4x3 grid: original + 9 variants + control
     page_002/

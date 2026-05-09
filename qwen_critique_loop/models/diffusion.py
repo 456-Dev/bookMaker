@@ -1,23 +1,36 @@
-"""SD 1.5 img2img model, CPU-only.
+"""SD 1.5 img2img model, CPU-friendly.
 
-Photoreal SD 1.5 community model at 512x512. Empty positive prompt by design;
-the per-page negative prompt is what steers the result. Runs in ~30-60s per
-image on a Ryzen 9 8945HS.
+The init image's dimensions drive the output's dimensions: whatever WxH the
+init image has (rounded to multiples of 8), that's what we generate at. This
+preserves the original page's aspect ratio end-to-end.
 
-The pipeline is shared between img2img calls — loaded once on first use.
+Empty positive prompt by design — the per-page negative prompt does the
+steering. Runs in roughly 30-90s per image on a Ryzen 9 8945HS depending on
+strength, steps, and the image's pixel count.
 """
 
 from pathlib import Path
-from typing import Optional, Union
+from typing import Optional
 
 from PIL import Image
 
 from .. import config
 
 
-def _resize_for_sd15(img: Image.Image, side: int) -> Image.Image:
-    """SD 1.5 prefers square 512x512. Resize to a square at `side` px."""
-    return img.resize((side, side), Image.LANCZOS)
+def _round_to_multiple_of_8(x: int) -> int:
+    n = (x // 8) * 8
+    return max(8, n)
+
+
+def _conform_to_vae(img: Image.Image) -> Image.Image:
+    """SD 1.5's VAE requires both dims to be multiples of 8. The prepare stage
+    already enforces this, but we re-snap defensively in case a hand-edited
+    init image is used."""
+    w, h = img.size
+    w8, h8 = _round_to_multiple_of_8(w), _round_to_multiple_of_8(h)
+    if (w8, h8) != (w, h):
+        return img.resize((w8, h8), Image.LANCZOS)
+    return img
 
 
 class DiffusionModel:
@@ -74,16 +87,18 @@ class DiffusionModel:
         steps: int = 25,
         guidance: float = 7.0,
         strength: float = 0.5,
-        side: int = 512,
         seed: Optional[int] = None,
     ) -> Path:
-        """Run img2img and save the result. Init image is resized to `side` x `side`
-        before generation; the saved sequel is written at that same resolution."""
+        """Run img2img and save the result.
+
+        The init image is used at its current dimensions (snapped to multiples
+        of 8). The output is saved at those same dimensions, so the sequel
+        preserves the aspect ratio of the prepared init."""
         self._ensure_loaded()
         import torch
 
         init = Image.open(init_image_path).convert("RGB")
-        init = _resize_for_sd15(init, side)
+        init = _conform_to_vae(init)
 
         generator = torch.Generator(device="cpu").manual_seed(seed) if seed is not None else None
 
