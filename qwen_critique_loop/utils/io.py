@@ -2,21 +2,30 @@
 
 Layout:
   runs/<timestamp>_<pdf-stem>/
-    progress.txt               - tail-able progress log
-    run.json                   - structured manifest of pages and stages
+    progress.txt                       - tail-able progress log
+    run.json                           - structured manifest of pages, params, variants
     page_001/
-      rendered.png             - PDF page rendered at config.PDF_RENDER_DPI
-      prepared.png             - aspect-ratio-preserving resize for diffusion
-                                 (no longer square; matches original's aspect)
-      description.txt          - VLM technical description
-      sequel_s25_k0.png        - sequel at strength=0.25, seed_index 0
-      sequel_s25_k1.png
-      sequel_s25_k2.png
-      sequel_s50_k0.png
-      ...
-      sequel_s75_k2.png        - sequel at strength=0.75, seed_index 2  (9-grid)
-      sequel_control.png       - control sequel with positive prompt
-      contact_sheet.png        - 4x3 grid: original + 9 variants + control
+      rendered.png                     - PDF page rendered at config.PDF_RENDER_DPI
+      prepared.png                     - aspect-ratio-preserving resize for diffusion
+      description_q01_subject.txt      - VLM answer: what is in the image
+      description_q02_location.txt     - VLM answer: where it was taken
+      description_q03_time.txt         - VLM answer: when it was taken
+      description_q04_purpose.txt      - VLM answer: why it was taken
+      description_q05_camera.txt       - VLM answer: camera settings + lighting + editing
+      description.txt                  - five answers stitched into a paragraph
+      sequel_01_control.png            - control sequel (positive prompt)
+      sequel_02_opposite.png           - "generate the opposite image"
+      sequel_03_better.png             - "generate a better image"
+      sequel_04_s25_st100_seed1.png    - explicit-param variants begin here
+      sequel_05_s25_st100_seed42_opposite.png
+      sequel_06_s33_st100_seed69.png
+      sequel_07_s40_st50_seed1.png
+      sequel_08_s50_st50_seed2.png
+      sequel_09_s50_st50_seed3.png
+      sequel_10_s60_st50_seed4.png
+      sequel_11_s70_st50_seed5.png
+      sequel_12_s80_same.png           - "generate the exact same image"
+      contact_sheet.png                - 4x3 grid of all 12 variants
     page_002/
       ...
 """

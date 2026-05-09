@@ -1,18 +1,21 @@
 """Stage 5: assemble a contact sheet of every sequel variant.
 
-Layout (4 cols × 3 rows):
+Layout (4 cols × 3 rows = 12 tiles, one per variant in slot order):
     +-----------+-----------+-----------+-----------+
-    | original  | s25/k0    | s25/k1    | s25/k2    |
+    | 01 ctrl   | 02 oppst  | 03 better | 04 s25/100|
     +-----------+-----------+-----------+-----------+
-    | control   | s50/k0    | s50/k1    | s50/k2    |
+    | 05 oppst  | 06 s33/100| 07 s40/50 | 08 s50/50 |
     +-----------+-----------+-----------+-----------+
-    |           | s75/k0    | s75/k1    | s75/k2    |
+    | 09 s50/50 | 10 s60/50 | 11 s70/50 | 12 same   |
     +-----------+-----------+-----------+-----------+
 
-Tiles letterbox the image inside a fixed-size cell, so non-square sequels
-preserve their aspect ratio without distorting the grid layout. Each cell is
-the variant image with a label strip below it. The contact sheet itself is
-saved as `contact_sheet.png` in the page dir.
+The original is intentionally NOT shown — `prepared.png` lives one directory
+up alongside the sheet, so checking the input is a single file open. The
+contact sheet is for comparing the 12 reinterpretations side by side. Each
+tile letterboxes its image inside a fixed-size square cell, so non-square
+sequels keep their aspect ratio without distorting the grid layout.
+
+The contact sheet is saved as `contact_sheet.png` in the page dir.
 """
 
 from pathlib import Path
@@ -20,10 +23,11 @@ from typing import Optional
 
 from PIL import Image, ImageDraw, ImageFont
 
-from .. import config
-from .regenerate import variant_filename, CONTROL_FILENAME
+from .regenerate import VARIANTS
 
 
+COLS = 4
+ROWS = 3
 TILE_PX = 320           # each cell's image-area side length (square box)
 LABEL_HEIGHT = 36
 PADDING = 12
@@ -75,49 +79,32 @@ def _tile(image_path: Optional[Path], label: str, font: ImageFont.ImageFont) -> 
 
 
 def build_contact_sheet(page_dir: Path, output_path: Path) -> Path:
-    """Assemble the 4x3 grid. Resume-safe: skips if output already exists."""
+    """Assemble the 4×3 grid of all 12 variants. Resume-safe: skips if
+    output already exists."""
     if output_path.exists():
         return output_path
 
     font = _load_font(20)
 
-    prepared = page_dir / "prepared.png"
-    control = page_dir / CONTROL_FILENAME
+    if len(VARIANTS) != COLS * ROWS:
+        raise RuntimeError(
+            f"contact sheet expects {COLS*ROWS} variants, got {len(VARIANTS)}"
+        )
 
-    rows: list[list[tuple[Optional[Path], str]]] = []
-    strengths = config.SEQUEL_STRENGTHS
-    n_seeds = config.SEQUEL_SEEDS_PER_STRENGTH
-
-    for row_idx, strength in enumerate(strengths):
-        if row_idx == 0:
-            left = (prepared if prepared.exists() else None, "original")
-        elif row_idx == 1:
-            left = (
-                control,
-                f"control  s={config.CONTROL_STRENGTH:.2f}  st={config.CONTROL_STEPS}",
-            )
-        else:
-            left = (None, "")
-
-        cells: list[tuple[Optional[Path], str]] = [left]
-        for seed_idx in range(n_seeds):
-            fn = variant_filename(strength, seed_idx)
-            cells.append((page_dir / fn, f"s={strength:.2f}  k{seed_idx}"))
-        rows.append(cells)
-
-    cols = 1 + n_seeds
     cell_w = TILE_PX
     cell_h = TILE_PX + LABEL_HEIGHT
-    sheet_w = PADDING + cols * (cell_w + PADDING)
-    sheet_h = PADDING + len(strengths) * (cell_h + PADDING)
+    sheet_w = PADDING + COLS * (cell_w + PADDING)
+    sheet_h = PADDING + ROWS * (cell_h + PADDING)
     sheet = Image.new("RGB", (sheet_w, sheet_h), BG_COLOR)
 
-    for r, row in enumerate(rows):
-        for c, (path, label) in enumerate(row):
-            tile = _tile(path, label, font)
-            x = PADDING + c * (cell_w + PADDING)
-            y = PADDING + r * (cell_h + PADDING)
-            sheet.paste(tile, (x, y))
+    for idx, v in enumerate(VARIANTS):
+        r, c = divmod(idx, COLS)
+        path = page_dir / v.filename
+        label = f"{v.slot:02d}  {v.label}"
+        tile = _tile(path, label, font)
+        x = PADDING + c * (cell_w + PADDING)
+        y = PADDING + r * (cell_h + PADDING)
+        sheet.paste(tile, (x, y))
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     sheet.save(output_path)

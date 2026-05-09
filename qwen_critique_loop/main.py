@@ -6,17 +6,25 @@ For each page in a PDF:
     2. prepare for diffusion         (aspect-ratio-preserving resize to SD's
                                       pixel budget; output is NOT square — it
                                       matches the original page's aspect ratio)
-    3. describe with InstructBLIP    (detailed technical caption: subject,
-                                      camera & lens, lighting, composition,
-                                      color, editing/post-processing style)
-    4. img2img regenerate 10 sequels:
-         - 9-grid sweep over (strength × seed_idx) — empty positive prompt,
-           description as negative, fixed step count. Each cell uses a
-           different seed so within-strength columns surface noise variability.
-         - 1 control variant — same negative prompt, fixed (strength, steps),
-           seed shared with the (strength, k0) grid cell, plus a positive
-           prompt to isolate the positive-prompt effect.
-    5. assemble a contact sheet (4x3 thumbnail grid) for fast review
+    3. describe with InstructBLIP    (FIVE questions: subject, location, time,
+                                      purpose, camera. Answers cached per
+                                      question; final description is the
+                                      stitched paragraph.)
+    4. img2img regenerate 12 sequels — explicit hand-curated table:
+         01 control                   (s=0.50, st=25, "realistic street photograph", page_seed)
+         02 opposite                  (s=0.40, st=50, "generate the opposite image", page_seed)
+         03 better                    (s=0.40, st=50, "generate a better image", page_seed)
+         04 s=0.25 st=100 seed=1      (empty positive)
+         05 s=0.25 st=100 seed=42     ("generate the opposite image")
+         06 s=0.33 st=100 seed=69     (empty positive)
+         07 s=0.40 st=50  seed=1      (empty positive)
+         08 s=0.50 st=50  seed=2      (empty positive)
+         09 s=0.50 st=50  seed=3      (empty positive)
+         10 s=0.60 st=50  seed=4      (empty positive)
+         11 s=0.70 st=50  seed=5      (empty positive)
+         12 s=0.80 st=50  same        ("generate the exact same image", page_seed)
+       The description is always the negative prompt.
+    5. assemble a 4×3 contact sheet of the 12 variants for fast review.
 
 The sequel images are emitted at the same dimensions as the prepared init,
 so they preserve the original page's aspect ratio.
@@ -26,6 +34,7 @@ Designed for AMD Ryzen 9 8945HS / 32GB / no GPU. Pure CPU inference.
 Resume:
 - Every artifact is checked before being recomputed. Crash mid-page-7?
   Re-run picks up at exactly the stage and variant that hadn't completed.
+  The describe stage caches each of the five answers individually.
 - A tail-able `progress.txt` is written into the run dir for SSH check-ins.
 
 Usage:
@@ -46,7 +55,7 @@ from .models.diffusion import DiffusionModel
 from .pipeline.pdf_render import count_pages, render_page
 from .pipeline.prepare import prepare_for_diffusion, target_dimensions
 from .pipeline.describe import describe_image
-from .pipeline.regenerate import regenerate_all
+from .pipeline.regenerate import regenerate_all, all_variants
 from .pipeline.contact_sheet import build_contact_sheet
 from .utils.io import (
     create_run_dir, page_dir,
@@ -94,8 +103,8 @@ def _resolve_resume(arg: str) -> Path:
 
 def _page_seed(base_seed: Optional[int], page_idx: int) -> int:
     """Each page gets its own reference seed so different pages aren't
-    variations of the same noise pattern. Within a page, the 9 grid cells
-    derive their per-cell seed from this reference."""
+    variations of the same noise pattern. Variants without an explicit
+    seed_override use this value."""
     if base_seed is None:
         return page_idx * 1009
     return base_seed + page_idx * 1009
@@ -140,30 +149,50 @@ def process_page(
         prepare_for_diffusion(rendered_p, prepared_p)
         progress.stage_done()
 
-    # 3. describe (InstructBLIP — slow but detailed)
+    # 3. describe (InstructBLIP, 5 questions stitched into one paragraph)
     if desc_p.exists():
         progress.event("  describe: skip (cached)")
         description = desc_p.read_text().strip()
     else:
-        progress.stage_start("describe with InstructBLIP")
-        description = describe_image(vlm, prepared_p, desc_p)
+        progress.stage_start(
+            f"describe with InstructBLIP "
+            f"({len(config.VLM_DESCRIBE_QUESTIONS)} questions)"
+        )
+
+        def on_question(slot: int, total_q: int, key: str,
+                        answer: str, was_cached: bool) -> None:
+            marker = "skip" if was_cached else "done"
+            preview = answer.replace("\n", " ")
+            preview = preview[:100] + ("..." if len(preview) > 100 else "")
+            progress.event(
+                f"    [{slot}/{total_q}] q={key:<8}  {marker}  -> {preview}"
+            )
+
+        description = describe_image(
+            vlm, prepared_p, desc_p, on_question=on_question,
+        )
         progress.stage_done(detail=f"({len(description.split())} words)")
 
     progress.event(
         f"  description: {description[:140]}{'...' if len(description) > 140 else ''}"
     )
 
-    # 4. generate 10 variants (9-grid strength × seed + 1 control)
+    # 4. generate the 12 variants
     page_seed = _page_seed(seed_base, page_idx)
-    progress.stage_start(f"img2img 10 variants (page_seed={page_seed})")
+    progress.stage_start(
+        f"img2img 12 variants (page_seed={page_seed})"
+    )
 
     def on_variant(idx: int, total: int, v: dict) -> None:
-        if v["is_control"]:
-            tag = "control"
-        else:
-            tag = f"s={v['strength']:.2f} k{v['seed_idx']} (seed={v['seed']})"
+        seed_disp = (
+            f"seed={v['seed']}" if v["seed_override"] is not None
+            else f"seed={v['seed']} (page)"
+        )
         marker = "skip" if v["skipped"] else "done"
-        progress.event(f"    [{idx:>2}/{total}] {tag:<32}  {marker}")
+        progress.event(
+            f"    [{idx:>2}/{total}] {v['slot']:02d} {v['label']:<32}  "
+            f"st={v['steps']:<3}  {seed_disp:<22}  {marker}"
+        )
 
     variant_records = regenerate_all(
         diffusion, prepared_p, description, p_dir,
@@ -198,7 +227,8 @@ def run(pdf_path: Path, run_dir: Path, page_indices: list[int],
     progress.event(f"PDF: {pdf_path}")
     progress.event(f"pages: {len(page_indices)} of {count_pages(pdf_path)} "
                    f"(indices: {page_indices[0]}..{page_indices[-1]})")
-    progress.event(f"VLM: {config.VLM_MODEL}")
+    progress.event(f"VLM: {config.VLM_MODEL} "
+                   f"({len(config.VLM_DESCRIBE_QUESTIONS)} questions/page)")
 
     vlm = VisionModel()
     diffusion = DiffusionModel()
@@ -207,11 +237,7 @@ def run(pdf_path: Path, run_dir: Path, page_indices: list[int],
                    f"(dtype={str(diffusion.dtype).rsplit('.', 1)[-1]}, "
                    f"{config.NUM_THREADS} cpu threads)")
     progress.event(
-        f"variants/page: 9-grid strengths={config.SEQUEL_STRENGTHS} × "
-        f"{config.SEQUEL_SEEDS_PER_STRENGTH} seeds at "
-        f"steps={config.SEQUEL_STEPS}  +  1 control "
-        f"(s={config.CONTROL_STRENGTH}, st={config.CONTROL_STEPS}, "
-        f"positive='{config.CONTROL_POSITIVE_PROMPT}')"
+        f"variants/page: 12 (see manifest 'variants' for the full table)"
     )
     progress.event(
         f"diffusion size: short side={config.DIFFUSION_BASE_SIDE}, "
@@ -235,18 +261,20 @@ def run(pdf_path: Path, run_dir: Path, page_indices: list[int],
             "pdf_path": str(pdf_path),
             "run_dir": str(run_dir),
             "vlm_model": config.VLM_MODEL,
+            "vlm_describe_questions": [
+                {"key": k, "question": q}
+                for (k, q) in config.VLM_DESCRIBE_QUESTIONS
+            ],
             "diffusion_model": config.DIFFUSION_MODEL,
             "diffusion_base_side": config.DIFFUSION_BASE_SIDE,
             "diffusion_long_side_max": config.DIFFUSION_LONG_SIDE_MAX,
             "diffusion_guidance": config.DIFFUSION_GUIDANCE,
             "render_dpi": config.PDF_RENDER_DPI,
-            "sequel_strengths": config.SEQUEL_STRENGTHS,
-            "sequel_steps": config.SEQUEL_STEPS,
-            "sequel_seeds_per_strength": config.SEQUEL_SEEDS_PER_STRENGTH,
+            "sequel_default_steps": config.SEQUEL_DEFAULT_STEPS,
             "control_positive_prompt": config.CONTROL_POSITIVE_PROMPT,
             "control_strength": config.CONTROL_STRENGTH,
             "control_steps": config.CONTROL_STEPS,
-            "describe_prompt": config.VLM_DESCRIBE_PROMPT,
+            "variant_table": all_variants(),
             "seed_base": seed_base,
             "page_indices_target": page_indices,
             "pages": pages_record,

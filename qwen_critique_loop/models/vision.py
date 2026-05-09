@@ -2,9 +2,14 @@
 
 InstructBLIP is built into transformers (no trust_remote_code, no vendored
 modeling files). It accepts a free-form question prompt and produces a
-structured, technical answer suitable for use as the SD negative prompt.
+structured, technical answer.
 
-~5 GB on disk, ~25-40 seconds per description on a Ryzen 9 8945HS.
+The pipeline calls `answer()` five times per page with five different
+questions (subject, location, time, purpose, camera) and stitches the
+answers into the final per-page description that drives the diffusion
+negative prompt.
+
+~5 GB on disk, ~25-40 seconds per answer on a Ryzen 9 8945HS.
 """
 
 from pathlib import Path
@@ -35,14 +40,16 @@ class VisionModel:
         )
         self.model.eval()
 
-    def describe(self, image_path: Path,
-                 max_new_tokens: int = config.VLM_MAX_TOKENS,
-                 prompt: str = config.VLM_DESCRIBE_PROMPT) -> str:
-        """Return a detailed technical description of the image."""
+    def answer(self, image_path: Path, question: str,
+               max_new_tokens: int = config.VLM_MAX_TOKENS) -> str:
+        """Return the model's answer to a single question about the image.
+
+        The model is loaded lazily on the first call and reused across
+        subsequent calls for cheap multi-question inference."""
         self._ensure_loaded()
         import torch
         image = Image.open(image_path).convert("RGB")
-        inputs = self.processor(images=image, text=prompt, return_tensors="pt")
+        inputs = self.processor(images=image, text=question, return_tensors="pt")
         with torch.inference_mode():
             output_ids = self.model.generate(
                 **inputs,
@@ -55,3 +62,9 @@ class VisionModel:
         return self.processor.batch_decode(
             output_ids, skip_special_tokens=True
         )[0].strip()
+
+    # Back-compat alias (older call sites used `describe`).
+    def describe(self, image_path: Path,
+                 max_new_tokens: int = config.VLM_MAX_TOKENS,
+                 prompt: str = "Describe this photograph in detail.") -> str:
+        return self.answer(image_path, prompt, max_new_tokens=max_new_tokens)
