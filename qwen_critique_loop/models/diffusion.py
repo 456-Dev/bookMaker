@@ -50,8 +50,14 @@ class DiffusionModel:
             safety_checker=None,
             requires_safety_checker=False,
         )
+        # Override the saved algorithm_type — dreamshaper-7 ships with `deis`,
+        # which newer diffusers versions reject in combination with the saved
+        # `final_sigmas_type=zero`. Plain `dpmsolver++` is well-tested and fine
+        # for img2img at low step counts.
         self.pipe.scheduler = DPMSolverMultistepScheduler.from_config(
-            self.pipe.scheduler.config
+            self.pipe.scheduler.config,
+            algorithm_type="dpmsolver++",
+            final_sigmas_type="sigma_min",
         )
         self.pipe = self.pipe.to(self.device)
         self.pipe.set_progress_bar_config(leave=False)
