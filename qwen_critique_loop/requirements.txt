@@ -9,7 +9,7 @@ torchvision>=0.17.0    # required by moondream2 modeling code
 
 # Diffusion stack (SD 1.5 img2img)
 diffusers>=0.30.0
-transformers>=4.45.0
+transformers>=4.45.0,<5.0    # moondream2 vendors a modeling_phi.py that breaks under transformers 5.x
 accelerate>=0.34.0
 safetensors>=0.4.5
 einops>=0.7.0          # moondream2 dependency
