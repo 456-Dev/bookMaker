@@ -69,12 +69,12 @@ class DiffusionModel:
         self,
         init_image_path: Path,
         output_path: Path,
-        positive_prompt: str = config.POSITIVE_PROMPT,
+        positive_prompt: str = "",
         negative_prompt: str = "",
-        steps: int = config.DIFFUSION_STEPS,
-        guidance: float = config.DIFFUSION_GUIDANCE,
-        strength: float = config.IMG2IMG_STRENGTH,
-        side: int = config.DIFFUSION_RESOLUTION,
+        steps: int = 25,
+        guidance: float = 7.0,
+        strength: float = 0.5,
+        side: int = 512,
         seed: Optional[int] = None,
     ) -> Path:
         """Run img2img and save the result. Init image is resized to `side` x `side`

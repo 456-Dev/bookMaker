@@ -5,16 +5,20 @@ Layout:
     progress.txt               - tail-able progress log
     run.json                   - structured manifest of pages and stages
     page_001/
-      rendered.png
-      square.png
-      description.txt
-      sequel.png
+      rendered.png             - PDF page rendered at config.PDF_RENDER_DPI
+      square.png               - seam-carved square crop
+      description.txt          - VLM technical description
+      sequel_s25_st13.png      - sequel at strength=0.25, steps=13
+      sequel_s25_st25.png
+      ...
+      sequel_s75_st50.png      - sequel at strength=0.75, steps=50  (9-grid)
+      sequel_control.png       - control sequel with positive prompt
+      contact_sheet.png        - 4x3 grid: original + 9 variants + control
     page_002/
       ...
 """
 
 import json
-import shutil
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -23,10 +27,11 @@ from .. import config
 
 
 def create_run_dir(input_pdf: Path) -> Path:
+    """Create a run directory. Does NOT copy the PDF — manifest stores the
+    absolute path instead, so the PDF stays where it is."""
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     run_dir = config.RUNS_DIR / f"{timestamp}_{input_pdf.stem}"
     run_dir.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(input_pdf, run_dir / input_pdf.name)
     return run_dir
 
 
