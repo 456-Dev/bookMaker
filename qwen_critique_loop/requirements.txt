@@ -5,6 +5,7 @@
 # On a fresh box, install with the CPU-only index URL:
 #   pip install torch --index-url https://download.pytorch.org/whl/cpu
 torch>=2.2.0
+torchvision>=0.17.0    # required by moondream2 modeling code
 
 # Diffusion stack (SD 1.5 img2img)
 diffusers>=0.30.0
