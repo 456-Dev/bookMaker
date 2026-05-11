@@ -1,10 +1,11 @@
-"""Stage 2: prepare the rendered page for diffusion (no longer square).
+"""Stage 2: prepare the rendered page for diffusion (aspect ratio preserved).
 
-The rendered PDF page is resized — preserving aspect ratio — to fit SD 1.5's
-budget. The shorter side becomes `config.DIFFUSION_BASE_SIDE`, the longer side
-scales proportionally and is rounded to a multiple of 8 (SD's VAE constraint).
-If the long side would exceed `config.DIFFUSION_LONG_SIDE_MAX`, we clamp it
-and let the short side shrink to keep the aspect ratio intact.
+The rendered PDF page is scaled by `scale_percent` (e.g. 30 → 30%) in both
+dimensions, so the aspect ratio of the prepared image matches `rendered.png`
+exactly. The result is rounded to multiples of 8 (SD's VAE constraint) and
+clamped so the longer side never exceeds `long_side_max` (a safety cap that
+keeps you from accidentally launching a 2-hour-per-image job on a
+high-DPI render).
 
 The output is `prepared.png` — an aspect-ratio-faithful, diffusion-ready
 version of the rendered page. Every downstream stage (description, sequels,
@@ -15,8 +16,6 @@ from pathlib import Path
 
 from PIL import Image
 
-from .. import config
-
 
 def _round_to_multiple_of_8(x: float) -> int:
     """SD 1.5's VAE downsamples by 8; both dims must be multiples of 8."""
@@ -24,44 +23,40 @@ def _round_to_multiple_of_8(x: float) -> int:
     return max(8, n)
 
 
-def target_dimensions(width: int, height: int) -> tuple[int, int]:
+def target_dimensions(width: int, height: int,
+                      scale_percent: float, long_side_max: int) -> tuple[int, int]:
     """Compute (target_w, target_h) preserving aspect ratio.
 
-    Strategy: short side → DIFFUSION_BASE_SIDE; long side scales proportionally
-    and is rounded to a multiple of 8. If the resulting long side exceeds
-    DIFFUSION_LONG_SIDE_MAX, clamp it and shrink the short side to match.
+    1. Multiply both dims by `scale_percent` / 100.
+    2. If the larger of the two scaled dims exceeds `long_side_max`, scale
+       both down proportionally so the larger equals `long_side_max`.
+    3. Round both to the nearest multiple of 8.
     """
-    base = int(config.DIFFUSION_BASE_SIDE)
-    long_cap = int(config.DIFFUSION_LONG_SIDE_MAX)
+    if scale_percent <= 0:
+        raise ValueError(f"scale_percent must be > 0 (got {scale_percent})")
+    if long_side_max < 8:
+        raise ValueError(f"long_side_max must be >= 8 (got {long_side_max})")
 
-    if width >= height:
-        long_src, short_src = width, height
-        long_is_w = True
-    else:
-        long_src, short_src = height, width
-        long_is_w = False
+    sw = width * scale_percent / 100.0
+    sh = height * scale_percent / 100.0
 
-    aspect = long_src / short_src
-    short_t = base
-    long_t = base * aspect
+    long_t = max(sw, sh)
+    if long_t > long_side_max:
+        ratio = long_side_max / long_t
+        sw *= ratio
+        sh *= ratio
 
-    if long_t > long_cap:
-        long_t = long_cap
-        short_t = long_cap / aspect
-
-    short_t8 = _round_to_multiple_of_8(short_t)
-    long_t8 = _round_to_multiple_of_8(long_t)
-
-    return (long_t8, short_t8) if long_is_w else (short_t8, long_t8)
+    return _round_to_multiple_of_8(sw), _round_to_multiple_of_8(sh)
 
 
-def prepare_for_diffusion(rendered_path: Path, output_path: Path) -> Path:
-    """Resize the rendered page to its diffusion-ready dimensions. Resume-safe."""
+def prepare_for_diffusion(rendered_path: Path, output_path: Path,
+                          scale_percent: float, long_side_max: int) -> Path:
+    """Scale the rendered page to its diffusion-ready dimensions. Resume-safe."""
     if output_path.exists():
         return output_path
 
     img = Image.open(rendered_path).convert("RGB")
-    tw, th = target_dimensions(img.width, img.height)
+    tw, th = target_dimensions(img.width, img.height, scale_percent, long_side_max)
 
     if (tw, th) != img.size:
         img = img.resize((tw, th), Image.LANCZOS)

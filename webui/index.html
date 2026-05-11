@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>imgSequel — runset builder</title>
+  <style>
+    :root {
+      --bg:           #181b21;
+      --bg-elev:      #21242c;
+      --bg-elev-2:    #2a2e38;
+      --border:       #353a45;
+      --text:         #e6e8ec;
+      --text-mute:    #98a0ad;
+      --accent:       #5ec8c8;
+      --accent-2:     #d6a368;
+      --warn:         #d97474;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg); color: var(--text);
+      font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    }
+    header {
+      padding: 18px 24px; border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--bg-elev);
+    }
+    header h1 { margin: 0; font-size: 18px; font-weight: 600; letter-spacing: 0.02em; }
+    header .sub { color: var(--text-mute); font-size: 12px; margin-top: 2px; }
+
+    main {
+      max-width: 1280px; margin: 0 auto;
+      padding: 18px 24px 100px 24px;
+    }
+    section {
+      margin: 16px 0; padding: 16px 18px;
+      background: var(--bg-elev); border: 1px solid var(--border); border-radius: 8px;
+    }
+    section h2 {
+      margin: 0 0 4px 0; font-size: 14px; font-weight: 600;
+      color: var(--accent); letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    section .hint {
+      color: var(--text-mute); font-size: 12px; margin-bottom: 12px;
+    }
+
+    .row {
+      display: grid; grid-template-columns: 200px 1fr; gap: 10px 14px;
+      align-items: center; margin: 8px 0;
+    }
+    .row label { color: var(--text-mute); font-size: 12px; }
+
+    input[type=text], input[type=number], textarea, select {
+      width: 100%;
+      background: var(--bg); color: var(--text);
+      border: 1px solid var(--border); border-radius: 4px;
+      padding: 6px 8px; font: inherit;
+    }
+    input[type=number] { font-variant-numeric: tabular-nums; }
+    textarea { font: inherit; resize: vertical; min-height: 60px; }
+    textarea[disabled] { color: var(--text-mute); background: #1c1f25; cursor: not-allowed; }
+    input[type=checkbox] { transform: scale(1.15); accent-color: var(--accent); }
+    input:focus, textarea:focus, select:focus {
+      outline: none; border-color: var(--accent);
+    }
+
+    /* Variants */
+    .variants { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+    .variant {
+      display: flex; flex-direction: column; gap: 6px;
+      padding: 10px; background: var(--bg-elev-2);
+      border: 1px solid var(--border); border-radius: 6px;
+    }
+    .variant.is-control { border-color: var(--accent-2); }
+    .variants-header,
+    .variant .params-row {
+      display: grid;
+      grid-template-columns: 36px 1fr 70px 60px 70px 80px 60px 30px;
+      gap: 6px; align-items: center;
+    }
+    .variants-header { color: var(--text-mute); font-size: 11px; padding: 0 10px; }
+    .variant .prompts-row {
+      display: grid;
+      grid-template-columns: 1fr 70px 1fr;
+      gap: 6px; align-items: stretch;
+    }
+    .variant input, .variant textarea { padding: 4px 6px; font-size: 12px; }
+    .variant textarea { min-height: 44px; }
+    .variant .slot {
+      font-variant-numeric: tabular-nums; text-align: center;
+      color: var(--text-mute); font-size: 12px;
+    }
+    .variant .ctrl-cell { text-align: center; }
+    .variant .ctrl-cell-label { font-size: 11px; color: var(--text-mute); }
+
+    /* LLM-neg toggle in the prompts row */
+    .llm-toggle {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 4px; padding: 4px 6px; cursor: pointer;
+      background: var(--bg); border: 1px solid var(--border); border-radius: 4px;
+      color: var(--text-mute); font-size: 10px; text-align: center;
+      user-select: none;
+    }
+    .llm-toggle.active {
+      color: var(--accent); border-color: var(--accent);
+      background: #1c2a2a;
+    }
+    .llm-toggle input { transform: scale(1.1); accent-color: var(--accent); margin: 0; }
+    .neg-wrap { display: flex; flex-direction: column; gap: 2px; }
+    .neg-label { font-size: 10px; color: var(--text-mute); padding-left: 2px; }
+
+    .questions { display: flex; flex-direction: column; gap: 8px; }
+    .question {
+      display: grid; grid-template-columns: 130px 1fr 30px;
+      gap: 8px; align-items: start;
+      padding: 8px; background: var(--bg-elev-2);
+      border: 1px solid var(--border); border-radius: 6px;
+    }
+
+    button {
+      background: var(--bg-elev-2); color: var(--text);
+      border: 1px solid var(--border); border-radius: 4px;
+      padding: 6px 14px; font: inherit; cursor: pointer;
+    }
+    button:hover { background: var(--border); }
+    button.primary { background: var(--accent); color: #0e1014; border-color: var(--accent); }
+    button.primary:hover { filter: brightness(1.08); }
+    button.tiny { padding: 2px 6px; font-size: 11px; }
+    .icon-btn {
+      width: 28px; height: 28px; padding: 0;
+      background: transparent; border: 1px solid var(--border);
+      color: var(--text-mute); font-size: 14px;
+    }
+    .icon-btn:hover { color: var(--warn); border-color: var(--warn); }
+
+    .actions {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      padding: 14px 24px; background: var(--bg-elev);
+      border-top: 1px solid var(--border);
+      display: flex; gap: 10px; align-items: center;
+    }
+    .actions .spacer { flex: 1; }
+    .actions .filename {
+      background: var(--bg); border: 1px solid var(--border);
+      padding: 6px 10px; border-radius: 4px;
+      color: var(--text); font-family: inherit;
+      width: 280px;
+    }
+
+    .json-preview {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+      padding: 10px; margin-top: 8px;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11px;
+      color: var(--text); white-space: pre; overflow: auto; max-height: 280px;
+    }
+
+    .error {
+      background: #3c1f1f; border: 1px solid var(--warn); color: #f0c5c5;
+      padding: 8px 12px; border-radius: 4px; margin: 8px 0; font-size: 13px;
+      display: none;
+    }
+    .error.show { display: block; }
+    .notice {
+      background: #1f2e3c; border: 1px solid var(--accent); color: #c5e0f0;
+      padding: 8px 12px; border-radius: 4px; margin: 8px 0; font-size: 12px;
+      display: none;
+    }
+    .notice.show { display: block; }
+
+    .add-btn {
+      margin-top: 8px; background: transparent; border: 1px dashed var(--border);
+      color: var(--text-mute); padding: 6px 12px;
+    }
+    .add-btn:hover { color: var(--accent); border-color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>imgSequel — runset builder</h1>
+    <div class="sub">Configure a pipeline run, download as JSON, pass to <code>--runset</code> · schema v2</div>
+  </div>
+  <div>
+    <button id="btn-reset" class="tiny">reset to defaults</button>
+  </div>
+</header>
+
+<main>
+  <div id="notice" class="notice"></div>
+  <div id="error" class="error"></div>
+
+  <section>
+    <h2>Run metadata</h2>
+    <div class="hint">Just a name shown in progress logs and the manifest. Has no functional effect.</div>
+    <div class="row">
+      <label for="f-name">name</label>
+      <input id="f-name" type="text" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Rendering</h2>
+    <div class="hint">DPI for the initial pypdfium2 render. 200 dpi ≈ 1650×2200 for a US-letter page.</div>
+    <div class="row">
+      <label for="f-render-dpi">render dpi</label>
+      <input id="f-render-dpi" type="number" min="36" max="600" step="1" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Diffusion input sizing</h2>
+    <div class="hint">
+      <code>prepared.png</code> = round_to_multiple_of_8(<code>rendered.png</code> × <b>scale percent</b>).
+      Aspect ratio matches the rendered page exactly. If the resulting longer side exceeds <b>long side max</b>,
+      both dimensions are scaled down proportionally so the longer side equals the cap — that way you can't accidentally
+      launch a 2-hour-per-image job on a high-DPI render. <b>Default guidance</b> is only used when you click "+ add variant"
+      below; each variant carries its own editable guidance.
+    </div>
+    <div class="row">
+      <label for="f-scale">scale percent (% of rendered)</label>
+      <input id="f-scale" type="number" min="1" max="200" step="1" />
+    </div>
+    <div class="row">
+      <label for="f-long-max">long side max (px, safety cap)</label>
+      <input id="f-long-max" type="number" min="64" max="2048" step="8" />
+    </div>
+    <div class="row">
+      <label for="f-guidance">default guidance (new variants)</label>
+      <input id="f-guidance" type="number" min="1" max="20" step="0.1" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Describe — questions for the VLM</h2>
+    <div class="hint">
+      Each page is described by asking InstructBLIP every question below, one at a time.
+      The answers are stitched into a single paragraph used as the per-page LLM description.
+      Variants in the table below decide individually whether to use that description
+      as their negative prompt, or to override it with a manual one.
+      Keep <b>key</b> short and alphanumeric (used in cache filenames like <code>description_q01_<i>key</i>.txt</code>).
+    </div>
+    <div class="row">
+      <label for="f-vlm-tokens">max tokens per answer</label>
+      <input id="f-vlm-tokens" type="number" min="40" max="512" step="1" />
+    </div>
+    <div id="questions" class="questions"></div>
+    <button class="add-btn" id="btn-add-question">+ add question</button>
+  </section>
+
+  <section>
+    <h2>Sequel variants</h2>
+    <div class="hint">
+      Each card is one img2img generation per page. The init image is always <code>prepared.png</code>.
+      Leave <b>seed</b> blank to use the per-page seed (<code>base_seed + page_idx*1009</code>).
+      Strengths are 0–1; higher = more deviation from the init. Per-variant <b>guidance</b> lets you sweep
+      classifier-free guidance the same way you sweep strength and steps.
+      Each variant also chooses its negative prompt: <b>LLM</b> (use the stitched description) or <b>manual</b>
+      (type your own; empty string is allowed and means "no negative steering").
+    </div>
+    <div class="row">
+      <label for="f-cs-cols">contact sheet columns</label>
+      <input id="f-cs-cols" type="number" min="1" max="12" step="1" />
+    </div>
+    <div class="variants-header">
+      <div>#</div>
+      <div>label</div>
+      <div>strength</div>
+      <div>steps</div>
+      <div>guidance</div>
+      <div>seed</div>
+      <div>control</div>
+      <div></div>
+    </div>
+    <div id="variants" class="variants"></div>
+    <button class="add-btn" id="btn-add-variant">+ add variant</button>
+  </section>
+
+  <section>
+    <h2>JSON preview</h2>
+    <div class="hint">Live preview of the runset file. The "download" button below writes exactly this.</div>
+    <pre id="preview" class="json-preview"></pre>
+  </section>
+</main>
+
+<div class="actions">
+  <input id="f-filename" class="filename" type="text" value="myrun.runset.json" />
+  <button id="btn-download" class="primary">download runset.json</button>
+  <input id="btn-load-file" type="file" accept=".json" style="display:none" />
+  <button id="btn-load">load runset…</button>
+  <div class="spacer"></div>
+  <div style="color:var(--text-mute);font-size:12px">
+    schema v2 · <span id="counts"></span>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+// --- DEFAULTS: kept in sync with qwen_critique_loop/runset.py::RunConfig.default()
+const SCHEMA_VERSION = 2;
+const DEFAULT_GUIDANCE = 7.0;
+const DEFAULTS = {
+  version: SCHEMA_VERSION,
+  name: "default",
+  render_dpi: 200,
+  diffusion: { scale_percent: 30, long_side_max: 768, guidance: DEFAULT_GUIDANCE },
+  describe: {
+    max_tokens: 180,
+    questions: [
+      {
+        key: "subject",
+        question:
+          "What is in the image? Describe the subject or subjects in detail — " +
+          "who or what they are, their pose and expression, what they are wearing, " +
+          "what they are doing, and any notable objects, props, or animals present.",
+      },
+      {
+        key: "location",
+        question:
+          "Where is the image taken? Describe the location and setting — indoor " +
+          "or outdoor, type of place, identifying landmarks or background " +
+          "elements, geography or culture cues, foreground and background, and " +
+          "the spatial relationship between subject and environment.",
+      },
+      {
+        key: "time",
+        question:
+          "When was the image taken? Estimate the era (decade or year range), the " +
+          "season, the time of day, and any cues from clothing, technology, " +
+          "vehicles, signage, or photographic medium that support that estimate.",
+      },
+      {
+        key: "purpose",
+        question:
+          "Why was the image taken? Speculate on the photograph's purpose and " +
+          "context — editorial, journalistic, portrait commission, family " +
+          "snapshot, fashion, documentary, advertising — and what the " +
+          "photographer was trying to communicate or capture.",
+      },
+      {
+        key: "camera",
+        question:
+          "What camera settings was the image taken with? Estimate the camera " +
+          "format (35mm, medium format, digital), focal length in millimetres, " +
+          "aperture (f-stop) inferred from depth of field, shutter speed inferred " +
+          "from motion blur or freeze, ISO inferred from grain or noise, and lens " +
+          "character — sharpness, distortion, vignetting, bokeh, and lens flare. " +
+          "Also note the lighting setup (key, fill, rim, color temperature) and " +
+          "the editing or post-processing style (color grading, contrast curve, " +
+          "grain, sharpening, film emulation).",
+      },
+    ],
+  },
+  contact_sheet: { cols: 4 },
+  variants: [
+    { slot: 1,  filename: "sequel_01_control.png",                 label: "control",                            strength: 0.50, steps: 25,  seed_override: null, positive_prompt: "realistic street photograph",   negative_prompt: null, guidance: DEFAULT_GUIDANCE, is_control: true  },
+    { slot: 2,  filename: "sequel_02_opposite.png",                label: "opposite  s=0.40",                   strength: 0.40, steps: 50,  seed_override: null, positive_prompt: "generate the opposite image",   negative_prompt: null, guidance: DEFAULT_GUIDANCE, is_control: false },
+    { slot: 3,  filename: "sequel_03_better.png",                  label: "better  s=0.40",                     strength: 0.40, steps: 50,  seed_override: null, positive_prompt: "generate a better image",       negative_prompt: null, guidance: DEFAULT_GUIDANCE, is_control: false },
+    { slot: 4,  filename: "sequel_04_s25_st100_seed1.png",         label: "s=0.25  st=100  seed=1",             strength: 0.25, steps: 100, seed_override: 1,    positive_prompt: "",                              negative_prompt: null, guidance: DEFAULT_GUIDANCE, is_control: false },
+    { slot: 5,  filename: "sequel_05_s25_st100_seed42_opposite.png", label: "opposite  s=0.25  st=100  seed=42", strength: 0.25, steps: 100, seed_override: 42, positive_prompt: "generate the opposite image", negative_prompt: null, guidance: DEFAULT_GUIDANCE, is_control: false },
+    { slot: 6,  filename: "sequel_06_s33_st100_seed69.png",        label: "s=0.33  st=100  seed=69",            strength: 0.33, steps: 100, seed_override: 69,   positive_prompt: "",                              negative_prompt: null, guidance: DEFAULT_GUIDANCE, is_control: false },
+    { slot: 7,  filename: "sequel_07_s40_st50_seed1.png",          label: "s=0.40  seed=1",                     strength: 0.40, steps: 50,  seed_override: 1,    positive_prompt: "",                              negative_prompt: null, guidance: DEFAULT_GUIDANCE, is_control: false },
+    { slot: 8,  filename: "sequel_08_s50_st50_seed2.png",          label: "s=0.50  seed=2",                     strength: 0.50, steps: 50,  seed_override: 2,    positive_prompt: "",                              negative_prompt: null, guidance: DEFAULT_GUIDANCE, is_control: false },
+    { slot: 9,  filename: "sequel_09_s50_st50_seed3.png",          label: "s=0.50  seed=3",                     strength: 0.50, steps: 50,  seed_override: 3,    positive_prompt: "",                              negative_prompt: null, guidance: DEFAULT_GUIDANCE, is_control: false },
+    { slot: 10, filename: "sequel_10_s60_st50_seed4.png",          label: "s=0.60  seed=4",                     strength: 0.60, steps: 50,  seed_override: 4,    positive_prompt: "",                              negative_prompt: null, guidance: DEFAULT_GUIDANCE, is_control: false },
+    { slot: 11, filename: "sequel_11_s70_st50_seed5.png",          label: "s=0.70  seed=5",                     strength: 0.70, steps: 50,  seed_override: 5,    positive_prompt: "",                              negative_prompt: null, guidance: DEFAULT_GUIDANCE, is_control: false },
+    { slot: 12, filename: "sequel_12_s80_same.png",                label: "same  s=0.80",                       strength: 0.80, steps: 50,  seed_override: null, positive_prompt: "generate the exact same image", negative_prompt: null, guidance: DEFAULT_GUIDANCE, is_control: false },
+  ],
+};
+
+// Working state (deep-cloned from DEFAULTS at boot)
+let state = structuredClone(DEFAULTS);
+
+// --- DOM helpers
+const $ = (id) => document.getElementById(id);
+const el = (tag, props = {}, ...children) => {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(props)) {
+    if (k === "class") n.className = v;
+    else if (k === "style" && typeof v === "object") Object.assign(n.style, v);
+    else if (k.startsWith("on")) n.addEventListener(k.slice(2), v);
+    else if (v !== undefined && v !== null) n[k] = v;
+  }
+  for (const c of children) {
+    if (c == null) continue;
+    n.append(c.nodeType ? c : document.createTextNode(c));
+  }
+  return n;
+};
+
+// --- v1 → v2 migration in the browser (mirrors qwen_critique_loop/runset.py)
+function migrateToV2(raw) {
+  if (raw.version === SCHEMA_VERSION) return raw;
+  if (raw.version !== 1) throw new Error(`unsupported schema version: ${raw.version}`);
+  const d = raw.diffusion || {};
+  const default_guidance = Number(d.guidance ?? DEFAULT_GUIDANCE);
+  const long_side_max = Number(d.long_side_max ?? 768);
+  raw.diffusion = {
+    scale_percent: 30,
+    long_side_max: long_side_max,
+    guidance: default_guidance,
+  };
+  raw.variants = (raw.variants || []).map(v => ({
+    ...v,
+    guidance: v.guidance ?? default_guidance,
+    negative_prompt: v.negative_prompt ?? null,
+  }));
+  raw.version = SCHEMA_VERSION;
+  showNotice(
+    `Migrated v1 runset → v2. Set scale_percent=30%, long_side_max=${long_side_max}; ` +
+    `each variant inherited guidance=${default_guidance} and negative_prompt=null ` +
+    `(use LLM description). Review and re-download.`
+  );
+  return raw;
+}
+
+// --- Validation
+function validate(s) {
+  const errs = [];
+  if (!s.name || !s.name.trim()) errs.push("name is required");
+  if (s.render_dpi < 36 || s.render_dpi > 600) errs.push("render_dpi must be 36–600");
+  if (s.diffusion.scale_percent <= 0 || s.diffusion.scale_percent > 400)
+    errs.push("diffusion.scale_percent must be 1–400 (% of rendered)");
+  if (s.diffusion.long_side_max < 64)
+    errs.push("diffusion.long_side_max must be ≥ 64");
+  if (s.diffusion.guidance <= 0)
+    errs.push("diffusion.guidance (default) must be positive");
+  if (!s.describe.questions.length) errs.push("at least one describe question is required");
+  for (const [i, q] of s.describe.questions.entries()) {
+    if (!q.key || !q.key.trim()) errs.push(`question ${i+1} needs a key`);
+    if (!q.question || !q.question.trim()) errs.push(`question ${i+1} needs a question text`);
+    if (!/^[a-zA-Z0-9_]+$/.test(q.key || ""))
+      errs.push(`question ${i+1} key has non-alphanumeric chars (used in filename)`);
+  }
+  if (!s.variants.length) errs.push("at least one variant is required");
+  const slots = new Set();
+  const filenames = new Set();
+  for (const [i, v] of s.variants.entries()) {
+    if (slots.has(v.slot)) errs.push(`variant ${i+1}: duplicate slot ${v.slot}`);
+    slots.add(v.slot);
+    if (filenames.has(v.filename)) errs.push(`variant ${i+1}: duplicate filename ${v.filename}`);
+    filenames.add(v.filename);
+    if (!v.filename.endsWith(".png")) errs.push(`variant ${i+1}: filename must end with .png`);
+    if (v.strength < 0 || v.strength > 1)
+      errs.push(`variant ${i+1}: strength must be 0–1`);
+    if (v.steps < 1 || v.steps > 500)
+      errs.push(`variant ${i+1}: steps must be 1–500`);
+    if (v.guidance <= 0 || v.guidance > 30)
+      errs.push(`variant ${i+1}: guidance must be 0–30`);
+  }
+  if (s.contact_sheet.cols < 1 || s.contact_sheet.cols > 12)
+    errs.push("contact_sheet.cols must be 1–12");
+  return errs;
+}
+
+function showErrors(errs) {
+  const box = $("error");
+  if (!errs.length) { box.classList.remove("show"); box.textContent = ""; return; }
+  box.classList.add("show");
+  box.innerHTML = "<b>fix these before downloading:</b><ul>" +
+    errs.map(e => "<li>" + e.replace(/</g, "&lt;") + "</li>").join("") + "</ul>";
+}
+
+function showNotice(msg) {
+  const n = $("notice");
+  n.classList.add("show");
+  n.textContent = msg;
+  setTimeout(() => n.classList.remove("show"), 8000);
+}
+
+// --- Render
+
+function renderTop() {
+  $("f-name").value = state.name;
+  $("f-render-dpi").value = state.render_dpi;
+  $("f-scale").value = state.diffusion.scale_percent;
+  $("f-long-max").value = state.diffusion.long_side_max;
+  $("f-guidance").value = state.diffusion.guidance;
+  $("f-vlm-tokens").value = state.describe.max_tokens;
+  $("f-cs-cols").value = state.contact_sheet.cols;
+}
+
+function renderQuestions() {
+  const host = $("questions");
+  host.innerHTML = "";
+  state.describe.questions.forEach((q, i) => {
+    host.append(el("div", { class: "question" },
+      el("input", {
+        type: "text", value: q.key, placeholder: "key (e.g. subject)",
+        oninput: (e) => { q.key = e.target.value; refresh(); },
+      }),
+      el("textarea", {
+        value: q.question, placeholder: "question text",
+        oninput: (e) => { q.question = e.target.value; refresh(); },
+      }),
+      el("button", {
+        class: "icon-btn", title: "remove",
+        onclick: () => { state.describe.questions.splice(i, 1); rerender(); },
+      }, "✕"),
+    ));
+  });
+}
+
+function renderVariants() {
+  const host = $("variants");
+  host.innerHTML = "";
+
+  state.variants.forEach((v, i) => {
+    const useLLM = v.negative_prompt == null;
+
+    // Top row: numeric params
+    const paramsRow = el("div", { class: "params-row" },
+      el("div", { class: "slot" }, String(v.slot)),
+      el("input", {
+        type: "text", value: v.label, placeholder: "label",
+        oninput: (e) => { v.label = e.target.value; refresh(); },
+      }),
+      el("input", {
+        type: "number", min: 0, max: 1, step: 0.01, value: v.strength,
+        oninput: (e) => { v.strength = Number(e.target.value); refresh(); },
+      }),
+      el("input", {
+        type: "number", min: 1, max: 500, step: 1, value: v.steps,
+        oninput: (e) => { v.steps = parseInt(e.target.value, 10) || 0; refresh(); },
+      }),
+      el("input", {
+        type: "number", min: 1, max: 30, step: 0.1, value: v.guidance,
+        oninput: (e) => { v.guidance = Number(e.target.value); refresh(); },
+      }),
+      el("input", {
+        type: "text", value: v.seed_override == null ? "" : String(v.seed_override),
+        placeholder: "page",
+        oninput: (e) => {
+          const t = e.target.value.trim();
+          if (t === "") { v.seed_override = null; }
+          else {
+            const n = parseInt(t, 10);
+            v.seed_override = isNaN(n) ? null : n;
+          }
+          refresh();
+        },
+      }),
+      el("div", { class: "ctrl-cell" },
+        el("input", {
+          type: "checkbox", checked: !!v.is_control,
+          onchange: (e) => { v.is_control = e.target.checked; rerender(); },
+        })
+      ),
+      el("button", {
+        class: "icon-btn", title: "remove",
+        onclick: () => { state.variants.splice(i, 1); rerender(); },
+      }, "✕"),
+    );
+
+    // Bottom row: positive prompt + LLM/manual neg toggle + negative prompt
+    const negTextarea = el("textarea", {
+      value: useLLM ? "" : v.negative_prompt,
+      placeholder: useLLM ? "(using LLM description as negative)" : "manual negative prompt — empty string = no negative steering",
+      disabled: useLLM,
+      oninput: (e) => { v.negative_prompt = e.target.value; refresh(); },
+    });
+
+    const toggle = el("label", { class: "llm-toggle" + (useLLM ? " active" : "") },
+      el("input", {
+        type: "checkbox", checked: useLLM,
+        onchange: (e) => {
+          if (e.target.checked) {
+            v.negative_prompt = null;
+          } else {
+            v.negative_prompt = "";
+          }
+          rerender();
+        },
+      }),
+      el("span", {}, "LLM neg"),
+    );
+
+    const promptsRow = el("div", { class: "prompts-row" },
+      el("div", { class: "neg-wrap" },
+        el("div", { class: "neg-label" }, "positive prompt"),
+        el("textarea", {
+          value: v.positive_prompt, placeholder: "(empty)",
+          oninput: (e) => { v.positive_prompt = e.target.value; refresh(); },
+        }),
+      ),
+      toggle,
+      el("div", { class: "neg-wrap" },
+        el("div", { class: "neg-label" }, useLLM ? "negative prompt (LLM)" : "negative prompt (manual)"),
+        negTextarea,
+      ),
+    );
+
+    const card = el("div", { class: "variant" + (v.is_control ? " is-control" : "") },
+      paramsRow, promptsRow,
+    );
+    card.title = v.filename;
+    host.append(card);
+  });
+}
+
+function refresh() {
+  const errs = validate(state);
+  showErrors(errs);
+  $("preview").textContent = JSON.stringify(state, null, 2);
+  $("counts").textContent =
+    state.describe.questions.length + " questions · " +
+    state.variants.length + " variants";
+}
+
+function rerender() {
+  renderTop();
+  renderQuestions();
+  renderVariants();
+  refresh();
+}
+
+// --- Add / reset / filename helpers
+function nextSlot() {
+  if (!state.variants.length) return 1;
+  return Math.max(...state.variants.map(v => v.slot)) + 1;
+}
+
+function defaultFilenameFor(slot, label) {
+  const safe = (label || "variant").toLowerCase()
+    .replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "").slice(0, 30) || "variant";
+  return `sequel_${String(slot).padStart(2, "0")}_${safe}.png`;
+}
+
+function addQuestion() {
+  state.describe.questions.push({ key: "new", question: "" });
+  rerender();
+}
+
+function addVariant() {
+  const slot = nextSlot();
+  state.variants.push({
+    slot,
+    filename: defaultFilenameFor(slot, "variant"),
+    label: "new variant",
+    strength: 0.50,
+    steps: 50,
+    seed_override: null,
+    positive_prompt: "",
+    negative_prompt: null,
+    guidance: state.diffusion.guidance,
+    is_control: false,
+  });
+  rerender();
+}
+
+function resetToDefaults() {
+  if (!confirm("Discard your changes and reset to the built-in defaults?")) return;
+  state = structuredClone(DEFAULTS);
+  rerender();
+}
+
+// --- File download / load
+
+function download() {
+  const errs = validate(state);
+  if (errs.length) {
+    showErrors(errs);
+    return;
+  }
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  let name = $("f-filename").value.trim() || "myrun.runset.json";
+  if (!name.endsWith(".json")) name += ".json";
+  a.download = name;
+  document.body.append(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function loadFromFile(file) {
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      let raw = JSON.parse(r.result);
+      if (!raw.version) raw.version = 1;
+      raw = migrateToV2(raw);
+      // Normalize seed_override: blanks/undefined → null
+      for (const v of (raw.variants || [])) {
+        if (v.seed_override === "" || v.seed_override === undefined) v.seed_override = null;
+        if (v.negative_prompt === undefined) v.negative_prompt = null;
+      }
+      state = raw;
+      rerender();
+    } catch (e) {
+      showErrors([`could not load file: ${e.message}`]);
+    }
+  };
+  r.readAsText(file);
+}
+
+// --- Wire up top-level inputs
+function wireTop() {
+  $("f-name").addEventListener("input", e => { state.name = e.target.value; refresh(); });
+  $("f-render-dpi").addEventListener("input", e => {
+    state.render_dpi = parseInt(e.target.value, 10) || 0; refresh();
+  });
+  $("f-scale").addEventListener("input", e => {
+    state.diffusion.scale_percent = Number(e.target.value); refresh();
+  });
+  $("f-long-max").addEventListener("input", e => {
+    state.diffusion.long_side_max = parseInt(e.target.value, 10) || 0; refresh();
+  });
+  $("f-guidance").addEventListener("input", e => {
+    state.diffusion.guidance = Number(e.target.value); refresh();
+  });
+  $("f-vlm-tokens").addEventListener("input", e => {
+    state.describe.max_tokens = parseInt(e.target.value, 10) || 0; refresh();
+  });
+  $("f-cs-cols").addEventListener("input", e => {
+    state.contact_sheet.cols = parseInt(e.target.value, 10) || 1; refresh();
+  });
+  $("btn-add-question").addEventListener("click", addQuestion);
+  $("btn-add-variant").addEventListener("click", addVariant);
+  $("btn-download").addEventListener("click", download);
+  $("btn-load").addEventListener("click", () => $("btn-load-file").click());
+  $("btn-load-file").addEventListener("change", (e) => {
+    if (e.target.files.length) loadFromFile(e.target.files[0]);
+    e.target.value = "";
+  });
+  $("btn-reset").addEventListener("click", resetToDefaults);
+}
+
+// --- Boot
+wireTop();
+rerender();
+</script>
+
+</body>
+</html>

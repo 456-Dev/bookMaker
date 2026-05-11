@@ -1,0 +1,144 @@
+{
+  "version": 2,
+  "name": "Sanity Check",
+  "render_dpi": 300,
+  "diffusion": {
+    "scale_percent": 30,
+    "long_side_max": 1024,
+    "guidance": 7
+  },
+  "describe": {
+    "max_tokens": 180,
+    "questions": [
+      {
+        "key": "subject",
+        "question": "What objects or people are in this image? plainly list the objects/descriptions of people"
+      },
+      {
+        "key": "location",
+        "question": "What is the location of the photo? state the spatial relationship of different blocks. Guess the country. Just give the answers to these questions along with some adjectives."
+      },
+      {
+        "key": "time",
+        "question": "When was the image taken? Estimate the year, day of the week, time of day. Just list the answers"
+      },
+      {
+        "key": "camera",
+        "question": "What camera settings was the image taken with? Estimate the camera format (35mm, medium format, digital), focal length in millimetres, aperture (f-stop) inferred from depth of field, shutter speed inferred from motion blur or freeze, ISO inferred from grain or noise, and lens character — sharpness, distortion, vignetting, bokeh, and lens flare. Also note the lighting setup (key, fill, rim, color temperature) and the editing or post-processing style (color grading, contrast curve, grain, sharpening, film emulation)."
+      }
+    ]
+  },
+  "contact_sheet": {
+    "cols": 4
+  },
+  "variants": [
+    {
+      "slot": 1,
+      "filename": "sequel_01_control.png",
+      "label": "control",
+      "strength": 0.45,
+      "steps": 50,
+      "seed_override": 454,
+      "positive_prompt": "the exact opposite image",
+      "is_control": false,
+      "guidance": 7,
+      "negative_prompt": null
+    },
+    {
+      "slot": 2,
+      "filename": "sequel_02_variant.png",
+      "label": "new variant",
+      "strength": 0.47,
+      "steps": 50,
+      "seed_override": 455,
+      "positive_prompt": "the exact opposite image",
+      "is_control": false,
+      "guidance": 7,
+      "negative_prompt": null
+    },
+    {
+      "slot": 3,
+      "filename": "sequel_03_variant.png",
+      "label": "new variant",
+      "strength": 0.5,
+      "steps": 50,
+      "seed_override": 456,
+      "positive_prompt": "the exact opposite image",
+      "is_control": false,
+      "guidance": 7,
+      "negative_prompt": null
+    },
+    {
+      "slot": 4,
+      "filename": "sequel_04_variant.png",
+      "label": "new variant",
+      "strength": 0.55,
+      "steps": 50,
+      "seed_override": 11,
+      "positive_prompt": "the exact opposite image",
+      "is_control": false,
+      "guidance": 10,
+      "negative_prompt": null
+    },
+    {
+      "slot": 5,
+      "filename": "sequel_05_variant.png",
+      "label": "new variant",
+      "strength": 0.55,
+      "steps": 50,
+      "seed_override": 12,
+      "positive_prompt": "the exact opposite image",
+      "negative_prompt": null,
+      "guidance": 10,
+      "is_control": false
+    },
+    {
+      "slot": 6,
+      "filename": "sequel_06_variant.png",
+      "label": "new variant",
+      "strength": 0.55,
+      "steps": 50,
+      "seed_override": 13,
+      "positive_prompt": "the exact opposite image",
+      "negative_prompt": null,
+      "guidance": 10,
+      "is_control": false
+    },
+    {
+      "slot": 7,
+      "filename": "sequel_07_variant.png",
+      "label": "new variant",
+      "strength": 0.56,
+      "steps": 50,
+      "seed_override": 6768,
+      "positive_prompt": "the exact opposite image",
+      "negative_prompt": null,
+      "guidance": 15,
+      "is_control": false
+    },
+    {
+      "slot": 8,
+      "filename": "sequel_08_variant.png",
+      "label": "new variant",
+      "strength": 0.57,
+      "steps": 50,
+      "seed_override": 6769,
+      "positive_prompt": "the exact opposite image",
+      "negative_prompt": null,
+      "guidance": 15,
+      "is_control": false
+    },
+    {
+      "slot": 9,
+      "filename": "sequel_09_variant.png",
+      "label": "new variant",
+      "strength": 0.58,
+      "steps": 50,
+      "seed_override": 6767,
+      "positive_prompt": "the exact opposite image",
+      "negative_prompt": null,
+      "guidance": 15,
+      "is_control": false
+    }
+  ]
+}

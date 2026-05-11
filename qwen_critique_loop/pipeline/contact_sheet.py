@@ -1,33 +1,32 @@
 """Stage 5: assemble a contact sheet of every sequel variant.
 
-Layout (4 cols × 3 rows = 12 tiles, one per variant in slot order):
-    +-----------+-----------+-----------+-----------+
-    | 01 ctrl   | 02 oppst  | 03 better | 04 s25/100|
-    +-----------+-----------+-----------+-----------+
-    | 05 oppst  | 06 s33/100| 07 s40/50 | 08 s50/50 |
-    +-----------+-----------+-----------+-----------+
-    | 09 s50/50 | 10 s60/50 | 11 s70/50 | 12 same   |
-    +-----------+-----------+-----------+-----------+
+The grid adapts to the number of variants in the active `RunConfig`. With
+the default 12-variant table and `cols=4` the layout is 4×3:
+    +---------+---------+---------+---------+
+    | 01 ctrl | 02 opst | 03 bttr | 04 s25  |
+    +---------+---------+---------+---------+
+    | 05 opst | 06 s33  | 07 s40  | 08 s50  |
+    +---------+---------+---------+---------+
+    | 09 s50  | 10 s60  | 11 s70  | 12 same |
+    +---------+---------+---------+---------+
+
+Variants are placed in slot order, row-major. Tiles letterbox their image
+inside a square cell so non-square sequels keep their aspect ratio without
+distorting the grid layout.
 
 The original is intentionally NOT shown — `prepared.png` lives one directory
-up alongside the sheet, so checking the input is a single file open. The
-contact sheet is for comparing the 12 reinterpretations side by side. Each
-tile letterboxes its image inside a fixed-size square cell, so non-square
-sequels keep their aspect ratio without distorting the grid layout.
-
-The contact sheet is saved as `contact_sheet.png` in the page dir.
+up alongside the sheet, so checking the input is a single file open.
 """
 
+import math
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Sequence
 
 from PIL import Image, ImageDraw, ImageFont
 
-from .regenerate import VARIANTS
+from ..runset import Variant
 
 
-COLS = 4
-ROWS = 3
 TILE_PX = 320           # each cell's image-area side length (square box)
 LABEL_HEIGHT = 36
 PADDING = 12
@@ -59,7 +58,6 @@ def _tile(image_path: Optional[Path], label: str, font: ImageFont.ImageFont) -> 
 
     if image_path is not None and image_path.exists():
         img = Image.open(image_path).convert("RGB")
-        # Letterbox into the TILE_PX x TILE_PX area, preserving aspect ratio.
         img.thumbnail((TILE_PX, TILE_PX), Image.LANCZOS)
         ox = (TILE_PX - img.width) // 2
         oy = (TILE_PX - img.height) // 2
@@ -78,32 +76,36 @@ def _tile(image_path: Optional[Path], label: str, font: ImageFont.ImageFont) -> 
     return cell
 
 
-def build_contact_sheet(page_dir: Path, output_path: Path) -> Path:
-    """Assemble the 4×3 grid of all 12 variants. Resume-safe: skips if
-    output already exists."""
+def build_contact_sheet(page_dir: Path, output_path: Path,
+                        variants: Sequence[Variant],
+                        cols: int = 4) -> Path:
+    """Assemble a grid covering every variant. Resume-safe: skips if
+    output already exists. Rows are computed to fit `len(variants)` at the
+    requested `cols`; any trailing empty cells render as placeholders."""
     if output_path.exists():
         return output_path
 
     font = _load_font(20)
 
-    if len(VARIANTS) != COLS * ROWS:
-        raise RuntimeError(
-            f"contact sheet expects {COLS*ROWS} variants, got {len(VARIANTS)}"
-        )
+    cols = max(1, int(cols))
+    rows = max(1, math.ceil(len(variants) / cols))
 
     cell_w = TILE_PX
     cell_h = TILE_PX + LABEL_HEIGHT
-    sheet_w = PADDING + COLS * (cell_w + PADDING)
-    sheet_h = PADDING + ROWS * (cell_h + PADDING)
+    sheet_w = PADDING + cols * (cell_w + PADDING)
+    sheet_h = PADDING + rows * (cell_h + PADDING)
     sheet = Image.new("RGB", (sheet_w, sheet_h), BG_COLOR)
 
-    for idx, v in enumerate(VARIANTS):
-        r, c = divmod(idx, COLS)
-        path = page_dir / v.filename
-        label = f"{v.slot:02d}  {v.label}"
-        tile = _tile(path, label, font)
+    for idx in range(rows * cols):
+        r, c = divmod(idx, cols)
         x = PADDING + c * (cell_w + PADDING)
         y = PADDING + r * (cell_h + PADDING)
+        if idx < len(variants):
+            v = variants[idx]
+            label = f"{v.slot:02d}  {v.label}"
+            tile = _tile(page_dir / v.filename, label, font)
+        else:
+            tile = _tile(None, "", font)
         sheet.paste(tile, (x, y))
 
     output_path.parent.mkdir(parents=True, exist_ok=True)

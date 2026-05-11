@@ -1,12 +1,14 @@
-"""SD 1.5 img2img model, CPU-friendly.
+"""SD 1.5 img2img model — CPU, CUDA, or MPS (Apple Silicon).
 
 The init image's dimensions drive the output's dimensions: whatever WxH the
 init image has (rounded to multiples of 8), that's what we generate at. This
 preserves the original page's aspect ratio end-to-end.
 
 Empty positive prompt by design — the per-page negative prompt does the
-steering. Runs in roughly 30-90s per image on a Ryzen 9 8945HS depending on
-strength, steps, and the image's pixel count.
+steering. Approximate per-image runtime:
+    - Ryzen 9 8945HS (CPU, 512 short side):   30-90 s
+    - M1 Max (MPS, 512 short side):            5-15 s
+    - Recent Nvidia GPU (CUDA fp16):            2-6 s
 """
 
 from pathlib import Path
@@ -15,6 +17,7 @@ from typing import Optional
 from PIL import Image
 
 from .. import config
+from .device import get_device
 
 
 def _round_to_multiple_of_8(x: int) -> int:
@@ -34,10 +37,12 @@ def _conform_to_vae(img: Image.Image) -> Image.Image:
 
 
 class DiffusionModel:
-    def __init__(self, model_id: str = config.DIFFUSION_MODEL):
+    def __init__(self, model_id: str = config.DIFFUSION_MODEL,
+                 device_request: str = "auto"):
         self.model_id = model_id
+        self.device_request = device_request
         self.pipe = None
-        self.device = None
+        self.device: Optional[str] = None
         self.dtype = None
 
     def _ensure_loaded(self) -> None:
@@ -47,15 +52,7 @@ class DiffusionModel:
         from diffusers import StableDiffusionImg2ImgPipeline, DPMSolverMultistepScheduler
         torch.set_num_threads(config.NUM_THREADS)
 
-        # GPU auto-detect: ROCm (AMD) and CUDA (Nvidia) both report as "cuda"
-        # in PyTorch. fp16 on GPU is ~2x faster than fp32 with negligible
-        # quality loss for SD 1.5.
-        if torch.cuda.is_available():
-            self.device = "cuda"
-            self.dtype = torch.float16
-        else:
-            self.device = "cpu"
-            self.dtype = torch.float32
+        self.device, self.dtype = get_device(self.device_request)  # type: ignore[arg-type]
 
         self.pipe = StableDiffusionImg2ImgPipeline.from_pretrained(
             self.model_id,
@@ -74,8 +71,9 @@ class DiffusionModel:
         )
         self.pipe = self.pipe.to(self.device)
         self.pipe.set_progress_bar_config(leave=False)
-        # Attention slicing reduces peak memory; helpful on iGPUs that share
-        # system RAM and on CPU. Negligible cost on dedicated GPUs.
+        # Attention slicing reduces peak memory; helpful on iGPUs and unified
+        # memory devices (M-series) that share system RAM. Negligible cost on
+        # dedicated GPUs.
         self.pipe.enable_attention_slicing("max")
 
     def img2img(
@@ -100,7 +98,12 @@ class DiffusionModel:
         init = Image.open(init_image_path).convert("RGB")
         init = _conform_to_vae(init)
 
-        generator = torch.Generator(device="cpu").manual_seed(seed) if seed is not None else None
+        # Generators on MPS aren't reliably reproducible across torch versions;
+        # we always seed via a CPU generator and let the pipeline broadcast it.
+        generator = (
+            torch.Generator(device="cpu").manual_seed(seed)
+            if seed is not None else None
+        )
 
         # SD 1.5 CLIP truncation is at 77 tokens; long descriptions get clipped.
         # That's fine for this use case — the salient nouns dominate the negative.
