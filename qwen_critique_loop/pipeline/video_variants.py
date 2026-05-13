@@ -6,8 +6,9 @@ previous pass's outputs as the init image (the first pass uses the prepared
 frames extracted from the source video).
 
 Requirements:
-    - ffmpeg and ffprobe on PATH (frame extract + final encode; audio copied
-      from the source clip when present).
+    - ffmpeg and ffprobe (see ``qwen_critique_loop.utils.ffmpeg_bins`` for
+      ``IMGSEQUEL_FFMPEG`` / ``IMGSEQUEL_FFPROBE`` and search paths). Audio is
+      copied from the source clip when present.
 
 Artifacts under ``run_dir / "video"``:
     extracted/frame_%06d.png   — raw decoded frames
@@ -29,20 +30,12 @@ from .. import config
 from ..models.diffusion import DiffusionModel
 from ..models.vision import VisionModel
 from ..runset import RunConfig, Variant
+from ..utils.ffmpeg_bins import resolve_ffmpeg_ffprobe
 from ..utils.io import write_manifest
 from ..utils.progress import ProgressLog
 
 from .describe import describe_image
 from .prepare import prepare_for_diffusion
-
-
-def _need_ffmpeg() -> None:
-    for bin_name in ("ffmpeg", "ffprobe"):
-        if shutil.which(bin_name) is None:
-            raise FileNotFoundError(
-                f"{bin_name} not found on PATH — required for --mp4 "
-                "(install ffmpeg: https://ffmpeg.org/download.html)"
-            )
 
 
 def _parse_fps(rate: str) -> float:
@@ -54,8 +47,9 @@ def _parse_fps(rate: str) -> float:
 
 
 def probe_video_fps(video_path: Path) -> float:
+    _, ffprobe = resolve_ffmpeg_ffprobe()
     cmd = [
-        "ffprobe", "-v", "error", "-select_streams", "v:0",
+        str(ffprobe), "-v", "error", "-select_streams", "v:0",
         "-show_entries", "stream=r_frame_rate", "-of",
         "default=noprint_wrappers=1:nokey=1", str(video_path),
     ]
@@ -105,9 +99,10 @@ def extract_frames(
     max_frames: Optional[int] = None,
 ) -> int:
     """Decode video to PNG sequence. Returns frame count."""
+    ffmpeg, _ = resolve_ffmpeg_ffprobe()
     out_dir.mkdir(parents=True, exist_ok=True)
     pattern = str(out_dir / "frame_%06d.png")
-    cmd = ["ffmpeg", "-y", "-i", str(mp4_path)]
+    cmd = [str(ffmpeg), "-y", "-i", str(mp4_path)]
     if max_frames is not None:
         cmd.extend(["-vframes", str(max_frames)])
     cmd.extend(["-vsync", "0", pattern])
@@ -116,8 +111,9 @@ def extract_frames(
 
 
 def probe_has_audio(video_path: Path) -> bool:
+    _, ffprobe = resolve_ffmpeg_ffprobe()
     cmd = [
-        "ffprobe", "-v", "error", "-select_streams", "a",
+        str(ffprobe), "-v", "error", "-select_streams", "a",
         "-show_entries", "stream=codec_type", "-of", "csv=p=0",
         str(video_path),
     ]
@@ -132,10 +128,11 @@ def encode_mp4_from_frames(
     output_mp4: Path,
 ) -> None:
     """H.264 from numbered PNGs; copy audio from source when available."""
+    ffmpeg, _ = resolve_ffmpeg_ffprobe()
     pattern = str(frames_dir / "frame_%06d.png")
     output_mp4.parent.mkdir(parents=True, exist_ok=True)
     cmd = [
-        "ffmpeg", "-y",
+        str(ffmpeg), "-y",
         "-framerate", str(fps),
         "-i", pattern,
         "-i", str(source_mp4),
@@ -170,7 +167,7 @@ def run_video_variant_pipeline(
     if not cfg.variants:
         raise ValueError("runset has no variants — nothing to apply")
 
-    _need_ffmpeg()
+    resolve_ffmpeg_ffprobe()
     mp4_path = mp4_path.expanduser().resolve()
     if not mp4_path.exists():
         raise FileNotFoundError(mp4_path)

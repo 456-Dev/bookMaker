@@ -348,7 +348,8 @@ def main():
         "--mp4", type=Path, default=None,
         help="Input MP4: run the separate video pipeline (chain every runset "
              "variant across all frames; ffmpeg/ffprobe required). Omit the PDF "
-             "argument in this mode.",
+             "argument in this mode. Override binaries with IMGSEQUEL_FFMPEG / "
+             "IMGSEQUEL_FFPROBE.",
     )
     parser.add_argument(
         "--max-frames", type=int, default=None, metavar="N",
