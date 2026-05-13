@@ -1,0 +1,76 @@
+{
+  "version": 2,
+  "name": "default",
+  "render_dpi": 200,
+  "diffusion": {
+    "scale_percent": 100,
+    "long_side_max": 854,
+    "guidance": 7
+  },
+  "describe": {
+    "max_tokens": 90,
+    "questions": [
+      {
+        "key": "subject",
+        "question": "What is in the image? Describe the subject or subjects in detail — who or what they are, their pose and expression, what they are wearing, what they are doing, and any notable objects, props, or animals present."
+      },
+      {
+        "key": "location",
+        "question": "Where is the image taken? Describe the location and setting — indoor or outdoor, type of place, identifying landmarks or background elements, geography or culture cues, foreground and background, and the spatial relationship between subject and environment."
+      },
+      {
+        "key": "time",
+        "question": "When was the image taken? Estimate the era (decade or year range), the season, the time of day, and any cues from clothing, technology, vehicles, signage, or photographic medium that support that estimate."
+      },
+      {
+        "key": "purpose",
+        "question": "Why was the image taken? Speculate on the photograph's purpose and context — editorial, journalistic, portrait commission, family snapshot, fashion, documentary, advertising — and what the photographer was trying to communicate or capture."
+      },
+      {
+        "key": "camera",
+        "question": "What camera settings was the image taken with? Estimate the camera format (35mm, medium format, digital), focal length in millimetres, aperture (f-stop) inferred from depth of field, shutter speed inferred from motion blur or freeze, ISO inferred from grain or noise, and lens character — sharpness, distortion, vignetting, bokeh, and lens flare. Also note the lighting setup (key, fill, rim, color temperature) and the editing or post-processing style (color grading, contrast curve, grain, sharpening, film emulation)."
+      }
+    ]
+  },
+  "contact_sheet": {
+    "cols": 4
+  },
+  "variants": [
+    {
+      "slot": 1,
+      "filename": "sequel_01_control.png",
+      "label": "control",
+      "strength": 0.5,
+      "steps": 25,
+      "seed_override": 456,
+      "positive_prompt": "",
+      "negative_prompt": null,
+      "guidance": 10,
+      "is_control": false
+    },
+    {
+      "slot": 3,
+      "filename": "sequel_03_better.png",
+      "label": "best image possible  s=0.40",
+      "strength": 0.4,
+      "steps": 50,
+      "seed_override": 457,
+      "positive_prompt": "generate the best image possible",
+      "negative_prompt": null,
+      "guidance": 10,
+      "is_control": false
+    },
+    {
+      "slot": 12,
+      "filename": "sequel_12_s80_same.png",
+      "label": "same  s=0.45",
+      "strength": 0.45,
+      "steps": 50,
+      "seed_override": 458,
+      "positive_prompt": "the exact same image",
+      "negative_prompt": "a black person holding a rifle in a well lit gun room",
+      "guidance": 10,
+      "is_control": false
+    }
+  ]
+}

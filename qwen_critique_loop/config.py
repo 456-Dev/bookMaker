@@ -89,7 +89,11 @@ CONTROL_STRENGTH = 0.50
 CONTROL_STEPS = 25
 
 # ---------- CPU thread tuning ----------
-NUM_THREADS = os.cpu_count() or 8
+# Half of available cores. 16 threads fighting over 3GB free RAM (when the
+# iGPU VRAM allocation is large) causes uninterruptible-I/O (D) state
+# thrashing. Once BIOS VRAM is reduced to 2-4GB, this can be raised back
+# to `os.cpu_count()` if you want maximum CPU utilisation.
+NUM_THREADS = max(1, (os.cpu_count() or 8) // 2)
 
 # ---------- Progress display ----------
 PROGRESS_FILE = "progress.txt"

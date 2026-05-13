@@ -44,6 +44,8 @@ Usage:
     python -m qwen_critique_loop.main path/to/document.pdf --runset myrun.runset.json
     python -m qwen_critique_loop.main path/to/document.pdf --device mps
     python -m qwen_critique_loop.main --resume latest
+    python -m qwen_critique_loop.main --mp4 clip.mp4 --runset myrun.runset.json
+    python -m qwen_critique_loop.main --mp4 clip.mp4 --max-frames 24 --device mps
 """
 
 from __future__ import annotations
@@ -62,6 +64,7 @@ from .pipeline.prepare import prepare_for_diffusion, target_dimensions
 from .pipeline.describe import describe_image
 from .pipeline.regenerate import regenerate_all, variants_as_dicts
 from .pipeline.contact_sheet import build_contact_sheet
+from .pipeline.video_variants import run_video_variant_pipeline
 from .utils.io import (
     create_run_dir, page_dir,
     write_manifest, read_manifest, find_latest_run,
@@ -341,7 +344,45 @@ def main():
     parser.add_argument("--device", type=str, default="auto",
                         choices=["auto", "cpu", "cuda", "mps"],
                         help="Hardware to run on. 'auto' picks cuda > mps > cpu.")
+    parser.add_argument(
+        "--mp4", type=Path, default=None,
+        help="Input MP4: run the separate video pipeline (chain every runset "
+             "variant across all frames; ffmpeg/ffprobe required). Omit the PDF "
+             "argument in this mode.",
+    )
+    parser.add_argument(
+        "--max-frames", type=int, default=None, metavar="N",
+        help="With --mp4: decode at most N frames (debug / cost control).",
+    )
+    parser.add_argument(
+        "--run-dir", type=Path, default=None,
+        help="With --mp4: output directory. Default: timestamped folder under runs/.",
+    )
     args = parser.parse_args()
+
+    if args.mp4 is not None:
+        if args.resume:
+            raise SystemExit("--resume is not supported together with --mp4")
+        if args.pdf is not None:
+            raise SystemExit("Use either a PDF path or --mp4, not both")
+        mp4_path = args.mp4.expanduser().resolve()
+        if not mp4_path.exists():
+            raise SystemExit(f"MP4 not found: {mp4_path}")
+        cfg = _load_runset(args.runset)
+        if args.run_dir is not None:
+            run_dir = args.run_dir.expanduser().resolve()
+            run_dir.mkdir(parents=True, exist_ok=True)
+        else:
+            run_dir = create_run_dir(mp4_path)
+        progress = ProgressLog(run_dir / config.PROGRESS_FILE)
+        run_video_variant_pipeline(
+            mp4_path, run_dir, cfg,
+            seed_base=args.seed,
+            device_request=args.device,
+            max_frames=args.max_frames,
+            progress=progress,
+        )
+        return
 
     if args.resume:
         run_dir = _resolve_resume(args.resume)
